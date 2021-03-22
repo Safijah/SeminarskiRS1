@@ -16,7 +16,7 @@ namespace RS_SEMINARSKI.ViewModels
        
         public IFormFile SlikaFotografa { get; set; }
         public string PutanjaDoSlikeFotografa { get; set; }
-        public int KorisnikID { get; set; }
+        public string KorisnikID { get; set; }
         public string ImeFotografa { get; set; }
         public string PrezimeFotografa { get; set; }
         public float SatnicaSlikanja { get; set; }

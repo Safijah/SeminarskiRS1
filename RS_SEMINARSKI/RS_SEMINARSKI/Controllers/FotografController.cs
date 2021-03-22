@@ -10,9 +10,12 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Hosting;
 using System.IO;
+using Microsoft.AspNetCore.Authorization;
+using Data.Migrations;
 
 namespace RS_SEMINARSKI.Controllers
 {
+    
     public class FotografController : Controller
     {
         private readonly ApplicationDbContext _dbContext;
@@ -26,7 +29,8 @@ namespace RS_SEMINARSKI.Controllers
             _logger = logger;
             WebHostEnvironment = webhostEnvironment;
         }
-        public IActionResult PrikazFotografa(int KorisnikID)
+     
+        public IActionResult PrikazFotografa(string KorisnikID)
         {
 
             
@@ -58,7 +62,8 @@ namespace RS_SEMINARSKI.Controllers
 
             return View("PrikazFotografa", d);
         }
-        public IActionResult EvidentirajFotografa(int KorisnikID, int FotografID = 0)
+  
+        public IActionResult EvidentirajFotografa(string KorisnikID, int FotografID = 0)
         {
            
             List<SelectListItem> vrstefotografije = _dbContext.Fotografije.Select(
@@ -95,6 +100,7 @@ namespace RS_SEMINARSKI.Controllers
            fotograf.Fotografija = vrstefotografije;
             return View(fotograf);
         }
+        [Authorize]
         public IActionResult Snimi(FotografEvidentirajVM x)
         {
            
@@ -119,7 +125,7 @@ namespace RS_SEMINARSKI.Controllers
             _dbContext.SaveChanges();
             return Redirect("PrikazFotografa?KorisnikID=" + x.KorisnikID);
         }
-        
+       
         private string UploadFile(FotografEvidentirajVM x)
         {
             string fileName = null;
@@ -135,7 +141,8 @@ namespace RS_SEMINARSKI.Controllers
             }
             return fileName;
         }
-        public IActionResult ObrisiFotografa(int KorisnikID, int FotografID)
+
+        public IActionResult ObrisiFotografa(string  KorisnikID, int FotografID)
         {
 
            

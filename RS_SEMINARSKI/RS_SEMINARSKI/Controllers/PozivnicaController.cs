@@ -25,7 +25,7 @@ namespace RS_SEMINARSKI.Controllers
             _logger = logger;
             WebHostEnvironment = webhostEnvironment;
         }
-        public IActionResult PrikazPozivnica(int KorisnikID)
+        public IActionResult PrikazPozivnica(string  KorisnikID)
         {
             
             List<PozivnicaPrikazVM.Row> pozivnice = _dbContext.Pozivnice
@@ -47,7 +47,7 @@ namespace RS_SEMINARSKI.Controllers
             return View(x);
         }
 
-        public IActionResult EvidentirajPozivnicu(int KorisnikID, int PozivnicaID = 0)
+        public IActionResult EvidentirajPozivnicu(string KorisnikID, int PozivnicaID = 0)
         {
            
 
@@ -115,7 +115,7 @@ namespace RS_SEMINARSKI.Controllers
             }
             return fileName;
         }
-        public IActionResult ObrisiPozivnicu(int KorisnikID, int PozivnicaID)
+        public IActionResult ObrisiPozivnicu(string KorisnikID, int PozivnicaID)
         {
 
            
@@ -133,5 +133,48 @@ namespace RS_SEMINARSKI.Controllers
 
             return Redirect("PrikazPozivnica?KorisnikID=" + KorisnikID);
         }
+        public IActionResult DodajURezervaciju(string KorisnikID, int PozivnicaID)
+        {
+            var ima1 = _dbContext.RezervacijaKorisnici.FirstOrDefault(a => a.KorisnikID == KorisnikID);
+            var ima2 = _dbContext.Rezervacije.FirstOrDefault(a => a.RezervacijaID == ima1.RezervacijaID && PozivnicaID==a.PozivnicaID);
+            if (ima2 != null)
+            {
+                return NoContent();
+            }
+
+            var ima = _dbContext.RezervacijaKorisnici.FirstOrDefault(a => a.KorisnikID == KorisnikID);
+            if (ima == null)
+            {
+                var rezervacija = new Rezervacija();
+                rezervacija.PozivnicaID = PozivnicaID;
+                _dbContext.Add(rezervacija);
+                _dbContext.SaveChanges();
+                var rezkorisnici = new RezervacijaKorisnik()
+                {
+                    RezervacijaID = rezervacija.RezervacijaID,
+                    KorisnikID = KorisnikID
+                };
+                _dbContext.Add(rezkorisnici);
+                _dbContext.SaveChanges();
+                
+
+            }
+            else
+            {
+                var rezervacija = _dbContext.Rezervacije.Find(ima.RezervacijaID);
+                rezervacija.PozivnicaID = PozivnicaID;
+                
+                _dbContext.SaveChanges();
+            }
+            var vm = new StavkaKolicinaVM()
+            {
+                Kolicina = 0,
+                Tip = "pozivnica",
+                KorisnikID = KorisnikID,
+                StavkaID = PozivnicaID
+            };
+            return View("~/Views/Rezervacija/StavkaKolicina.cshtml",vm);
+        }
+         
     }
 }
