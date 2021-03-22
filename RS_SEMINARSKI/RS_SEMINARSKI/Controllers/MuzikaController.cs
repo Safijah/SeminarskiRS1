@@ -73,7 +73,7 @@ namespace RS_SEMINARSKI.Controllers
 
             MuzikaEvidentirajBendoveVM muzika = new MuzikaEvidentirajBendoveVM();
             muzika.KorisnikID = KorisnikID;
-
+             
 
             if (BendID == 0)
             {
@@ -251,7 +251,7 @@ namespace RS_SEMINARSKI.Controllers
 
 
 
-        public IActionResult ObrisiBend(int KorisnikID, int BendID)
+        public IActionResult ObrisiBend(string KorisnikID, int BendID)
         {
           
             Bend bend = _dbContext.Bendovi.Find(BendID);

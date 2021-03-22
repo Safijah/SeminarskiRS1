@@ -231,9 +231,9 @@
                 @*<label>MuzikaID</label>
                     <input asp-for="MuzikaID" value="@Model.MuzikaID"/>*@
                 @*<label>BendID</label>*@
-                <input hidden class="input_polje" asp-for="BendID" value="@Model.BendID" readonly /><br />
+                <input hidden class="input_polje" id="BendID" asp-for="BendID" value="@Model.BendID" readonly /><br />
                 @*<label>KorisnikID</label>*@
-                <input hidden class="input_polje" asp-for="KorisnikID" value="@Model.KorisnikID" readonly /><br />
+                <input hidden class="input_polje" id="KorisnikID" asp-for="KorisnikID" value="@Model.KorisnikID" readonly /><br />
                 <label id="labela">NazivBenda</label>
                 <input class="input_polje" asp-for="NazivBenda" /><br />
 
@@ -272,7 +272,7 @@
             @*<button onclick="window.location = '/Muzika/DodajZanr?KorisnikID=@Model.KorisnikID&BendID=@Model.BendID'">Dodaj zanr</button>*@
             <br />
             <br />
-            <button id="ajax1" onclick="DodajZanr(@Model.KorisnikID,@Model.BendID)">Dodaj žanr</button>
+            <button id="ajax1" onclick="DodajZanr()">Dodaj žanr</button>
             <br />
             @*<button onclick="window.location = '/Muzika/PrikaziZanrove?BendID=@Model.BendID'">Pregledaj zanrove</button>*@
             <button id="ajax2" onclick="PrikaziZanrove(@Model.BendID)">Pregledaj žanrove</button>
@@ -328,11 +328,13 @@
     }
 
 
-    function DodajZanr(KorisnikID, BendID) {
+    var DodajZanr=()=> {
+
+        var BendID = document.getElementById("BendID").value;
+        var KorisnikID = document.getElementById("KorisnikID").value;
 
         var url = "/Muzika/DodajZanr?KorisnikID=" + KorisnikID + "&BendID=" + BendID;
         var zahtjev = new XMLHttpRequest;
-
         zahtjev.onload = function () {
             if (zahtjev.status == 200) {
                 document.getElementById("Ajax").innerHTML = (zahtjev.responseText);
