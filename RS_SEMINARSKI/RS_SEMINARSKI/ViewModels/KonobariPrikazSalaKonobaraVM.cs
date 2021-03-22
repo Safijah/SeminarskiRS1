@@ -13,6 +13,6 @@ namespace RS_SEMINARSKI.ViewModels
             public string NazivSale { get; set; }
         }
         public List<Rows> SaleKonobari { get; set; }
-        public int KorisnikID { get; set; }
+        public string KorisnikID { get; set; }
     }
 }

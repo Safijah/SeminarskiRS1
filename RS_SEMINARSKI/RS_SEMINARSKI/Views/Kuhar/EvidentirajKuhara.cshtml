@@ -1,0 +1,205 @@
+﻿@using RS_SEMINARSKI.ViewModels
+@model KuharEvidentirajVM
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+<style>
+    #KONT_STRANICE {
+        height: 100%;
+        width: 100%;
+        background-image: url("https://i.pinimg.com/564x/8f/c6/b7/8fc6b7eca6e1d9bba6500efc0cfd8bda.jpg");
+        background-position: center;
+        background-size: cover;
+        opacity: 0.9;
+    }
+
+    #glavnii {
+        width: 100%;
+        height: 60px;
+        border-radius: 10px;
+        margin-top: 6px;
+        background-color: white;
+    }
+
+    #NavMain {
+        background-color: white;
+        height: 60px;
+        width: 100%;
+        color: white;
+    }
+
+    .input_polje {
+        border: 1px solid transparent;
+        margin-left: 65px;
+        padding-top: 4px;
+        width: 500px;
+        border: 1px solid transparent;
+        border-bottom: 1px solid lightblue;
+        color: gray;
+    }
+
+    .input_poljee {
+        border: 1px solid transparent;
+        margin-left: 500px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        width: 500px;
+        border: 1px solid transparent;
+        border-bottom: 1px solid lightblue;
+        color: gray;
+    }
+
+    .btn {
+        color: dimgrey;
+        background-color: white;
+        margin-top: 25px;
+        margin-left: 20px;
+        font-size: 15px;
+        width: 130px;
+        bottom: 5px;
+    }
+
+        .btn alert-danger {
+            margin-left: 30px;
+        }
+
+    #GLAVNI {
+        border-radius: 10px;
+        position: relative;
+        height: 500px;
+        width: 80%;
+        top: 40px;
+        left: 130px;
+    }
+
+    #Slika {
+        height: 100%;
+        width: 40%;
+        float: left;
+    }
+
+    #vjecanje {
+        width: 100%;
+        height: 100%;
+        background-size: cover;
+        background-position: center;
+        border-radius: 10px;
+    }
+
+    span {
+        color: lightblue;
+        padding-top: 40px;
+        font-size: 25px;
+        padding-left: 48px;
+        position: relative;
+        top: 15px;
+        bottom: 20px;
+    }
+
+    label {
+        padding-top: 25px;
+        padding-left: 48px;
+        font-weight: normal;
+        color: dimgrey;
+    }
+
+    #forma {
+        background-color: white;
+    }
+
+    #neko {
+        border-radius: 2px;
+        border-color: lightblue;
+        border: 1px solid transparent;
+        position: relative;
+        left: 50px;
+        bottom: 20px;
+        color: lightgreen;
+        margin-top: 10px;
+    }
+</style>
+
+<div id="KONT_STRANICE">
+    <div id="NavMain">
+        <button class="btn" onclick="window.location = '/Vjencanje/PrikazPocetne?KorisnikID=@Model.KorisnikID'">Početna strana </button>
+        <button class="btn" onclick="window.location ='/Korisnik/PrikazRacuna?korisnikID=@Model.KorisnikID'">Korisnički račun</button>
+        <button class="btn" onclick="window.location='/Autentifikacija/LogOut'">Odjavi se</button>
+    </div>
+
+    <div id="GLAVNI">
+        <div id="Slika">
+            <img id="vjecanje" src="https://i.pinimg.com/564x/a4/2d/33/a42d33c39fc06376e8f0f2870ab673b4.jpg" alt="Mountains">
+
+        </div>
+
+        <div id="glavnii">
+            <div id="SpanElement">
+                <span>Evidencija kuhara </span><br />
+            </div>
+            <form id="forma" enctype="multipart/form-data" asp-controller="Kuhar" asp-action="Snimi">
+
+                <input asp-for="KuharID" value="@Model.KuharID" hidden />
+                <input asp-for="KorisnikID" value="@Model.KorisnikID" hidden />
+                <label>Ime: </label>
+                <input class="input_polje" asp-for="ImeKuhara" />
+                <br />
+                <label>Prezime: </label>
+                <input class="input_polje" asp-for="PrezimeKuhara" />
+                <br />
+                <label>Plata: </label>
+                <input class="input_polje" asp-for="PlataKuhara" />
+                <br />
+                <input id="neko" type="submit" value="Snimi" />
+
+            </form>
+        </div>
+    </div>
+</div>
+
+@if (Model.KuharID != 0)
+{
+    <button onclick="DodajJelo(@Model.KorisnikID,@Model.KuharID)">Dodaj jela</button>
+    <br />
+    <button onclick="PrikaziJela(@Model.KuharID)">Pregledaj jela</button>
+}
+
+<div id="Ajax" style="border-style:double"></div>
+<script>
+    function PrikaziJela(KuharID) {
+        var url = '/Kuhar/PrikaziJela?KuharID=' + KuharID;
+        var zahtjev = new XMLHttpRequest;
+        zahtjev.onload = function () {
+            if (zahtjev.status == 200) {
+                document.getElementById("Ajax").innerHTML = (zahtjev.responseText);
+            }
+        }
+        zahtjev.open("GET", url, true);
+        zahtjev.send();
+    }
+    function SnimiPromjene() {
+
+        var form = $("#FORMA_ZA_SNIMANJE");
+        var url = "/Kuhar/SnimiJelo";
+
+        $.ajax({
+            type: "POST",
+            url: url,
+            data: form.serialize(),
+            success: function (data) {
+                $("#Ajax").html(data);
+            }
+        });
+        alert("Dodano");
+    }
+    function DodajJelo(KorisnikID, KuharID) {
+        var url = "/Kuhar/DodajJelo?KorisnikID=" + KorisnikID + "&KuharID=" + KuharID;
+        var zahtjev = new XMLHttpRequest;
+        zahtjev.onload = function () {
+            if (zahtjev.status == 200) {
+                document.getElementById("Ajax").innerHTML = (zahtjev.responseText);
+            }
+        }
+        zahtjev.open("GET", url, true);
+        zahtjev.send();
+    }
+</script>

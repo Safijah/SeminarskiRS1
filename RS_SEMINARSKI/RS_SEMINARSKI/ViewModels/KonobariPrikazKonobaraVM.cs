@@ -17,7 +17,8 @@ namespace RS_SEMINARSKI.ViewModels
            
         }
         public List<Rows> Konobari { get; set; }
-        public int KorisnikID { get; set; }
+        public string
+            KorisnikID { get; set; }
 
         public int RolaID { get; set; }
     }
