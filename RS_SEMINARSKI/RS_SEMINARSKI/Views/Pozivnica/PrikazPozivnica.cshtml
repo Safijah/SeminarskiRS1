@@ -186,6 +186,7 @@
         <button class="btn" onclick="window.location = '/Vjencanje/PrikazPocetne?KorisnikID=@Model.KorisnikID'">Početna strana </button>
         <button class="btn" onclick="window.location ='/Korisnik/PrikazRacuna?korisnikID=@Model.KorisnikID'">Korisnički račun</button>
         <button class="btn" onclick="window.location='/Autentifikacija/LogOut'">Odjavi se</button>
+        <button class="btn" onclick="window.location='/Rezervacija/Prikaz?korisnikID=@Model.KorisnikID'">Rezervacija</button>
     </div>
 
     <div id="LijeviNavBar">
@@ -263,6 +264,7 @@
                     @if (Model.RolaID == 1)
                     {<button class="btn2" style="color:mediumseagreen" onclick="window.location = '/Pozivnica/EvidentirajPozivnicu?KorisnikID=@Model.KorisnikID&PozivnicaID=@x.PozivnicaID'">Uredi</button>
                         <button class="btn2" style="color: indianred" onclick="window.location = '/Pozivnica/ObrisiPozivnicu?KorisnikID=@Model.KorisnikID&PozivnicaID=@x.PozivnicaID'">Obriši</button>
+                        <button class="btn2" style="color: indianred" onclick="window.location = '/Pozivnica/DodajURezervaciju?KorisnikID=@Model.KorisnikID&PozivnicaID=@x.PozivnicaID'">Dodaj</button>
                     }
                 </div>
 

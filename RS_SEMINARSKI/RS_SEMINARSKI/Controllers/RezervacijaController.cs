@@ -27,6 +27,7 @@ namespace RS_SEMINARSKI.Controllers
         public IActionResult Prikaz(string korisnikID)
         {
             var vm = new RezervacijaPrikazVM();
+            vm.stavke = new List<RezervacijaPrikazVM.Rows>();
             var rez = _dbContext.RezervacijaKorisnici.FirstOrDefault(a => a.KorisnikID == korisnikID);
             if (rez != null)
             {
@@ -39,29 +40,31 @@ namespace RS_SEMINARSKI.Controllers
                     {
                         StavkaID = pozivnica.PozivnicaID,
                         Cijena = pozivnica.CijenaPozivnice,
-                        Kolicina = 1,
+                        Kolicina = rezervacija.KolicinaPozivnica,
                         UkupnaCijena = pozivnica.CijenaPozivnice,
                         Naziv = pozivnica.OpisPozivnice,
-                        PutanjaDoSlike = pozivnica.PutanjaDoSlikePozivnice
+                        PutanjaDoSlike = pozivnica.PutanjaDoSlikePozivnice,
+                        Tip="pozivnica"
                     };
-                    pozivnice.UkupnaCijena = pozivnice.Kolicina * pozivnice.Cijena;
-                    vm.stavke = new List<RezervacijaPrikazVM.Rows>();
+                    pozivnice.UkupnaCijena = rezervacija.KolicinaPozivnica * pozivnice.Cijena;
+                   
                     vm.stavke.Add(pozivnice);
                 }
-                var muzika = _dbContext.MuzikaBendovi.Include(a=>a.Bend).Include(a=>a.Muzika).FirstOrDefault(a => a.MuzikaID == rezervacija.MuzikaID);
-                if (muzika != null)
+                var bendovi = _dbContext.MuzikaBendovi.Include(a=>a.Muzika).Include(a=>a.Bend).FirstOrDefault(a => a.BendID == rezervacija.BendID);
+                if (bendovi != null)
                 {
-                    var muzike = new RezervacijaPrikazVM.Rows
+                    var bend = new RezervacijaPrikazVM.Rows
                     {
-                        StavkaID = muzika.MuzikaID,
-                        Cijena = muzika.Bend.SatnicaSviranja,
+                        StavkaID = bendovi.BendID,
+                        Cijena = bendovi.Bend.SatnicaSviranja,
                         Kolicina = 1,
-                        UkupnaCijena = muzika.Bend.SatnicaSviranja ,
-                        Naziv = muzika.Muzika.NazivZanra,
-                        PutanjaDoSlike = muzika.Bend.PutanjaDoSlikeBenda
+                        UkupnaCijena = bendovi.Bend.SatnicaSviranja ,
+                        Naziv = bendovi.Muzika.NazivZanra,
+                        PutanjaDoSlike = bendovi.Bend.PutanjaDoSlikeBenda,
+                        Tip="bendovi"
                     };
-                    muzike.UkupnaCijena = muzike.Kolicina*muzike.Cijena;
-                    vm.stavke.Add(muzike);
+                    bend.UkupnaCijena = bend.Kolicina* bend.Cijena;
+                    vm.stavke.Add(bend);
                 }
                 var cvijece = _dbContext.RezervacijaCvijece.Include(a => a.Cvijece).ThenInclude(a=>a.TipCvijeca).Where(a => a.RezervacijaID == rezervacija.RezervacijaID)
                     .Select(a=>new RezervacijaPrikazVM.Rows 
@@ -71,7 +74,8 @@ namespace RS_SEMINARSKI.Controllers
                         Kolicina = 10,
                         UkupnaCijena = a.Cvijece.CijenaCvijeca,
                         Naziv = a.Cvijece.VrstaCvijeca+ " "+a.Cvijece.TipCvijeca.NazivTipaCvijeca,
-                        PutanjaDoSlike = a.Cvijece.PutanjaDoSlikeCvijeca
+                        PutanjaDoSlike = a.Cvijece.PutanjaDoSlikeCvijeca,
+                        Tip="cvijece"
                     }).ToList();
                 if (cvijece != null)
                 {
@@ -90,8 +94,10 @@ namespace RS_SEMINARSKI.Controllers
                        Kolicina = 10,
                        UkupnaCijena = a.Dekoracija.CijenaDekoracije,
                        Naziv = a.Dekoracija.VrstaDekoracije + " " + a.Dekoracija.TipDekoracije.NazivTipaDekoracije,
-                       PutanjaDoSlike = a.Dekoracija.PutanjaDoSlikeDekoracije
+                       PutanjaDoSlike = a.Dekoracija.PutanjaDoSlikeDekoracije,
+                       Tip="dekoracije"
                    }).ToList();
+
                 if (dekoracije != null)
                 {
 
@@ -109,7 +115,8 @@ namespace RS_SEMINARSKI.Controllers
                       Kolicina = 10,
                       UkupnaCijena = a.Fotograf.SatnicaSlikanja,
                       Naziv = a.Fotograf.ImeFotografa + " " + a.Fotograf.PrezimeFotografa,
-                      PutanjaDoSlike = a.Fotograf.PutanjaDoSlikeFotografa
+                      PutanjaDoSlike = a.Fotograf.PutanjaDoSlikeFotografa,
+                      Tip="fotografi"
                   }).ToList();
                 if (fotografi != null)
                 {
@@ -128,7 +135,8 @@ namespace RS_SEMINARSKI.Controllers
                       Kolicina = a.Sala.KapacitetSale,
                       UkupnaCijena = a.Sala.CijenaIznajmljivanjaSale,
                       Naziv = a.Sala.NazivSale,
-                      PutanjaDoSlike = a.Sala.PutanjaDoSlikeSale
+                      PutanjaDoSlike = a.Sala.PutanjaDoSlikeSale,
+                      Tip="sale"
                   }).ToList();
                 if (sale != null)
                 {
@@ -140,8 +148,84 @@ namespace RS_SEMINARSKI.Controllers
                     }
                 }
             }
+            vm.KorisnikID = korisnikID;
             return View(vm);
         }
+        public IActionResult ObrisiStavku(string KorisnikID, int StavkaID, string Tip)
+        {
+            var RezervacijaID = _dbContext.RezervacijaKorisnici.FirstOrDefault(a => a.KorisnikID == KorisnikID).RezervacijaID;
+            switch (Tip)
+            {
+                case "cvijece" : var Cvijece = _dbContext.RezervacijaCvijece.Where(a => a.RezervacijaID == RezervacijaID && a.CvijeceID == StavkaID).FirstOrDefault();
+                    _dbContext.RezervacijaCvijece.Remove(Cvijece);
+                    
+                
+                    break;
+                case "dekoracije":
+                    var Dekoracije = _dbContext.RezervacijaDekoracije.Where(a => a.RezervacijaID == RezervacijaID && a.DekoracijaID == StavkaID).FirstOrDefault();
+                    _dbContext.RezervacijaDekoracije.Remove(Dekoracije);
+                    break;
+                case "fotografi":
+                    var Fotografi = _dbContext.RezervacijaFotografi.Where(a => a.RezervacijaID == RezervacijaID && a.FotografID == StavkaID).FirstOrDefault();
+                    _dbContext.RezervacijaFotografi.Remove(Fotografi);
+                    break;
+                case "sale":
+                    var Sale = _dbContext.RezervacijaSale.Where(a => a.RezervacijaID == RezervacijaID && a.SalaID == StavkaID).FirstOrDefault();
+                    _dbContext.RezervacijaSale.Remove(Sale);
+                    break;
+                case "pozivnica": var RezervacijaPozivnica = _dbContext.Rezervacije.FirstOrDefault(a => a.RezervacijaID == RezervacijaID);
+                    RezervacijaPozivnica.PozivnicaID = null;
+                    break;
+                case "bendovi":
+                    var RezervacijaBend = _dbContext.Rezervacije.FirstOrDefault(a => a.RezervacijaID == RezervacijaID);
+                    RezervacijaBend.BendID = null;
+                    break;
 
+            }
+            _dbContext.SaveChanges();
+            return Redirect("/Rezervacija/Prikaz?korisnikID="+KorisnikID);
+        }
+        //public IActionResult StavkaKolicina(StavkaKolicinaVM vm )
+        //{
+        //    return View(vm);
+        //}
+        public IActionResult DodajKolicinu(StavkaKolicinaVM vm)
+        {
+            var RezervacijaID = _dbContext.RezervacijaKorisnici.FirstOrDefault(a => a.KorisnikID == vm.KorisnikID).RezervacijaID;
+            switch (vm.Tip)
+            {
+                case "cvijece":
+                    var Cvijece = _dbContext.RezervacijaCvijece.Where(a => a.RezervacijaID == RezervacijaID && a.CvijeceID == vm.StavkaID).FirstOrDefault();
+                    _dbContext.RezervacijaCvijece.Remove(Cvijece);
+
+
+                    break;
+                case "dekoracije":
+                    var Dekoracije = _dbContext.RezervacijaDekoracije.Where(a => a.RezervacijaID == RezervacijaID && a.DekoracijaID == vm.StavkaID).FirstOrDefault();
+                    _dbContext.RezervacijaDekoracije.Remove(Dekoracije);
+                    break;
+                case "fotografi":
+                    var Fotografi = _dbContext.RezervacijaFotografi.Where(a => a.RezervacijaID == RezervacijaID && a.FotografID == vm.StavkaID).FirstOrDefault();
+                    _dbContext.RezervacijaFotografi.Remove(Fotografi);
+                    break;
+                case "sale":
+                    var Sale = _dbContext.RezervacijaSale.Where(a => a.RezervacijaID == RezervacijaID && a.SalaID == vm.StavkaID).FirstOrDefault();
+                    _dbContext.RezervacijaSale.Remove(Sale);
+                    break;
+                   
+                case "pozivnica":
+                    var RezervacijaPozivnica = _dbContext.Rezervacije.FirstOrDefault(a => a.RezervacijaID == RezervacijaID);
+                    RezervacijaPozivnica.KolicinaPozivnica = vm.Kolicina;
+                    _dbContext.SaveChanges();
+                    return Redirect("/Pozivnica/PrikazPozivnica?KorisnikID=" + vm.KorisnikID);
+                case "bendovi":
+                    var RezervacijaBend = _dbContext.Rezervacije.FirstOrDefault(a => a.RezervacijaID == RezervacijaID);
+                    RezervacijaBend.BendID = null;
+                    break;
+
+            }
+
+            return View();
+        }
     }
 }

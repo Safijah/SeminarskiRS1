@@ -409,10 +409,13 @@ namespace Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int?>("BendID")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("DatumVjencanja")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("MuzikaID")
+                    b.Property<int>("KolicinaPozivnica")
                         .HasColumnType("int");
 
                     b.Property<string>("NacinPlacanjaRacuna")
@@ -432,7 +435,7 @@ namespace Data.Migrations
 
                     b.HasKey("RezervacijaID");
 
-                    b.HasIndex("MuzikaID");
+                    b.HasIndex("BendID");
 
                     b.HasIndex("PozivnicaID");
 
@@ -921,9 +924,9 @@ namespace Data.Migrations
 
             modelBuilder.Entity("Data.EFModels.Rezervacija", b =>
                 {
-                    b.HasOne("Data.EFModels.Muzika", "Muzika")
+                    b.HasOne("Data.EFModels.Bend", "Bend")
                         .WithMany()
-                        .HasForeignKey("MuzikaID");
+                        .HasForeignKey("BendID");
 
                     b.HasOne("Data.EFModels.Pozivnica", "Pozivnica")
                         .WithMany()

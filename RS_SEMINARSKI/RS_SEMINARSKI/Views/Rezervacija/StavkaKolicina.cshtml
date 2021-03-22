@@ -1,0 +1,15 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model RS_SEMINARSKI.ViewModels.StavkaKolicinaVM
+
+<form asp-action="DodajKolicinu" asp-controller="Rezervacija">
+    <input asp-for="KorisnikID"/>
+    <input asp-for="StavkaID"/>
+    <input asp-for="Tip"/>
+    Kolicina:
+    <input asp-for="Kolicina"/>
+    <input type="submit" value="Snimi" />
+</form>
