@@ -1,0 +1,224 @@
+﻿
+@using RS_SEMINARSKI.ViewModels
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+@{
+    Layout = null;
+
+}
+
+
+<style>
+    #KONT_STRANICE {
+        height: 100%;
+        width: 100%;
+        background-image: url("https://i.pinimg.com/564x/8f/c6/b7/8fc6b7eca6e1d9bba6500efc0cfd8bda.jpg");
+        background-position: center;
+        background-size: cover;
+        opacity: 0.9;
+    }
+
+    #GLAVNI {
+        border-radius: 10px;
+        position: relative;
+        background-color: white;
+        height: 500px;
+        width: 80%;
+        top: 60px;
+        left: 130px;
+    }
+
+    #NavMain {
+        background-color: white;
+        height: 60px;
+        width: 100%;
+        color: white;
+    }
+
+    .btn {
+        color: dimgrey;
+        background-color: white;
+        margin-top: 25px;
+        margin-left: 20px;
+        font-size: 15px;
+        width: 130px;
+        bottom: 5px;
+        /*background-color: rebeccapurple;*/
+    }
+
+    button {
+        position: relative;
+        left: 90px;
+        padding-left: 160px;
+        /*margin-left:30px;*/
+        /*    width:100px;
+        background-color:rebeccapurple;*/
+    }
+
+    span {
+        color: lightblue;
+        padding-top: 40px;
+        font-size: 25px;
+        padding-left: 48px;
+        position: relative;
+        top: 15px;
+        bottom: 4px;
+    }
+
+    #KorPodaci {
+        /*background-color: blue;*/
+        width: 100%;
+        height: 60px;
+        border-radius: 10px;
+        margin-top: 20px;
+    }
+/*
+    form label {
+        padding-top: 12px;
+        padding-left: 48px;
+        margin-left: 40px;
+        font-weight: normal;
+        color: dimgrey;
+        display:block;
+        margin-left:30px;
+    }*/
+
+    .input_polje {
+        /*margin-top:px;*/
+        /*border-style: dashed;*/
+        border: 1px solid transparent;
+        margin-left: 65px;
+        padding-top: 4px;
+        width: 600px;
+        border: 1px solid transparent;
+        border-bottom: 1px solid lightblue;
+        color: gray;
+        cursor:pointer;
+    }
+
+    #Slika {
+        /*background-color:yellow;*/
+        height: 100%;
+        width: 40%;
+        float: left;
+    }
+
+    #vjecanje {
+        width: 100%;
+        height: 100%;
+        background-size: cover;
+        background-position: center;
+        border-radius: 10px;
+    }
+
+    .btn alert-danger {
+        margin-left: 30px;
+    }
+
+    #neko {
+        /*background-color:yellow;*/
+        margin-left: 240px;
+        border-radius: 2px;
+        border-color: lightblue;
+        border: 1px solid transparent;
+        color: lightcoral;
+    }
+
+    #neko2 {
+        /*background-color: yellow;*/
+        margin-left: 2px;
+        float: left;
+        border-radius: 2px;
+        border-color: lightblue;
+        border: 1px solid transparent;
+        position: relative;
+        left: 20px;
+        color: lightgreen;
+    }
+    /*  #butoni{
+        background-color:aqua;
+        width:300px;
+        height:20%;
+        float:left;
+    }*/
+    .form-control{
+        cursor:pointer;
+    }
+    .text-danger{
+        cursor:pointer;
+    }
+    #labela {
+        padding-top: 12px;
+        padding-left: 48px;
+        margin-left: 40px;
+        font-weight: normal;
+        color: dimgrey;
+        display: block;
+        margin-left: 30px;
+        position:relative; 
+        left:66px;
+    }
+    #snimi {
+        border: 1px solid transparent;
+        margin-left: 20px;
+        padding-top: 4px;
+        width: 600px;
+        border: 1px solid transparent;
+        border-bottom: 1px solid lightblue;
+        color: gray;
+        cursor: pointer;
+        margin-top:30px;
+    }
+   
+</style>
+
+
+
+@model DekoracijaEvidentirajVM
+<div id="KONT_STRANICE">
+    <div id="NavMain">
+        <button class="btn " onclick="window.location = '/Vjencanje/PrikazPocetne?KorisnikID=@Model.KorisnikID'">Klik do vjenčanja </button>
+        <button class="btn " onclick="window.location ='/Korisnik/PrikazRacuna?korisnikID=@Model.KorisnikID'">Korisnički račun</button>
+        <button class="btn " onclick="window.location='/Autentifikacija/LogOut'">Odjavi se</button>
+    </div>
+    <div id="GLAVNI">
+        <div id="Slika">
+            <img id="vjecanje" src="https://i.pinimg.com/564x/5b/4c/83/5b4c8346a81476c415dcc84a62016a45.jpg" alt="Mountains">
+
+        </div>
+        <div id="SpanElement">
+            <span>Evidentiraj dekoraciju </span><br />
+        </div>
+        <div id="KorPodaci">
+            <form enctype="multipart/form-data" asp-controller="Dekoracija" asp-action="Snimi">
+                @*<label>DekoracijaID</label>*@
+                <input hidden class="input_polje" asp-for="DekoracijaID" value="@Model.DekoracijaID" readonly /><br />
+                @*<label>KorisnikID</label>*@
+                <input hidden class="input_polje" asp-for="KorisnikID" value="@Model.KorisnikID" readonly /><br />
+
+                <label id="labela">Cijena dekoracije</label>
+                <input class="input_polje" asp-for="CijenaDekoracije" /><br />
+
+                <label id="labela" >Naziv Dekoracije</label>
+                <input class="input_polje" asp-for="NazivDekoracije" /><br />
+
+                <label id="labela" >Tip dekoracije</label>
+                <select class="input_polje" asp-for="TipDekoracijeID" asp-items="@Model.TipDekoracije"></select> <br />
+
+                <label id="labela" asp-for="SlikaDekoracije" class="control-label">Odaberite sliku</label>
+                <input class="input_polje" asp-for="SlikaDekoracije" class="form-control " />
+                <span asp-validation-for="SlikaDekoracije" class="text-danger"></span>
+                <input  id="snimi" class="input_polje" type="submit" value="Snimi" />
+
+            </form>
+            @*<div id="butoni">
+                <button class="btn alert-danger" id="neko" onclick="window.location = '/Korisnik/Obrisi?KorisnikID=@Model.KorisnikID'">Obriši</button>
+                <button class="btn alert-danger" id="neko2" onclick="window.location = '/Korisnik/Evidentiraj?KorisnikID=@Model.KorisnikID'">Uredi</button>
+            </div>*@
+        </div>
+    </div>
+</div>

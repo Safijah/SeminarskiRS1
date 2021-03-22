@@ -9,7 +9,7 @@ namespace RS_SEMINARSKI.ViewModels
 {
     public class MuzikaDodajZanrVM
     {
-        public int KorisnikID { get; set; }
+        public string KorisnikID { get; set; }
         public int BendID { get; set; }
         public int MuzikaID { get; set; }
         public List<SelectListItem> TipoviZanra { get; set; }

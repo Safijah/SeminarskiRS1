@@ -1,0 +1,349 @@
+﻿
+@{
+    Layout = null;
+}
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+@*@model MuzikaEvidentirajMuzikaBendVM*@
+@using RS_SEMINARSKI.ViewModels
+@model MuzikaEvidentirajBendoveVM
+
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    #KONT_STRANICE {
+        height: 100%;
+        width: 100%;
+        background-image: url("https://i.pinimg.com/564x/8f/c6/b7/8fc6b7eca6e1d9bba6500efc0cfd8bda.jpg");
+        background-position: center;
+        background-size: cover;
+        opacity: 0.9;
+    }
+
+    #GLAVNI {
+        border-radius: 10px;
+        position: relative;
+        background-color: white;
+        height: 500px;
+        width: 80%;
+        top: 60px;
+        left: 130px;
+    }
+
+    #NavMain {
+        background-color: white;
+        height: 60px;
+        width: 100%;
+        color: white;
+    }
+
+    .btn {
+        color: dimgrey;
+        background-color: white;
+        margin-top: 25px;
+        margin-left: 20px;
+        font-size: 15px;
+        width: 130px;
+        bottom: 5px;
+        border: none;
+        /*background-color: rebeccapurple;*/
+    }
+
+    button {
+        position: relative;
+        left: 90px;
+        padding-left: 160px;
+        /*margin-left:30px;*/
+        /*    width:100px;
+            background-color:rebeccapurple;*/
+    }
+
+    span {
+        color: lightblue;
+        padding-top: 40px;
+        font-size: 25px;
+        padding-left: 48px;
+        position: relative;
+        top: 15px;
+        bottom: 4px;
+    }
+
+    #KorPodaci {
+        /*background-color: blue;*/
+        width: 100%;
+        height: 60px;
+        border-radius: 10px;
+        margin-top: 20px;
+    }
+    /*
+        form label {
+            padding-top: 12px;
+            padding-left: 48px;
+            margin-left: 40px;
+            font-weight: normal;
+            color: dimgrey;
+            display:block;
+            margin-left:30px;
+        }*/
+
+    .input_polje {
+        /*margin-top:px;*/
+        /*border-style: dashed;*/
+        border: 1px solid transparent;
+        margin-left: 65px;
+        padding-top: 4px;
+        width: 600px;
+        border: 1px solid transparent;
+        border-bottom: 1px solid lightblue;
+        color: gray;
+        cursor: pointer;
+    }
+
+    #Slika {
+        /*background-color:yellow;*/
+        height: 100%;
+        width: 40%;
+        float: left;
+    }
+
+    #vjecanje {
+        width: 100%;
+        height: 100%;
+        background-size: cover;
+        background-position: center;
+        border-radius: 10px;
+    }
+
+    .btn alert-danger {
+        margin-left: 30px;
+    }
+
+    #neko {
+        /*background-color:yellow;*/
+        margin-left: 240px;
+        border-radius: 2px;
+        border-color: lightblue;
+        border: 1px solid transparent;
+        color: lightcoral;
+    }
+
+    #neko2 {
+        /*background-color: yellow;*/
+        margin-left: 2px;
+        float: left;
+        border-radius: 2px;
+        border-color: lightblue;
+        border: 1px solid transparent;
+        position: relative;
+        left: 20px;
+        color: lightgreen;
+    }
+    /*  #butoni{
+            background-color:aqua;
+            width:300px;
+            height:20%;
+            float:left;
+        }*/
+    .form-control {
+        cursor: pointer;
+    }
+
+    .text-danger {
+        cursor: pointer;
+    }
+
+    #labela {
+        padding-top: 12px;
+        padding-left: 48px;
+        margin-left: 40px;
+        font-weight: normal;
+        color: dimgrey;
+        display: block;
+        margin-left: 30px;
+        position: relative;
+        left: 66px;
+    }
+
+    #snimi {
+        border: 1px solid transparent;
+        margin-left: 20px;
+        padding-top: 4px;
+        width: 600px;
+        border: 1px solid transparent;
+        border-bottom: 1px solid lightblue;
+        color: gray;
+        cursor: pointer;
+        margin-top: 30px;
+    }
+
+    #ajax1 {
+        /*background-color: rebeccapurple;*/
+        /*margin-top:200px;*/
+        position: relative;
+        top: 272px;
+        left: 550px;
+        /*width:250px;*/
+        padding-left: 40px;
+        border: 1px solid transparent;
+        border-bottom: 1px solid lightblue;
+        padding-left: 30px;
+        padding-right: 20px;
+    }
+
+    #ajax2 {
+        /*background-color: yellow;*/
+        position: relative;
+        top: 250px;
+        left: 30px;
+        /*width:250px;*/
+        padding-left: 40px;
+        border: 1px solid transparent;
+        border-bottom: 1px solid lightblue;
+        padding-right: 20px;
+    }
+</style>
+
+<div id="KONT_STRANICE">
+    <div id="NavMain">
+        <button class="btn " onclick="window.location = '/Vjencanje/PrikazPocetne?KorisnikID=@Model.KorisnikID'">Klik do vjenčanja </button>
+        <button class="btn " onclick="window.location ='/Korisnik/PrikazRacuna?korisnikID=@Model.KorisnikID'">Korisnički račun</button>
+        <button class="btn " onclick="window.location='/Autentifikacija/LogOut'">Odjavi se</button>
+    </div>
+
+    <div id="GLAVNI">
+        <div id="Slika">
+            <img id="vjecanje" src="https://i.pinimg.com/236x/f2/e3/7d/f2e37d0c3a91f8acea63e5e36d323f95.jpg" alt="Mountains">
+
+        </div>
+        <div id="SpanElement">
+            <span>Evidentiraj bendove </span><br />
+        </div>
+        <div id="KorPodaci">
+            <form enctype="multipart/form-data" asp-controller="Muzika" asp-action="Snimi">
+                @*<label>MuzikaID</label>
+                    <input asp-for="MuzikaID" value="@Model.MuzikaID"/>*@
+                @*<label>BendID</label>*@
+                <input hidden class="input_polje" asp-for="BendID" value="@Model.BendID" readonly /><br />
+                @*<label>KorisnikID</label>*@
+                <input hidden class="input_polje" asp-for="KorisnikID" value="@Model.KorisnikID" readonly /><br />
+                <label id="labela">NazivBenda</label>
+                <input class="input_polje" asp-for="NazivBenda" /><br />
+
+                <label id="labela">Satnica sviranja</label>
+                <input class="input_polje" asp-for="SatnicaSviranja" /><br />
+
+                @*<label>Naziv zanra</label>
+                    <select asp-for="MuzikaID" asp-items="@Model.TipoviZanra"></select> <br />*@
+                @*<label>Zanr</label>*@
+                @*@foreach(var x in Model.TipoviZanra)
+                    {
+                        <input type="" asp-for="MuzikaID"/>
+                    }*@
+
+                <label id="labela">Opis benda</label>
+                <input class="input_polje" asp-for="OpisBenda" />
+
+                @*<label asp-for="SlikaBenda" class="control-label">Odaberite sliku</label>
+                    <input asp-for="SlikaBenda" class="form-control " />
+                    <span asp-validation-for="SlikaBenda" class="text-danger"></span>*@
+
+                <label id="labela" asp-for="SlikaBenda" class="control-label">Odaberite sliku</label>
+                <input class="input_polje" asp-for="SlikaBenda" class="form-control " />
+                <span asp-validation-for="SlikaBenda" class="text-danger"></span>
+                <input id="snimi" class="input_polje" type="submit" value="Snimi" />
+
+
+
+                @*<input type="submit" value="Snimi" />*@
+
+
+            </form>
+        </div>
+        @if (Model.BendID != 0)
+        {
+            @*<button onclick="window.location = '/Muzika/DodajZanr?KorisnikID=@Model.KorisnikID&BendID=@Model.BendID'">Dodaj zanr</button>*@
+            <br />
+            <br />
+            <button id="ajax1" onclick="DodajZanr(@Model.KorisnikID,@Model.BendID)">Dodaj žanr</button>
+            <br />
+            @*<button onclick="window.location = '/Muzika/PrikaziZanrove?BendID=@Model.BendID'">Pregledaj zanrove</button>*@
+            <button id="ajax2" onclick="PrikaziZanrove(@Model.BendID)">Pregledaj žanrove</button>
+
+        }
+    </div>
+</div>
+
+
+
+
+
+
+
+<div id="Ajax" @*style="border-style:double*@></div>
+<script>
+
+
+    function PrikaziZanrove(BendID) {
+
+        var url = "/Muzika/PrikaziZanrove?BendID=" + BendID;
+
+
+        var zahtjev = new XMLHttpRequest;
+
+        zahtjev.onload = function () {
+            if (zahtjev.status == 200) {
+                document.getElementById("Ajax").innerHTML = (zahtjev.responseText);
+            }
+        }
+        zahtjev.open("GET", url, true);
+        zahtjev.send();
+
+
+
+    }
+
+    function SnimiPromjene() {
+
+        var form = $("#FORMA_ZA_SNIMANJE");
+        var url = "/Muzika/SnimiZanr";
+
+        $.ajax({
+            type: "POST",
+            url: url,
+            data: form.serialize(),
+            success: function (data) {
+                $("#Ajax").html(data);
+            }
+        });
+        alert("Dodano");
+
+    }
+
+
+    function DodajZanr(KorisnikID, BendID) {
+
+        var url = "/Muzika/DodajZanr?KorisnikID=" + KorisnikID + "&BendID=" + BendID;
+        var zahtjev = new XMLHttpRequest;
+
+        zahtjev.onload = function () {
+            if (zahtjev.status == 200) {
+                document.getElementById("Ajax").innerHTML = (zahtjev.responseText);
+            }
+        }
+        zahtjev.open("GET", url, true);
+        zahtjev.send();
+
+    }
+
+
+
+
+</script>

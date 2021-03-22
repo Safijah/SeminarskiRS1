@@ -20,7 +20,7 @@ namespace RS_SEMINARSKI.ViewModels
             public string PutanjaDoSlike { get; set; }
         }
         public List<Rows> Bendovi { get; set; }
-        public int KorisnikID { get; set; }
+        public string KorisnikID { get; set; }
         public string pretraga { get; set; }
         public int RolaID { get; set; }
 

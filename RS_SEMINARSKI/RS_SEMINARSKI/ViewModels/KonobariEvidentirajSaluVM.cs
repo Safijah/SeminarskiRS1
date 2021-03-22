@@ -11,7 +11,7 @@ namespace RS_SEMINARSKI.ViewModels
         public int SalaID { get; set; }
         public List<SelectListItem> sale { get; set; }
         public int KonobarID { get; set; }
-        public int KorisnikID { get; set; }
+        public string KorisnikID { get; set; }
 
 
     }
