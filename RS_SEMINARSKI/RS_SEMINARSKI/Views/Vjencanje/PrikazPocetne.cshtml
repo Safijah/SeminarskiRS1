@@ -1,0 +1,193 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = null;
+
+}
+@using RS_SEMINARSKI.ModelViews
+@model KorisnikEvidentirajVM
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<style>
+    #Izbornik {
+        /*background-color: black;*/
+        /*height: 2000px;*/
+        width: 100%;
+        height: 1000px;
+    }
+
+    #NavMain {
+        /*margin-top:100px;*/
+        background-color: white;
+        height: 80px;
+        /*  width: 85%;*/
+        position: relative;
+        /* top:20px;
+        left:60px;*/
+        top: 20px;
+        width: 90%;
+        color: white;
+        left: 70px;
+        right: 40px;
+        font-size: 20px;
+    }
+
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    .okvir {
+        background: rgba(76, 175, 80, 0.3); /* Green background with 30% opacity */
+        /*background-color: purple;*/
+        width: 250px;
+        height: 280px;
+        float: left;
+        margin-top: 100px;
+        margin-left: 170px;
+        border-radius: 10px;
+        /*opacity:0.8;*/
+    }
+
+        .okvir:hover {
+            -ms-transform: scale(1.5); /* IE 9 */
+            -webkit-transform: scale(1.5); /* Safari 3-8 */
+            transform: scale(1.5);
+            transition: 1s;
+        }
+
+    img {
+        border: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 10px;
+        border-style:solid;
+    }
+
+    #GLAVNA {
+        width: 100%;
+        height: 2000px;
+        background-image: url("https://i.pinimg.com/564x/8f/c6/b7/8fc6b7eca6e1d9bba6500efc0cfd8bda.jpg");
+        background-position: center;
+        background-size: cover;
+        opacity: 1.5;
+    }
+
+    .btn {
+        color: black;
+        background-color: white;
+        margin-top: 25px;
+        margin-left: 30px;
+        font-size: 16px;
+    }
+</style>
+
+@{
+    var Korisnik = Model;
+}
+
+<div id="GLAVNA">
+    <div id="NavMain">
+        <button class="btn " onclick="window.location = '/Vjencanje/PrikazPocetne?KorisnikID=@Model.KorisnikID'">Klik do vjenčanja </button>
+        <button class="btn " onclick="window.location ='/Korisnik/PrikazRacuna?korisnikID=@Model.KorisnikID'">Korisnički račun</button>
+        <button class="btn " onclick="window.location='/Autentifikacija/LogOut'">Odjavi se</button>
+    </div>
+    <div id="Izbornik">
+
+        <div class="okvir">
+            <p>
+                <a href="/Cvijece/PrikazCvijeca?KorisnikID=@Model.KorisnikID">
+                    <img src="https://i.pinimg.com/236x/67/8e/86/678e86d004c598764fb6b15d496b5362.jpg" />
+                </a>
+            </p>
+        </div>
+        <div class="okvir">
+            <p>
+                <a href="/Meni/PrikazMenija?KorisnikID=@Model.KorisnikID">
+                    <img src="https://i.pinimg.com/236x/17/3b/96/173b9605c848944490080ab69cfe7986.jpg" />
+                </a>
+            </p>
+        </div>
+        <div class="okvir">
+            <p>
+                <a href="/Dekoracija/PrikazDekoracije?KorisnikID=@Model.KorisnikID">
+                    @*<img src="https://i.pinimg.com/236x/94/82/76/948276003bb6a0df4e9f8b469fb7c9fe.jpg" />*@
+                    <img src="https://i.pinimg.com/564x/5b/4c/83/5b4c8346a81476c415dcc84a62016a45.jpg" />
+                </a>
+            </p>
+        </div>
+
+
+        <div class="okvir">
+            <p>
+                <a href="/Muzika/PrikazBendova?KorisnikID=@Model.KorisnikID">
+                    @*<img src="https://img.youtube.com/vi/CAFE6UZ8DHk/maxresdefault.jpg" />*@
+                    <img src="https://i.pinimg.com/236x/f2/e3/7d/f2e37d0c3a91f8acea63e5e36d323f95.jpg" />
+                    @*<img src="https://upload.wikimedia.org/wikipedia/bs/thumb/8/8c/Singl_plo%C4%8De_%281974-1975%29_%28Bijelo_Dugme%29.jpg/220px-Singl_plo%C4%8De_%281974-1975%29_%28Bijelo_Dugme%29.jpg" />*@
+                </a>
+            </p>
+        </div>
+
+        <div class="okvir">
+            <p>
+                <a href="/Fotograf/PrikazFotografa?KorisnikID=@Model.KorisnikID">
+                    <img src="https://i.pinimg.com/564x/28/20/0f/28200fe7ba575c0b9f4fc9099151fb3b.jpg" />
+                    @*<img src="https://i.pinimg.com/564x/20/a2/d6/20a2d6063be54921408a6894e2aefdf4.jpg" />*@
+                </a>
+            </p>
+        </div>
+
+        <div class="okvir">
+            <p>
+                <a href="/Pozivnica/PrikazPozivnica?KorisnikID=@Model.KorisnikID">
+                    @*<img src="https://i.pinimg.com/236x/5c/31/67/5c3167542543bbf002996ff122948888.jpg" />*@
+                    <img src="https://i.pinimg.com/236x/d0/08/52/d008526f93207b56a429223e9875e3e5.jpg" />
+                </a>
+            </p>
+        </div>
+
+        <div class="okvir">
+            <p>
+                <a href="/Sala/PrikazSala?KorisnikID=@Model.KorisnikID">
+                    <img src="https://i.pinimg.com/564x/42/58/e4/4258e485871da91af5bea666e5e6376a.jpg" />
+                </a>
+            </p>
+        </div>
+
+        <div class="okvir">
+            <p>
+                <a href="/Kuhar/PrikazKuhara?KorisnikID=@Model.KorisnikID">
+                    <img src="https://i.pinimg.com/564x/a4/2d/33/a42d33c39fc06376e8f0f2870ab673b4.jpg" />
+                </a>
+            </p>
+        </div>
+
+        <div class="okvir">
+            <p>
+                <a href="/Stavka/EvidentirajNarudzbu?KorisnikID=@Model.KorisnikID">
+                    <img src="https://i.pinimg.com/564x/07/46/f9/0746f95d355fb20944366116fdefcc11.jpg" />
+                </a>
+            </p>
+        </div>
+        @* @safija i dina - samo da znate da nemam pojma kako da prikažem narudžbe i konobare
+        samo adminima jer na korisnikevidentirajvm nismo slale id role i zbunila sam se
+        kad sam to pokušala dodati tako da i to treba implementirati samo da znateee lp -emy*@
+
+
+
+
+        <div class="okvir">
+            <p>
+                <a href="/Konobari/PrikazKonobara?KorisnikID=@Model.KorisnikID">
+                    <img src="https://radiodonjivakuf.com.ba/wp-content/uploads/2020/01/konobar.jpg" />
+                </a>
+            </p>
+        </div>
+
+    </div>
+</div>

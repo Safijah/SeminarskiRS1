@@ -1,0 +1,177 @@
+﻿@page
+@model RegisterModel
+@{
+    Layout = null;
+}
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<style>
+
+    #Pocetna {
+        background-color: white;
+        width: 70%;
+        height: 600px;
+        position: relative;
+        top: 15px;
+        left:200px;
+        border-radius:10px;
+    }
+
+    label {
+        display: block;
+        position: relative;
+        left: 100px;
+        top: 40px;
+        font-size: 10px;
+    }
+
+    .input_polje {
+        width: 400px;
+        position: relative;
+        left: 100px;
+        top: 40px;
+        border: 1px solid transparent;
+        border-bottom: 1px solid lightblue;
+    }
+
+    #Slika {
+        background-image: url("https://i.pinimg.com/564x/e2/9d/ed/e29ded39b4663bdbe0c2bc810f9aa84a.jpg");
+        background-color: aqua;
+        width: 35%;
+        height: 600px;
+        float: left;
+        background-size: cover;
+        background-position: center;
+    }
+
+
+    #Submit {
+        width: 500px;
+        position: relative;
+        left: 60px;
+        top: 70px;
+        margin-top: 20px;
+        border: 1px solid transparent;
+        border-radius: 25px;
+        background-color: lightgreen;
+        color: white;
+    }
+
+    body {
+        background-image: url("https://i.pinimg.com/564x/8f/c6/b7/8fc6b7eca6e1d9bba6500efc0cfd8bda.jpg");
+        background-size: cover;
+        background-position: center;
+        opacity: 0.9;
+    }
+
+    span {
+        color: lightblue;
+        padding-top: 40px;
+        font-size: 40px;
+        padding-left: 50px;
+        position: relative;
+        top: 20px;
+        left: 40px;
+    }
+
+    #input_polje {
+        width: 320px;
+        position: relative;
+        left: 100px;
+        top: 40px;
+        border: 1px solid transparent;
+        border-bottom: 1px solid lightblue;
+    }
+
+    #Pass {
+        color: black;
+        font-size: 10px;
+        position: absolute;
+        top: 250px;
+        left: 800px;
+    }
+
+    #Chekc {
+        margin-right: 2px;
+    }
+    .text-danger {
+        
+        font-size: 10px;
+       
+    }
+    #potvrdi{
+        padding-top:10px;
+    }
+</style>
+
+
+
+<div id="Pocetna">
+    <div id="Slika">
+    </div>
+    <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
+
+       
+
+
+        <span>Kreiraj račun </span>
+
+
+
+
+        <div>
+            <label asp-for="Input.FirstName"></label>
+            <input class="input_polje" asp-for="Input.FirstName" />
+            <span asp-validation-for="Input.FirstName" class="text-danger" ></span>
+        </div>
+        <div>
+            <label asp-for="Input.LastName"></label>
+            <input class="input_polje" asp-for="Input.LastName" />
+            <span asp-validation-for="Input.LastName" class="text-danger" ></span>
+        </div>
+        <div>
+            <label asp-for="Input.UserName"></label>
+            <input class="input_polje" asp-for="Input.UserName" />
+            <span asp-validation-for="Input.UserName" class="text-danger" ></span>
+        </div>
+       
+      <div>
+                <label asp-for="Input.Email"></label>
+                <input class="input_polje" asp-for="Input.Email" />
+                <span asp-validation-for="Input.Email" class="text-danger" ></span>
+     </div>
+    <div>
+
+        <label asp-for="Input.Password"></label>
+        <input id="input_polje" asp-for="Input.Password" type="password" />
+        <span asp-validation-for="Input.Password" class="text-danger" ></span>
+        <span id="Pass"><input id="Chekc" type="checkbox" onclick="myFunction()">Prikaži lozinku</span>
+    </div>
+    <div >
+        <label id="potvrdi" asp-for="Input.ConfirmPassword"></label>
+        <input id="input_polje" asp-for="Input.ConfirmPassword" />
+        <span asp-validation-for="Input.ConfirmPassword"class="text-danger" ></span>
+    </div>
+
+      
+
+        <input type="submit" value="Snimi" id="Submit" />
+    </form>
+</div>
+<script>
+    function myFunction() {
+        var x = document.getElementById("input_polje");
+        if (x.type === "password") {
+            x.type = "text";
+        } else {
+            x.type = "password";
+        }
+    }
+
+</script>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

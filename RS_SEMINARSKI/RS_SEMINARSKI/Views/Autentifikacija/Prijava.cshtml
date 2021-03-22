@@ -1,0 +1,168 @@
+﻿@using RS_SEMINARSKI.ViewModels;
+@model AutentifikacijaPrijavaVM
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+
+@{
+    var poruka = TempData["Poruka"];
+    
+
+
+}
+
+<style>
+
+    body { /*background-image: url("https://i.pinimg.com/564x/04/f2/f8/04f2f8b702f8d63b123ed47b6564a2b9.jpg");*/
+        background-image: url("https://i.pinimg.com/564x/8f/c6/b7/8fc6b7eca6e1d9bba6500efc0cfd8bda.jpg");
+        opacity: 0.9;
+        background-position: center;
+        background-size: cover;
+    }
+
+    #Pocetni {
+        position: relative;
+        background-color: white;
+        height: 500px;
+        width: 95%;
+        top: 20px;
+        border-radius: 10px;
+    }
+
+    #Slika {
+        float: left;
+        width: 40%;
+        height: 100%;
+        background-size: cover;
+        background-position: center;
+        border-radius: 10px;
+    }
+
+    #vjecanje {
+        width: 100%;
+        height: 100%;
+        background-size: cover;
+        background-position: center;
+        border-radius: 10px;
+    }
+
+    span {
+        color: lightblue;
+        padding-top: 40px;
+        font-size: 50px;
+        padding-left: 50px;
+        position: relative;
+        top: 20px;
+    }
+
+    label {
+        display: block;
+        position: relative;
+        left: 50px;
+        top: 50px;
+        font-size: 15px;
+    }
+
+    .input_polje {
+        width: 500px;
+        position: relative;
+        left: 50px;
+        top: 50px;
+        border: 1px solid transparent;
+        border-bottom: 1px solid lightblue;
+    }
+
+    #Submit {
+        width: 500px;
+        position: relative;
+        left: 50px;
+        top: 100px;
+        margin-top: 20px;
+        border: 1px solid transparent;
+        border-radius: 25px;
+        background-color: lightgreen;
+        color: white;
+    }
+
+    #Error {
+        font-size: 30px;
+        color: crimson;
+        margin-top: 200px;
+        margin-left: 600px;
+        font-weight: bold;
+    }
+
+    #input_polje {
+        width: 420px;
+        position: relative;
+        left: 50px;
+        top: 50px;
+        border: 1px solid transparent;
+        border-bottom: 1px solid lightblue;
+    }
+
+    #Pass {
+        color: black;
+        font-size: 10px;
+        position: absolute;
+        top: 185px;
+        left: 850px;
+    }
+
+    #Chekc {
+        margin-right: 2px;
+    }
+</style>
+
+
+
+<!DOCTYPE html>
+<html>
+
+<head>
+</head>
+
+<body>
+
+    <div id="Pocetni">
+
+        <div id="Slika">
+            <img id="vjecanje" src="https://i.pinimg.com/564x/4d/e7/32/4de732578352398e511c3f9be42f601e.jpg" alt="Mountains">
+        </div>
+        <form asp-controller="Autentifikacija" asp-action="Snimi">
+
+
+            <span>Prijava</span>
+            <div>
+                <label>KORISNIČKO IME</label>
+                <input class="input_polje" asp-for="KorisnickoIme" />
+
+            </div>
+
+            <div>
+                <label>LOZINKA </label>
+                <input id="input_polje" asp-for="Lozinka" type="password" />
+                <span id="Pass"><input id="Chekc" type="checkbox" onclick="myFunction()">Prikaži lozinku</span>
+
+
+            </div>
+
+            <input id="Submit" type="submit" value="PRIJAVA" />
+
+
+            <div id="Error">@poruka</div>
+
+        </form>
+    </div>
+</body>
+</html>
+<script>
+    function myFunction() {
+        var x = document.getElementById("input_polje");
+        if (x.type === "password") {
+            x.type = "text";
+        } else {
+            x.type = "password";
+        }
+    }
+
+</script>
