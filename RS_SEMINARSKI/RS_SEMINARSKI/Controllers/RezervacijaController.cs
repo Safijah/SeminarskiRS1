@@ -91,7 +91,7 @@ namespace RS_SEMINARSKI.Controllers
                    {
                        StavkaID = a.DekoracijaID,
                        Cijena = a.Dekoracija.CijenaDekoracije,
-                       Kolicina = 10,
+                       Kolicina = a.KolicinaNarucenihDekoracija,
                        UkupnaCijena = a.Dekoracija.CijenaDekoracije,
                        Naziv = a.Dekoracija.VrstaDekoracije + " " + a.Dekoracija.TipDekoracije.NazivTipaDekoracije,
                        PutanjaDoSlike = a.Dekoracija.PutanjaDoSlikeDekoracije,
@@ -202,8 +202,10 @@ namespace RS_SEMINARSKI.Controllers
                     break;
                 case "dekoracije":
                     var Dekoracije = _dbContext.RezervacijaDekoracije.Where(a => a.RezervacijaID == RezervacijaID && a.DekoracijaID == vm.StavkaID).FirstOrDefault();
-                    _dbContext.RezervacijaDekoracije.Remove(Dekoracije);
-                    break;
+                    Dekoracije.KolicinaNarucenihDekoracija = vm.Kolicina;
+                    _dbContext.SaveChanges();
+                    return Redirect("/Dekoracija/PrikazDekoracije?KorisnikID=" + vm.KorisnikID);
+                  
                 case "fotografi":
                     var Fotografi = _dbContext.RezervacijaFotografi.Where(a => a.RezervacijaID == RezervacijaID && a.FotografID == vm.StavkaID).FirstOrDefault();
                     _dbContext.RezervacijaFotografi.Remove(Fotografi);
