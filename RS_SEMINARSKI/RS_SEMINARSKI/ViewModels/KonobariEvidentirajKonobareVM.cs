@@ -13,7 +13,7 @@ namespace RS_SEMINARSKI.ViewModels
         public string ImeKonobara { get; set; }
         public string PrezimeKonobara { get; set; }
         public float PlataKonobara { get; set; }
-        public int KorisnikID { get; set; }
+        public string KorisnikID { get; set; }
 
     }
 }

@@ -1,0 +1,45 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = null;
+}
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+@using RS_SEMINARSKI.ViewModels
+@model MuzikaPrikaziZanroveBendovaVM
+
+<style>
+
+    thead td {
+        background-color: #d9f2d9;
+        text-align: center;
+        font-weight: bold;
+    }
+
+
+</style>
+
+
+
+<table class="table">
+
+    <thead>
+        @*<td>Bend ID</td>*@
+        <td>Naziv zanra</td>
+    </thead>
+    @foreach (var x in Model.BendZanrovi)
+    {
+        <tr>
+            @*<td>@x.BendID</td>*@
+            <td>@x.NazivZanra</td>
+        </tr>
+    }
+
+
+
+</table>
