@@ -1,0 +1,276 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = null;
+}
+@using RS_SEMINARSKI.ViewModels
+@model FotografPrikazVM
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+<style>
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    #LijeviNavBar {
+        height: 800px;
+        width: 21%;
+        float: left;
+        background-color: whitesmoke;
+        /*background-image: url("https://i.pinimg.com/564x/8f/c6/b7/8fc6b7eca6e1d9bba6500efc0cfd8bda.jpg");
+        background-position: center;
+        background-size: cover;
+        opacity: 1.5;*/
+        margin: 30px;
+        border-radius: 10px;
+    }
+
+    #NavMain {
+        height: 80px;
+        width: 90%;
+        background-color: whitesmoke;
+        color: white;
+        font-size: 20px;
+        border-radius: 20px;
+        /*padding: 20px;*/
+        position: relative;
+        top: 20px;
+        left: 32px;
+    }
+
+    #glavni {
+        width: 73%;
+        height: 800px;
+        /* background-image: url("https://i.pinimg.com/564x/8f/c6/b7/8fc6b7eca6e1d9bba6500efc0cfd8bda.jpg");
+        background-position: center;
+        background-size: cover;
+        opacity: 1.5;*/
+        float: right;
+    }
+
+    #wrapper {
+        /*background-color: darkblue;*/
+        width: 100%;
+        /*height: 100%;*/
+        height: 1000px;
+        background-image: url("https://i.pinimg.com/564x/8f/c6/b7/8fc6b7eca6e1d9bba6500efc0cfd8bda.jpg");
+        background-position: center;
+        background-size: cover;
+        opacity: 1.5;
+    }
+
+    #slika {
+        width: 100%;
+        height: 50%;
+        border: none;
+    }
+
+    #opis {
+        background-color: whitesmoke;
+        opacity: 0.7;
+        width: 100%;
+        height: 30%;
+        font-family: Calibri;
+        text-align: center;
+        padding-top: 20px;
+        /*border: 1px solid green;*/
+    }
+
+    #buttons {
+        background-color: transparent;
+        width: 100%;
+        height: 20%;
+    }
+
+    #prikazSlike {
+        width: 100%;
+        height: 100%;
+        border-radius: none;
+    }
+
+    label {
+        font-size: 10px;
+    }
+
+    #buttonDodaj {
+        width: 200px;
+        height: 45px;
+        background-color: whitesmoke;
+        margin-top: 47px;
+        border-radius: 12px;
+        border: solid 1px transparent;
+        margin-left: 25px;
+    }
+
+    .IzbornikStavka {
+        width: 96%;
+        padding-top: 15px;
+        height: 45px;
+        text-decoration: none;
+        /*font-family: dino odaberi :) Al da podržava kvačice */
+        float: left;
+        border: 1px solid transparent;
+        border-bottom: 1px solid #a3c2c2;
+        margin: 5px;
+        border-radius: 10px;
+        background-color: transparent;
+    }
+
+        .IzbornikStavka:hover {
+            background-color: #efeff5;
+            color: darkgray;
+        }
+
+    .zaFont {
+        font-size: 13px;
+        opacity: 1;
+    }
+
+    .okvir {
+        /*background: rgba(76, 175, 80, 0.3);*/ /* Green background with 30% opacity */
+        /*background-color: purple;*/
+        background-color: transparent;
+        width: 300px;
+        height: 335px;
+        float: left;
+        margin-top: 30px;
+        margin-left: 30px;
+        border: none;
+        /*opacity:0.8;*/
+        /*width: 28%;
+        height: 40%;
+        margin: 5px;*/
+    }
+
+    img {
+        border: 0;
+        width: 100%;
+        height: 100%;
+        border-style: solid;
+    }
+
+    .btn {
+        position: relative;
+        margin-left: 70px;
+        margin-top: 25px;
+        background-color: whitesmoke;
+        width: 25%;
+        color: dimgray;
+        font-size: 17px;
+    }
+
+    .btn2 {
+        position: relative;
+        margin-left: 26px;
+        margin-top: 15px;
+        background-color: whitesmoke;
+        width: 115px;
+        height: 30px;
+        color: dimgray;
+        border-radius: 10px;
+        border: none;
+        opacity: 0.7;
+    }
+</style>
+
+<div id="wrapper">
+
+    <div id="NavMain">
+        <button class="btn" onclick="window.location = '/Vjencanje/PrikazPocetne?KorisnikID=@Model.KorisnikID'">Početna strana </button>
+        <button class="btn" onclick="window.location ='/Korisnik/PrikazRacuna?korisnikID=@Model.KorisnikID'">Korisnički račun</button>
+        <button class="btn" onclick="window.location='/Autentifikacija/LogOut'">Odjavi se</button>
+    </div>
+
+    <div id="LijeviNavBar">
+        <ul id="lijeviNav" class="nav nav-pills nav-stacked" role="tablist">
+            <li>
+                <button class="IzbornikStavka" onclick="window.location = '/Vjencanje/PrikazPocetne?KorisnikID=@Model.KorisnikID'">Pocetna</button> <br />
+            </li>
+            <li>
+                <button class="IzbornikStavka" onclick="window.location = '/Cvijece/PrikazCvijeca?KorisnikID=@Model.KorisnikID'">Cvijece</button> <br />
+            </li>
+            <li>
+                <button class="IzbornikStavka" onclick="window.location = '/Dekoracija/PrikazDekoracije?KorisnikID=@Model.KorisnikID'">Dekoracije</button>
+                <br />
+            </li>
+            <li>
+                <button class="IzbornikStavka" onclick="window.location = '/Fotograf/PrikazFotografa?KorisnikID=@Model.KorisnikID'">Fotografi</button>
+                <br />
+            </li>
+            <li>
+                <button class="IzbornikStavka" onclick="window.location = '/Konobari/PrikazKonobara?KorisnikID=@Model.KorisnikID'">Konobari</button>
+                <br />
+            </li>
+            <li>
+                <button class="IzbornikStavka">Korisnici IMPLEMENTIRATI</button>
+                <br />
+            </li>
+            <li>
+                <button class="IzbornikStavka" onclick="window.location = '/Kuhar/PrikazKuhara?KorisnikID=@Model.KorisnikID'">Kuhari</button>
+                <br />
+            </li>
+            <li>
+                <button class="IzbornikStavka" onclick="window.location = '/Meni/PrikazMenija?KorisnikID=@Model.KorisnikID'">Hrana & piće</button>
+                <br />
+            </li>
+            <li>
+                <button class="IzbornikStavka" onclick="window.location = '/Pozivnica/PrikazPozivnica?KorisnikID=@Model.KorisnikID'">Pozivnice</button>
+                <br />
+            </li>
+            <li>
+                <button class="IzbornikStavka" onclick="window.location = '/Rezervacija/PrikazRezervacija?KorisnikID=@Model.KorisnikID'">Rezervacije</button>
+                <br />
+            </li>
+            <li>
+                <button class="IzbornikStavka">Evidentiraj novu narudžbu IMPLEMENTIRATI</button>
+                <br />
+            </li>
+            <li>
+                <button class="IzbornikStavka">Pregled računa (fakture) IMPLEMENTIRATI</button>
+                <br />
+            </li>
+            <li>
+                <button class="IzbornikStavka" onclick="window.location = '/Sala/PrikazSala?KorisnikID=@Model.KorisnikID'">Sale</button>
+                <br />
+            </li>
+        </ul>
+    </div>
+
+    <div id="glavni">
+        @if (Model.RolaID == 1)
+        {
+            <button id="buttonDodaj" onclick="window.location = '/Fotograf/EvidentirajFotografa?KorisnikID=@Model.KorisnikID&FotografID=0'">Dodaj novog fotografa</button>
+            <br />
+        }
+
+        @foreach (var x in Model.fotografi)
+        {
+            <div class="okvir">
+                <div id="slika"><img id="prikazSlike" src="~/Slike/@x.PutanjaDoSlikeFotografa" /> </div>
+                <div id="opis">
+                    <label class="zaFont">Ime i prezime fotograf @x.ImeFotografa @x.PrezimeFotografa</label>
+                    <label class="zaFont" hidden>FotografID @x.FotografID </label><br />
+                    <label class="zaFont">Fotografija @x.Fotografija</label><br />
+                    <label class="zaFont">Satnica @x.SatnicaSlikanja</label><br />
+                </div>
+                <div id="buttons">
+                    @if (Model.RolaID == 1)
+                    {<button class="btn2" style="color:mediumseagreen" onclick="window.location = '/Fotograf/EvidentirajFotografa?KorisnikID=@Model.KorisnikID&FotografID=@x.FotografID'">Uredi</button>
+                        <button class="btn2" style="color:indianred" onclick="window.location = '/Fotograf/ObrisiFotografa?KorisnikID=@Model.KorisnikID&FotografID=@x.FotografID'">Obriši</button>
+                    }
+                </div>
+            </div>
+        }
+
+
+    </div>
+
+</div>
