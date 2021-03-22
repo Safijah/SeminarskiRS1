@@ -25,7 +25,7 @@ namespace RS_SEMINARSKI.Controllers
             _logger = logger;
             WebHostEnvironment = webhostEnvironment;
         }
-        public IActionResult PrikazPozivnica(int KorisnikID)
+        public IActionResult PrikazPozivnica(string  KorisnikID)
         {
             
             List<PozivnicaPrikazVM.Row> pozivnice = _dbContext.Pozivnice
@@ -47,7 +47,7 @@ namespace RS_SEMINARSKI.Controllers
             return View(x);
         }
 
-        public IActionResult EvidentirajPozivnicu(int KorisnikID, int PozivnicaID = 0)
+        public IActionResult EvidentirajPozivnicu(string KorisnikID, int PozivnicaID = 0)
         {
            
 
@@ -115,7 +115,7 @@ namespace RS_SEMINARSKI.Controllers
             }
             return fileName;
         }
-        public IActionResult ObrisiPozivnicu(int KorisnikID, int PozivnicaID)
+        public IActionResult ObrisiPozivnicu(string KorisnikID, int PozivnicaID)
         {
 
            

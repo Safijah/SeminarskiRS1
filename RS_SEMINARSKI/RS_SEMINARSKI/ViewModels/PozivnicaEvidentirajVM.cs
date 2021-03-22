@@ -12,7 +12,7 @@ namespace RS_SEMINARSKI.ViewModels
         public float CijenaPozivnice { get; set; }
         public string OpisPozivnice { get; set; }
         public string PutanjaDoSlikePozivnice { get; set; }
-        public int KorisnikID { get; set; }
+        public string KorisnikID { get; set; }
         public IFormFile SlikaPozivnice { get; set; }
         
     }
