@@ -8,7 +8,7 @@ namespace RS_SEMINARSKI.ViewModels
 {
     public class KuharDodajJeloVM
     {
-        public int KorisnikID { get; set; }
+        public string KorisnikID { get; set; }
         public int KuharID { get; set; }
         public int JeloID { get; set; }
         public List<SelectListItem> Jela { get; set; }

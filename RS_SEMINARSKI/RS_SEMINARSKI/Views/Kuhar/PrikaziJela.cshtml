@@ -1,0 +1,16 @@
+﻿@using RS_SEMINARSKI.ViewModels
+@model KuharPrikaziJelaVM
+
+<table class="table">
+    <tr>
+        <td>Jelo ID</td>
+        <td>Naziv jela</td>
+    </tr>
+    @foreach (var x in Model.jela)
+    {
+        <tr>
+            <td>@x.NazivJela</td>
+            <td>@x.JeloID</td>
+        </tr>
+    }
+</table>

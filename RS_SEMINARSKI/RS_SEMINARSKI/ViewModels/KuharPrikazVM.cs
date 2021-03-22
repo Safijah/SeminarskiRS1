@@ -17,7 +17,7 @@ namespace RS_SEMINARSKI.ViewModels
             //public List<Meni> meniji { get; set; }
         }
         public List<Rows> kuhari;
-        public int KorisnikID { get; set; }
+        public string KorisnikID { get; set; }
         public int RolaID { get; set; }
     }
 }

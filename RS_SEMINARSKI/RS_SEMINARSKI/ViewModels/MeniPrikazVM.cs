@@ -20,7 +20,7 @@ namespace RS_SEMINARSKI.ViewModels
         public string pretraga { get; set; }
         public List<Row> meniji { get; set; }
 
-        public int KorisnikID { get; set; }
+        public string KorisnikID { get; set; }
         public int RolaID { get; set; }
     }
 }

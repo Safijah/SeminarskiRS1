@@ -1,0 +1,166 @@
+﻿@{
+    Layout = null;
+}
+@using RS_SEMINARSKI.ViewModels
+@model MeniEvidentirajVM
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<style>
+    #KONT_STRANICE {
+        height: 100%;
+        width: 100%;
+        background-image: url("https://i.pinimg.com/564x/8f/c6/b7/8fc6b7eca6e1d9bba6500efc0cfd8bda.jpg");
+        background-position: center;
+        background-size: cover;
+        opacity: 0.9;
+    }
+
+    #glavnii {
+        width: 100%;
+        height: 60px;
+        border-radius: 10px;
+        margin-top: 6px;
+        background-color: white;
+    }
+
+    #NavMain {
+        background-color: white;
+        height: 60px;
+        width: 100%;
+        color: white;
+    }
+
+    .input_polje {
+        border: 1px solid transparent;
+        margin-left: 65px;
+        padding-top: 4px;
+        width: 500px;
+        border: 1px solid transparent;
+        border-bottom: 1px solid lightblue;
+        color: gray;
+    }
+
+    .input_poljee {
+        border: 1px solid transparent;
+        margin-left: 500px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        width: 500px;
+        border: 1px solid transparent;
+        border-bottom: 1px solid lightblue;
+        color: gray;
+    }
+
+    .btn {
+        color: dimgrey;
+        background-color: white;
+        margin-top: 25px;
+        margin-left: 20px;
+        font-size: 15px;
+        width: 130px;
+        bottom: 5px;
+    }
+
+        .btn alert-danger {
+            margin-left: 30px;
+        }
+
+    #GLAVNI {
+        border-radius: 10px;
+        position: relative;
+        height: 500px;
+        width: 80%;
+        top: 40px;
+        left: 130px;
+    }
+
+    #Slika {
+        height: 100%;
+        width: 40%;
+        float: left;
+    }
+
+    #vjecanje {
+        width: 100%;
+        height: 100%;
+        background-size: cover;
+        background-position: center;
+        border-radius: 10px;
+    }
+
+    span {
+        color: lightblue;
+        padding-top: 40px;
+        font-size: 25px;
+        padding-left: 48px;
+        position: relative;
+        top: 15px;
+        bottom: 20px;
+    }
+
+    label {
+        padding-top: 25px;
+        padding-left: 48px;
+        font-weight: normal;
+        color: dimgrey;
+    }
+
+    #forma {
+        background-color: white;
+    }
+
+    #neko {
+        border-radius: 2px;
+        border-color: lightblue;
+        border: 1px solid transparent;
+        position: relative;
+        left: 50px;
+        bottom: 20px;
+        color: lightgreen;
+        margin-top: 10px;
+    }
+</style>
+
+<div id="KONT_STRANICE">
+    <div id="NavMain">
+        <button class="btn" onclick="window.location = '/Vjencanje/PrikazPocetne?KorisnikID=@Model.KorisnikID'">Početna strana </button>
+        <button class="btn" onclick="window.location ='/Korisnik/PrikazRacuna?korisnikID=@Model.KorisnikID'">Korisnički račun</button>
+        <button class="btn" onclick="window.location='/Autentifikacija/LogOut'">Odjavi se</button>
+    </div>
+
+    <div id="GLAVNI">
+        <div id="Slika">
+            <img id="vjecanje" src="https://i.pinimg.com/236x/17/3b/96/173b9605c848944490080ab69cfe7986.jpg" alt="Mountains">
+
+        </div>
+
+        <div id="glavnii">
+            <div id="SpanElement">
+                <span>Evidencija menija </span><br />
+            </div>
+            <form id="forma" enctype="multipart/form-data" asp-controller="Meni" asp-action="Snimi">
+
+                <input asp-for="MeniID" value="@Model.MeniID" hidden />
+                <input asp-for="KorisnikID" value="@Model.KorisnikID" hidden />
+                <label>Naziv: </label>
+                <input class="input_polje" asp-for="NazivMenija" />
+                <br />
+                <label>Tip: </label>
+                <select asp-for="TipMenijaID" asp-items="Model.TipMenija"></select>
+                <br />
+                <label>Cijena: </label>
+                <input class="input_polje" asp-for="CijenaMenija" />
+                <br />
+                <label asp-for="SlikaMenija" class="control-label">Odaberite fotografiju</label>
+                <input class="input_poljee" asp-for="SlikaMenija" class="form-control " />
+                <span asp-validation-for="SlikaMenija" class="text-danger"></span>
+                <br />
+                <input id="neko" type="submit" value="Snimi" />
+
+            </form>
+        </div>
+    </div>
+</div>

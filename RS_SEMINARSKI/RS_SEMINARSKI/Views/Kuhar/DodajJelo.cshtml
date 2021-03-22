@@ -1,0 +1,17 @@
+﻿@using RS_SEMINARSKI.ViewModels 
+@model KuharDodajJeloVM 
+
+<form id="FORMA_ZA_SNIMANJE">
+
+    <label>KorisnikID</label>
+    <input asp-for="KorisnikID" />
+
+    <label>KuharID</label>
+    <input asp-for="KuharID" />
+
+    <label>Jela</label>
+    <select asp-for="JeloID" asp-items="Model.Jela"></select>
+
+    <input type="button" class="btn btn-group-vertical" onclick="SnimiPromjene()" value="Snimi" />
+    @*<input type="submit" value="SNimi" />*@
+</form>
