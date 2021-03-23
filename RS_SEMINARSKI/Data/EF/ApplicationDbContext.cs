@@ -43,6 +43,8 @@ namespace Data.EF
         public DbSet<TipDekoracije> TipDekoracija { get; set; }
         public DbSet<TipMenija> TipMenija { get; set; }
         public DbSet<Rola> Rola { get; set; }
+        public DbSet<NacinPlacanja> NacinPlacanja { get; set; }
+        public DbSet<KreditnaKartica> KreditnaKartica { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             //modelBuilder.Entity<MuzikaBend>()

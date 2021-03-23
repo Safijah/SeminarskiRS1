@@ -4,14 +4,16 @@ using Data.EF;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210323171811_KreditnaKartica")]
+    partial class KreditnaKartica
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -271,16 +273,19 @@ namespace Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("BrojKreditneKartice")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("BrojKreditneKartice")
+                        .HasColumnType("int");
 
-                    b.Property<string>("CVC")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("CVC")
+                        .HasColumnType("int");
 
                     b.Property<int>("GodinaIstekaKartice")
                         .HasColumnType("int");
 
-                    b.Property<string>("KorisnikID")
+                    b.Property<int?>("KorisnikID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("KorisnikId")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("MjesecIstekaKartice")
@@ -288,7 +293,7 @@ namespace Data.Migrations
 
                     b.HasKey("KreditnaKarticaID");
 
-                    b.HasIndex("KorisnikID");
+                    b.HasIndex("KorisnikId");
 
                     b.ToTable("KreditnaKartica");
                 });
@@ -938,7 +943,7 @@ namespace Data.Migrations
                 {
                     b.HasOne("Data.EFModels.Korisnik", "Korisnik")
                         .WithMany()
-                        .HasForeignKey("KorisnikID");
+                        .HasForeignKey("KorisnikId");
                 });
 
             modelBuilder.Entity("Data.EFModels.KuharMeni", b =>

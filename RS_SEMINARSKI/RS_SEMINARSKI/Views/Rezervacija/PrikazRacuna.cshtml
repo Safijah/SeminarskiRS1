@@ -1,0 +1,49 @@
+﻿@model RS_SEMINARSKI.ViewModels.RacunVM
+
+
+<form asp-controller="Racun" asp-action="Plati">
+
+
+    RacunID 
+    <input asp-for="RacunID"/>
+    <br />
+
+
+    RezervacijaID 
+    <input  asp-for="RezervacijaID"/>
+    <br />
+
+    DatumVjencanja
+    <input asp-for="dtmDate" type="date"/>
+    <br />
+
+    UkupanIznos
+    <input asp-for="UkupanIznos"/>
+    <br />
+
+
+    NacinPlacanja
+    <select asp-for="nacinPlacanjaID" asp-items="Model.nacinPlacanja"><option>Izaberite nacin placanja</option></select>
+    <br />
+    BrojKreditne
+    <input asp-for="KreditnaKarticaBroj" />
+    <br />
+
+    Mjesec
+    <input asp-for="MjesecIstekaKartice" />
+
+    <br />
+   Godina
+    <input asp-for="GodinaIstekaKartice" />
+    <br />
+
+    CVC
+    <input asp-for="CVC"/>
+    <br />
+    <input type="submit" value="Plati"/>
+
+
+
+
+
+</form>
