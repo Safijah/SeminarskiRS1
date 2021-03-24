@@ -165,8 +165,6 @@ namespace RS_SEMINARSKI.Controllers
             {
                 case "cvijece" : var Cvijece = _dbContext.RezervacijaCvijece.Where(a => a.RezervacijaID == RezervacijaID && a.CvijeceID == StavkaID).FirstOrDefault();
                     _dbContext.RezervacijaCvijece.Remove(Cvijece);
-                    
-                
                     break;
                 case "dekoracije":
                     var Dekoracije = _dbContext.RezervacijaDekoracije.Where(a => a.RezervacijaID == RezervacijaID && a.DekoracijaID == StavkaID).FirstOrDefault();

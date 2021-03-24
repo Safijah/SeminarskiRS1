@@ -47,13 +47,16 @@
     }
 
     #glavni {
-        width: 73%;
+        width: 98%;
         height: 800px;
         /* background-image: url("https://i.pinimg.com/564x/8f/c6/b7/8fc6b7eca6e1d9bba6500efc0cfd8bda.jpg");
         background-position: center;
         background-size: cover;
         opacity: 1.5;*/
         float: right;
+        margin-top:60px;
+        /*margin-left:10px;*/
+        /*background-color:red;*/
     }
 
     #wrapper {
@@ -77,7 +80,7 @@
         background-color: whitesmoke;
         opacity: 0.7;
         width: 100%;
-        height: 30%;
+        height: 40%;
         font-family: Calibri;
         text-align: center;
         padding-top: 20px;
@@ -130,8 +133,11 @@
         }
 
     .zaFont {
+
+        /*padding-bottom:20px;*/
         font-size: 13px;
         opacity: 1;
+        margin-bottom:10px;
     }
 
     .okvir {
@@ -162,7 +168,7 @@
         margin-left: 70px;
         margin-top: 25px;
         background-color: whitesmoke;
-        width: 25%;
+        width: 18%;
         color: dimgray;
         font-size: 17px;
     }
@@ -172,7 +178,7 @@
         margin-left: 26px;
         margin-top: 15px;
         background-color: whitesmoke;
-        width: 115px;
+        width: 250px;
         height: 30px;
         color: dimgray;
         border-radius: 10px;
@@ -203,7 +209,7 @@
 
 
 
-    <div id="LijeviNavBar">
+    @*<div id="LijeviNavBar">
         <ul id="lijeviNav" class="nav nav-pills nav-stacked" role="tablist">
             <li>
                 <button class="IzbornikStavka" onclick="window.location = '/Vjencanje/PrikazPocetne?KorisnikID=@Model.KorisnikID'">Pocetna</button> <br />
@@ -256,7 +262,7 @@
                 <br />
             </li>
         </ul>
-    </div>
+    </div>*@
     <div id="glavni">
 
 
@@ -267,11 +273,11 @@
             <div class="okvir">
                 <div id="slika"><img id="prikazSlike" src="~/Slike/@x.PutanjaDoSlike" /></div>
                 <div id="opis">
-                    <label class="zaFont">StavkaID @x.StavkaID</label><br />
-                    <label class="zaFont">Naziv @x.Naziv</label><br />
-                    <label class="zaFont">Cijena @x.Cijena</label><br />
-                    <label class="zaFont">Kolicina @x.Kolicina</label><br />
-                    <label class="zaFont">Ukupna cijena @x.UkupnaCijena</label><br />
+                    <label class="zaFont">Naziv: @x.Naziv</label><br />
+                    <label class="zaFont">Cijena: @x.Cijena</label><br />
+                    <label class="zaFont">Kolicina: @x.Kolicina</label><br />
+                    <label class="zaFont">Ukupna cijena: @x.UkupnaCijena KM </label><br />
+                    <label hidden class="zaFont">StavkaID @x.StavkaID</label><br />
 
 
                 </div>
@@ -292,8 +298,6 @@
 
         <input asp-for="RezervacijaID" />
         <div id="picker">
-
-
             <input class="fa fa calendar" asp-for="dtmDate" type="date" />
 
         </div>
