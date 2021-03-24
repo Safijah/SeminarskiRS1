@@ -25,5 +25,7 @@ namespace RS_SEMINARSKI.ViewModels
         public string  KorisnikID { get; set; }
         public int RezervacijaID { get; set; }
         public float CijenaNarudzbe { get; set; }
+        public DateTime dtmDate { get; set; }
+        //public float CijenaRezervacije { get; set; }
     }
 }

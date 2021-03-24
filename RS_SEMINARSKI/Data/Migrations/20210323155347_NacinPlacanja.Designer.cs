@@ -4,14 +4,16 @@ using Data.EF;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210323155347_NacinPlacanja")]
+    partial class NacinPlacanja
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -264,35 +266,6 @@ namespace Data.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("Data.EFModels.KreditnaKartica", b =>
-                {
-                    b.Property<int>("KreditnaKarticaID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("BrojKreditneKartice")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("CVC")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("GodinaIstekaKartice")
-                        .HasColumnType("int");
-
-                    b.Property<string>("KorisnikID")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("MjesecIstekaKartice")
-                        .HasColumnType("int");
-
-                    b.HasKey("KreditnaKarticaID");
-
-                    b.HasIndex("KorisnikID");
-
-                    b.ToTable("KreditnaKartica");
-                });
-
             modelBuilder.Entity("Data.EFModels.Kuhar", b =>
                 {
                     b.Property<int>("KuharID")
@@ -441,12 +414,7 @@ namespace Data.Migrations
                     b.Property<float>("IznosRacuna")
                         .HasColumnType("real");
 
-                    b.Property<int?>("KreditnaKarticaID")
-                        .HasColumnType("int");
-
                     b.HasKey("RacunID");
-
-                    b.HasIndex("KreditnaKarticaID");
 
                     b.ToTable("Racuni");
                 });
@@ -934,13 +902,6 @@ namespace Data.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Data.EFModels.KreditnaKartica", b =>
-                {
-                    b.HasOne("Data.EFModels.Korisnik", "Korisnik")
-                        .WithMany()
-                        .HasForeignKey("KorisnikID");
-                });
-
             modelBuilder.Entity("Data.EFModels.KuharMeni", b =>
                 {
                     b.HasOne("Data.EFModels.Kuhar", "Kuhar")
@@ -978,13 +939,6 @@ namespace Data.Migrations
                         .HasForeignKey("MuzikaID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("Data.EFModels.Racun", b =>
-                {
-                    b.HasOne("Data.EFModels.KreditnaKartica", "KreditnaKartica")
-                        .WithMany()
-                        .HasForeignKey("KreditnaKarticaID");
                 });
 
             modelBuilder.Entity("Data.EFModels.Rezervacija", b =>

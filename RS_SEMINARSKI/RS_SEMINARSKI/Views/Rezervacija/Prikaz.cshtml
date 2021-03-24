@@ -179,9 +179,18 @@
         border: none;
         opacity: 0.7;
     }
+    #picker{
+        position:relative;
+        height:70px; 
+        width:300px;
+        /*background-color:yellow;*/
+        left:1000px;
+    }
 </style>
 
 <div id="wrapper">
+
+
 
     <div id="NavMain">
         <button class="btn" onclick="window.location = '/Vjencanje/PrikazPocetne?KorisnikID=@Model.KorisnikID'">Početna strana </button>
@@ -189,6 +198,10 @@
         <button class="btn" onclick="window.location='/Autentifikacija/LogOut'">Odjavi se</button>
         <button class="btn" onclick="window.location='/Rezervacija/Prikaz?korisnikID=@Model.KorisnikID'">Rezervacija</button>
     </div>
+
+   
+
+
 
     <div id="LijeviNavBar">
         <ul id="lijeviNav" class="nav nav-pills nav-stacked" role="tablist">
@@ -245,7 +258,9 @@
         </ul>
     </div>
     <div id="glavni">
-       
+
+
+        
 
         @foreach (var x in Model.stavke)
         {
@@ -261,14 +276,61 @@
 
                 </div>
                 <div id="buttons">
-                   
-                        <button class="btn2" style="color: indianred" onclick="window.location = '/Rezervacija/ObrisiStavku?KorisnikID=@Model.KorisnikID&StavkaID=@x.StavkaID&Tip=@x.Tip'">Ukloni iz rezervacje</button>
-                        
-                    
+
+                    <button class="btn2" style="color: indianred" onclick="window.location = '/Rezervacija/ObrisiStavku?KorisnikID=@Model.KorisnikID&StavkaID=@x.StavkaID&Tip=@x.Tip'">Ukloni iz rezervacje</button>
+
+
                 </div>
 
             </div>
         }
     </div>
 
+
+    <form asp-controller="Rezervacija" asp-action="KreirajRacun">
+
+
+        <input asp-for="RezervacijaID" />
+        <div id="picker">
+
+
+            <input class="fa fa calendar" asp-for="dtmDate" type="date" />
+
+        </div>
+        <input asp-for="CijenaNarudzbe" />
+
+        <button> Dodaj racun</button>
+    </form>
 </div>
+
+
+
+
+@*<link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+
+@section scripts{
+
+    <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+
+
+    <script>
+
+        $(function () {
+            $(".datepicker").datepicker({
+                datePickers.options.format = 'm/d/yyyy',
+                //dateFormat: "dd/mm/yyy",
+                changeMonth: true,
+                changeYear: true,
+                yearRange: "-10:+10",
+                minDate: new Date(2017, 0, 1),
+                maxDate: new Date(2018, 0, 1),
+                showOn: "both",
+                buttonText: "<i class='fa fa-calendar' ></i>",
+                changeMinutes: true
+                
+            });
+        });
+    </script>
+
+}*@

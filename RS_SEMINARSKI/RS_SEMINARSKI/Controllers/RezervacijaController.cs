@@ -1,6 +1,8 @@
 ﻿using Data.EF;
+using Data.EFModels;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using RS_SEMINARSKI.ViewModels;
@@ -44,10 +46,10 @@ namespace RS_SEMINARSKI.Controllers
                         UkupnaCijena = pozivnica.CijenaPozivnice,
                         Naziv = pozivnica.OpisPozivnice,
                         PutanjaDoSlike = pozivnica.PutanjaDoSlikePozivnice,
-                        Tip="pozivnica"
+                        Tip="pozivnica" 
                     };
                     pozivnice.UkupnaCijena = rezervacija.KolicinaPozivnica * pozivnice.Cijena;
-                   
+                    vm.CijenaNarudzbe += pozivnice.UkupnaCijena; 
                     vm.stavke.Add(pozivnice);
                 }
                 var bendovi = _dbContext.MuzikaBendovi.Include(a=>a.Muzika).Include(a=>a.Bend).FirstOrDefault(a => a.BendID == rezervacija.BendID);
@@ -64,6 +66,7 @@ namespace RS_SEMINARSKI.Controllers
                         Tip="bendovi"
                     };
                     bend.UkupnaCijena = bend.Kolicina* bend.Cijena;
+                    vm.CijenaNarudzbe += bend.UkupnaCijena;
                     vm.stavke.Add(bend);
                 }
                 var cvijece = _dbContext.RezervacijaCvijece.Include(a => a.Cvijece).ThenInclude(a=>a.TipCvijeca).Where(a => a.RezervacijaID == rezervacija.RezervacijaID)
@@ -83,6 +86,7 @@ namespace RS_SEMINARSKI.Controllers
                 foreach(var x in cvijece)
                 {
                         x.UkupnaCijena = x.Kolicina * x.Cijena;
+                        vm.CijenaNarudzbe += x.UkupnaCijena;
                         vm.stavke.Add(x);
                 }
                 }
@@ -104,6 +108,7 @@ namespace RS_SEMINARSKI.Controllers
                     foreach (var x in dekoracije)
                     {
                         x.UkupnaCijena = x.Kolicina * x.Cijena;
+                        vm.CijenaNarudzbe += x.UkupnaCijena;
                         vm.stavke.Add(x);
                     }
                 }
@@ -124,6 +129,7 @@ namespace RS_SEMINARSKI.Controllers
                     foreach (var x in fotografi)
                     {
                         x.UkupnaCijena = x.Kolicina * x.Cijena;
+                        vm.CijenaNarudzbe += x.UkupnaCijena;
                         vm.stavke.Add(x);
                     }
                 }
@@ -143,11 +149,12 @@ namespace RS_SEMINARSKI.Controllers
 
                     foreach (var x in sale)
                     {
-                        
+                        vm.CijenaNarudzbe += x.UkupnaCijena;
                         vm.stavke.Add(x);
                     }
                 }
             }
+            vm.dtmDate = DateTime.Now;
             vm.KorisnikID = korisnikID;
             return View(vm);
         }
@@ -175,6 +182,7 @@ namespace RS_SEMINARSKI.Controllers
                     break;
                 case "pozivnica": var RezervacijaPozivnica = _dbContext.Rezervacije.FirstOrDefault(a => a.RezervacijaID == RezervacijaID);
                     RezervacijaPozivnica.PozivnicaID = null;
+                    RezervacijaPozivnica.KolicinaPozivnica = 0;
                     break;
                 case "bendovi":
                     var RezervacijaBend = _dbContext.Rezervacije.FirstOrDefault(a => a.RezervacijaID == RezervacijaID);
@@ -229,5 +237,29 @@ namespace RS_SEMINARSKI.Controllers
 
             return View();
         }
+
+        public IActionResult KreirajRacun(RezervacijaPrikazVM x)
+        {
+
+            List<SelectListItem> n = _dbContext.NacinPlacanja.Select(d => new SelectListItem
+            {
+                Value = d.NacinPlacanjaID.ToString(),
+                Text = d.NacinPlacanjaNaziv
+            }).ToList();
+
+
+            RacunVM novi = new RacunVM()
+            {
+                RacunID = 0,
+                RezervacijaID = x.RezervacijaID,
+                dtmDate = x.dtmDate,
+                UkupanIznos = x.CijenaNarudzbe
+            };
+            novi.nacinPlacanja = n;
+
+
+            return View("PrikazRacuna", novi);
+        }
+
     }
 }
