@@ -126,5 +126,54 @@ namespace RS_SEMINARSKI.Controllers
             _dbContext.SaveChanges();
             return Redirect("PrikazCvijeca?KorisnikID=" + KorisnikID);
         }
+
+        public IActionResult DodajURezervaciju(string KorisnikID, int CvijeceId)
+        {
+            var ima1 = _dbContext.RezervacijaKorisnici.FirstOrDefault(a => a.KorisnikID == KorisnikID);
+            if (ima1 != null)
+            {
+                var ima2 = _dbContext.RezervacijaCvijece.FirstOrDefault(a => a.RezervacijaID == ima1.RezervacijaID && a.CvijeceID == CvijeceId);
+                if (ima2 != null)
+                {
+                    return NoContent();
+                }
+
+            }
+            var ima = _dbContext.RezervacijaKorisnici.FirstOrDefault(a => a.KorisnikID == KorisnikID);
+            if (ima == null)
+            {
+                var rezervacija = new Rezervacija();
+                _dbContext.Add(rezervacija);
+                _dbContext.SaveChanges();
+                var rezkorisnici = new RezervacijaKorisnik()
+                {
+                    RezervacijaID = rezervacija.RezervacijaID,
+                    KorisnikID = KorisnikID
+                };
+                _dbContext.Add(rezkorisnici);
+                _dbContext.SaveChanges();
+                var x = new RezervacijaCvijece();
+                x.RezervacijaID = rezervacija.RezervacijaID;
+                x.CvijeceID = CvijeceId;
+                _dbContext.Add(x);
+                _dbContext.SaveChanges();
+            }
+            else
+            {
+                var x = new RezervacijaCvijece();
+                x.RezervacijaID = ima.RezervacijaID;
+                x.CvijeceID = CvijeceId;
+                _dbContext.Add(x);
+                _dbContext.SaveChanges();
+            }
+            var vm = new StavkaKolicinaVM()
+            {
+                Kolicina = 0,
+                Tip = "cvijece",
+                KorisnikID = KorisnikID,
+                StavkaID = CvijeceId
+            };
+            return View("~/Views/Rezervacija/StavkaKolicina.cshtml", vm);
+        }
     }
 }

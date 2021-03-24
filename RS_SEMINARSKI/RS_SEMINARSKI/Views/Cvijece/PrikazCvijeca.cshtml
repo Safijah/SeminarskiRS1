@@ -23,10 +23,6 @@
         width: 21%;
         float: left;
         background-color: whitesmoke;
-        /*background-image: url("https://i.pinimg.com/564x/8f/c6/b7/8fc6b7eca6e1d9bba6500efc0cfd8bda.jpg");
-        background-position: center;
-        background-size: cover;
-        opacity: 1.5;*/
         margin: 30px;
         border-radius: 10px;
     }
@@ -38,7 +34,6 @@
         color: white;
         font-size: 20px;
         border-radius: 20px;
-        /*padding: 20px;*/
         position: relative;
         top: 20px;
         left: 32px;
@@ -47,10 +42,6 @@
     #glavni {
         width: 73%;
         height: 100%;
-       /* background-image: url("https://i.pinimg.com/564x/8f/c6/b7/8fc6b7eca6e1d9bba6500efc0cfd8bda.jpg");
-        background-position: center;
-        background-size: cover;
-        opacity: 1.5;*/
         float: right;
     }
 
@@ -79,7 +70,6 @@
         font-family: Calibri;
         text-align: center;
         padding-top: 20px;
-        /*border: 1px solid green;*/
     }
 
     #buttons {
@@ -91,7 +81,6 @@
     #prikazSlike {
         width: 100%;
         height: 100%;
-        border-radius: none;
     }
 
     label {
@@ -122,21 +111,18 @@
         background-color: transparent;
     }
 
-        .IzbornikStavka:hover {
-            background-color: #efeff5;
-            color: darkgray;
-        }
+    .IzbornikStavka:hover {
+        background-color: #efeff5;
+        color: darkgray;
+    }
 
     .zaFont
     {
         font-size: 13px;
         opacity: 1;
-
     }
 
     .okvir {
-        /*background: rgba(76, 175, 80, 0.3);*/ /* Green background with 30% opacity */
-        /*background-color: purple;*/
         background-color: transparent;
         width: 300px;
         height: 335px;
@@ -144,10 +130,6 @@
         margin-top: 30px;
         margin-left: 30px;
         border: none;
-        /*opacity:0.8;*/
-        /*width: 28%;
-        height: 40%;
-        margin: 5px;*/
     }
 
     img {
@@ -162,7 +144,7 @@
         margin-left: 70px;
         margin-top: 25px;
         background-color: whitesmoke;
-        width: 25%;
+        width: 18%;
         color: dimgray;
         font-size: 17px; 
     }
@@ -187,6 +169,7 @@
     <div id="NavMain">
         <button class="btn" onclick="window.location = '/Vjencanje/PrikazPocetne?KorisnikID=@Model.KorisnikID'">Početna strana </button>
         <button class="btn" onclick="window.location ='/Korisnik/PrikazRacuna?korisnikID=@Model.KorisnikID'">Korisnički račun</button>
+        <button class="btn" onclick="window.location='/Rezervacija/Prikaz?korisnikID=@Model.KorisnikID'">Rezervacija</button>
         <button class="btn" onclick="window.location='/Autentifikacija/LogOut'">Odjavi se</button>
     </div>
 
@@ -231,7 +214,7 @@
                 <br />
             </li>
             <li>
-                <button class="IzbornikStavka" onclick="window.location = '/Rezervacija/PrikazRezervacija?KorisnikID=@Model.KorisnikID'">Rezervacije</button>
+                <button class="IzbornikStavka" onclick="window.location = '/Rezervacija/Prikaz?KorisnikID=@Model.KorisnikID'">Rezervacije</button>
                 <br />
             </li>
             <li>
@@ -261,7 +244,6 @@
             <div class="okvir">
                 <div id="slika"><img id="prikazSlike" src="~/Slike/@x.PutanjaDoSlike" /></div>
                 <div id="opis">
-                    @*<label>CvijetID @x.CvijeceID</label><br />*@
                     <label class="zaFont">Naziv: @x.VrstaCvijeca</label><br />
                     <label class="zaFont">Tip: @x.TipCvijeca</label><br />
                     <label class="zaFont">Cijena: @x.CijenaCvijeca KM</label><br />
@@ -270,7 +252,11 @@
                     @if (Model.RolaID == 1)
                     {
                         <button class="btn2" style="color:mediumseagreen" onclick="window.location='/Cvijece/EvidentirajCvijece?KorisnikID=@Model.KorisnikID&CvijeceID=@x.CvijeceID'">Uredi</button>
-                        <button class="btn2" style="color: indianred"      onclick="window.location='/Cvijece/ObrisiCvijece?KorisnikID=@Model.KorisnikID&CvijeceID=@x.CvijeceID'">Obrisi</button>
+                        <button class="btn2" style="color: indianred" onclick="window.location='/Cvijece/ObrisiCvijece?KorisnikID=@Model.KorisnikID&CvijeceID=@x.CvijeceID'">Obriši</button>
+                    }
+                    else if (Model.RolaID == 2)
+                    {
+                        <button class="btn2" style="color: indianred" onclick="window.location='/Cvijece/DodajURezervaciju?KorisnikID=@Model.KorisnikID&CvijeceId=@x.CvijeceID'">Rezerviši</button>
                     }
                 </div>
 

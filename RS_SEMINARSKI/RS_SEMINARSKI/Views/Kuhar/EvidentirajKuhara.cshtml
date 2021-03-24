@@ -1,9 +1,22 @@
-﻿@using RS_SEMINARSKI.ViewModels
+﻿@{ Layout = null;}
+
+@using RS_SEMINARSKI.ViewModels
 @model KuharEvidentirajVM
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
+
 <style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
     #KONT_STRANICE {
         height: 100%;
         width: 100%;
@@ -138,8 +151,8 @@
             </div>
             <form id="forma" enctype="multipart/form-data" asp-controller="Kuhar" asp-action="Snimi">
 
-                <input asp-for="KuharID" value="@Model.KuharID" hidden />
-                <input asp-for="KorisnikID" value="@Model.KorisnikID" hidden />
+                <input id="KuharId" asp-for="KuharID" value="@Model.KuharID" hidden />
+                <input id="KorisnikId" asp-for="KorisnikID" value="@Model.KorisnikID" hidden />
                 <label>Ime: </label>
                 <input class="input_polje" asp-for="ImeKuhara" />
                 <br />
@@ -149,19 +162,22 @@
                 <label>Plata: </label>
                 <input class="input_polje" asp-for="PlataKuhara" />
                 <br />
+                <br />
                 <input id="neko" type="submit" value="Snimi" />
 
             </form>
         </div>
     </div>
-</div>
+    @if (Model.KuharID != 0)
+    {
+        <br />
+        <br />
+        <button id="ajax1" onclick="DodajJelo()">Dodaj jelo</button>
+        <br />
+        <button id="ajax2" onclick="PrikaziJela(@Model.KuharID)">Pregledaj jela</button>
 
-@if (Model.KuharID != 0)
-{
-    <button onclick="DodajJelo(@Model.KorisnikID,@Model.KuharID)">Dodaj jela</button>
-    <br />
-    <button onclick="PrikaziJela(@Model.KuharID)">Pregledaj jela</button>
-}
+    }
+</div>
 
 <div id="Ajax" style="border-style:double"></div>
 <script>
@@ -191,8 +207,11 @@
         });
         alert("Dodano");
     }
-    function DodajJelo(KorisnikID, KuharID) {
-        var url = "/Kuhar/DodajJelo?KorisnikID=" + KorisnikID + "&KuharID=" + KuharID;
+
+    var DodajJelo = () => {
+        var KuharId = document.getElementById("KuharId").value;
+        var KorisnikID = document.getElementById("KorisnikId").value;
+        var url = "/Kuhar/DodajJelo?KorisnikID=" + KorisnikID + "&KuharID=" + KuharId;
         var zahtjev = new XMLHttpRequest;
         zahtjev.onload = function () {
             if (zahtjev.status == 200) {
