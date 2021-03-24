@@ -129,6 +129,55 @@ namespace RS_SEMINARSKI.Controllers
             _dbContext.SaveChanges();
             return Redirect("PrikazMenija?KorisnikID=" + KorisnikID);
         }
+
+        public IActionResult DodajURezervaciju(string KorisnikID, int MeniId)
+        {
+            var ima1 = _dbContext.RezervacijaKorisnici.FirstOrDefault(a => a.KorisnikID == KorisnikID);
+            if (ima1 != null)
+            {
+                var ima2 = _dbContext.Evidencije.FirstOrDefault(a => a.RezervacijaID == ima1.RezervacijaID && a.MeniID == MeniId);
+                if (ima2 != null)
+                {
+                    return NoContent();
+                }
+
+            }
+            var ima = _dbContext.RezervacijaKorisnici.FirstOrDefault(a => a.KorisnikID == KorisnikID);
+            if (ima == null)
+            {
+                var rezervacija = new Rezervacija();
+                _dbContext.Add(rezervacija);
+                _dbContext.SaveChanges();
+                var rezkorisnici = new RezervacijaKorisnik()
+                {
+                    RezervacijaID = rezervacija.RezervacijaID,
+                    KorisnikID = KorisnikID
+                };
+                _dbContext.Add(rezkorisnici);
+                _dbContext.SaveChanges();
+                var x = new Evidencija();
+                x.RezervacijaID = rezervacija.RezervacijaID;
+                x.MeniID = MeniId;
+                _dbContext.Add(x);
+                _dbContext.SaveChanges();
+            }
+            else
+            {
+                var x = new Evidencija();
+                x.RezervacijaID = ima.RezervacijaID;
+                x.MeniID = MeniId;
+                _dbContext.Add(x);
+                _dbContext.SaveChanges();
+            }
+            var vm = new StavkaKolicinaVM()
+            {
+                Kolicina = 0,
+                Tip = "meni",
+                KorisnikID = KorisnikID,
+                StavkaID = MeniId
+            };
+            return View("~/Views/Rezervacija/StavkaKolicina.cshtml", vm);
+        }
     }
 
 }
