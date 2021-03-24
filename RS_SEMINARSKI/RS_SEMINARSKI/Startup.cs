@@ -1,3 +1,5 @@
+using Core.Interfaces;
+using Core.Services;
 using Data.EF;
 using Data.EFModels;
 using Microsoft.AspNetCore.Builder;
@@ -32,6 +34,7 @@ namespace RS_SEMINARSKI
             services.AddDefaultIdentity<Korisnik>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllersWithViews();
+            services.AddTransient<IEmailService, EmailService>();
             services.AddRazorPages();
         }
 
