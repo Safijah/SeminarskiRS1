@@ -73,7 +73,8 @@ namespace RS_SEMINARSKI.Controllers
 
             MuzikaEvidentirajBendoveVM muzika = new MuzikaEvidentirajBendoveVM();
             muzika.KorisnikID = KorisnikID;
-             
+
+            var RolaID = _dbContext.Korisnici.Find(KorisnikID).RolaID; 
 
             if (BendID == 0)
             {
@@ -98,7 +99,9 @@ namespace RS_SEMINARSKI.Controllers
             }
             muzika.KorisnikID = KorisnikID;
             muzika.BendID = BendID;
+            muzika.RolaID = RolaID;
             //muzika. = TipoviZanra;
+            
             return View(muzika);
 
 
@@ -271,6 +274,53 @@ namespace RS_SEMINARSKI.Controllers
 
 
         }
+
+        public IActionResult DodajURezervaciju(string KorisnikID, int BendID)
+        {
+
+            var ima1 = _dbContext.RezervacijaKorisnici.FirstOrDefault(a => a.KorisnikID == KorisnikID);
+            var ima2 = _dbContext.Rezervacije.FirstOrDefault(a => a.RezervacijaID == ima1.RezervacijaID && a.BendID==BendID);
+            if (ima2 != null)
+            {
+                return NoContent();
+            }
+
+            var ima = _dbContext.RezervacijaKorisnici.FirstOrDefault(a => a.KorisnikID == KorisnikID);
+            if (ima == null)
+            {
+                var rezervacija = new Rezervacija();
+                rezervacija.BendID= BendID;
+                _dbContext.Add(rezervacija);
+                _dbContext.SaveChanges();
+                var rezkorisnici = new RezervacijaKorisnik()
+                {
+                    RezervacijaID = rezervacija.RezervacijaID,
+                    KorisnikID = KorisnikID
+                };
+                _dbContext.Add(rezkorisnici);
+                _dbContext.SaveChanges();
+
+
+            }
+            else
+            {
+                var rezervacija = _dbContext.Rezervacije.Find(ima.RezervacijaID);
+                rezervacija.BendID = BendID;
+
+                _dbContext.SaveChanges();
+            }
+            var vm = new StavkaKolicinaVM()
+            {
+                Kolicina = 0,
+                Tip = "bendovi",
+                KorisnikID = KorisnikID,
+                StavkaID = BendID,
+            };
+            return NoContent();
+
+        }
+
+
     }
 }
 

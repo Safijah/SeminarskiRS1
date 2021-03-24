@@ -219,6 +219,7 @@
     </div>
 
     <div id="GLAVNI">
+        
         <div id="Slika">
             <img id="vjecanje" src="https://i.pinimg.com/236x/f2/e3/7d/f2e37d0c3a91f8acea63e5e36d323f95.jpg" alt="Mountains">
 
@@ -255,11 +256,13 @@
                     <input asp-for="SlikaBenda" class="form-control " />
                     <span asp-validation-for="SlikaBenda" class="text-danger"></span>*@
 
+                @if (Model.RolaID == 1)
+                {
                 <label id="labela" asp-for="SlikaBenda" class="control-label">Odaberite sliku</label>
                 <input class="input_polje" asp-for="SlikaBenda" class="form-control " />
                 <span asp-validation-for="SlikaBenda" class="text-danger"></span>
                 <input id="snimi" class="input_polje" type="submit" value="Snimi" />
-
+                }
 
 
                 @*<input type="submit" value="Snimi" />*@
@@ -272,8 +275,11 @@
             @*<button onclick="window.location = '/Muzika/DodajZanr?KorisnikID=@Model.KorisnikID&BendID=@Model.BendID'">Dodaj zanr</button>*@
             <br />
             <br />
+            if (Model.RolaID == 1)
+            {
             <button id="ajax1" onclick="DodajZanr()">Dodaj žanr</button>
             <br />
+            }
             @*<button onclick="window.location = '/Muzika/PrikaziZanrove?BendID=@Model.BendID'">Pregledaj zanrove</button>*@
             <button id="ajax2" onclick="PrikaziZanrove(@Model.BendID)">Pregledaj žanrove</button>
 

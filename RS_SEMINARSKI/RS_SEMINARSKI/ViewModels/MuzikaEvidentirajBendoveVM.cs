@@ -11,6 +11,7 @@ namespace RS_SEMINARSKI.ViewModels
     {
         public int MuzikaID { get; set; }
         public int BendID { get; set; }
+        public int RolaID { get; set; }
 
         public  List<SelectListItem> MuzikaZanrovi { get; set; }
         public string NazivBenda { get; set; }

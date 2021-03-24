@@ -249,10 +249,10 @@
         <form asp-controller="Konobari" asp-action="Snimi">
 
             @*<label>KorisnikID</label>*@
-            <input class="input_polje" hidden asp-for="KorisnikID" /> <br />
+            <input class="input_polje" hidden asp-for="KorisnikID"  id="KorisnikID"/> <br />
 
             @*<label>KonobarID</label>*@
-            <input class="input_polje" hidden asp-for="KonobarID" /> <br />
+            <input class="input_polje" hidden asp-for="KonobarID" id="KonobarID"/> <br />
 
             <label id="labela">Ime konobara</label>
             <input class="input_polje" asp-for="ImeKonobara" /> <br />
@@ -272,10 +272,10 @@
         @if (Model.KonobarID != 0)
         {
             @*<button onclick="window.location = '/Konobari/EvidentirajSalu?KorisnikID=@Model.KorisnikID&KonobarID=@Model.KonobarID'">Dodaj salu</button>*@
-            <button id="ajax1" onclick="DodajSalu(@Model.KorisnikID, @Model.KonobarID)">Dodaj salu konobaru</button>
+            <button id="ajax1" onclick="DodajSalu()">Dodaj salu konobaru</button>
 
             @*<button onclick="window.location = '/Konobari/PrikazSalaKonobara?KorisnikID=@Model.KorisnikID&KonobarID=@Model.KonobarID'">Pregledaj sale konobara</button>*@
-            <button id="ajax2" onclick="PrikazSalaKonobara(@Model.KorisnikID, @Model.KonobarID)">Pregled sala konobara</button>
+            <button id="ajax2" onclick="PrikazSalaKonobara()">Pregled sala konobara</button>
         }
         </div>
 
@@ -287,7 +287,8 @@
 
         function DodajSalu(KorisnikID, KonobarID) {
 
-
+            var KorisnikID = document.getElementById("KorisnikID").value;
+            var KonobarID = document.getElementById("KonobarID").value;
             var url = "/Konobari/EvidentirajSalu?KorisnikID=" + KorisnikID + "&KonobarID=" + KonobarID;
 
             var zahtjev = new XMLHttpRequest;
@@ -325,6 +326,9 @@
 
 
         function PrikazSalaKonobara(KorisnikID, KonobarID) {
+
+            var KorisnikID = document.getElementById("KorisnikID").value;
+            var KonobarID = document.getElementById("KonobarID").value;
 
             var url = "/Konobari/PrikazSalaKonobara?KorisnikID=" + KorisnikID + "&KonobarID=" + KonobarID;
 
