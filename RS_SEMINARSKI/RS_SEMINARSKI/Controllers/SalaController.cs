@@ -143,12 +143,15 @@ namespace RS_SEMINARSKI.Controllers
         public  string  DodajURezervaciju (string KorisnikID, int SalaID)
         {
             var ima1 = _dbContext.RezervacijaKorisnici.FirstOrDefault(a => a.KorisnikID == KorisnikID);
-            var ima2 = _dbContext.RezervacijaSale.FirstOrDefault(a => a.RezervacijaID == ima1.RezervacijaID && a.SalaID == SalaID);
-            if(ima2!=null)
+            if (ima1 != null)
             {
-                 return("Već ste odabrali ovu salu");
+                var ima2 = _dbContext.RezervacijaSale.FirstOrDefault(a => a.RezervacijaID == ima1.RezervacijaID && a.SalaID == SalaID);
+
+                if (ima2 != null)
+                {
+                    return ("Već ste odabrali ovu salu");
+                }
             }
-      
             var ima = _dbContext.RezervacijaKorisnici.FirstOrDefault(a => a.KorisnikID == KorisnikID);
             if(ima==null)
             {

@@ -140,12 +140,16 @@ namespace RS_SEMINARSKI.Controllers
         public IActionResult DodajURezervaciju(string KorisnikID, int PozivnicaID)
         {
             var ima1 = _dbContext.RezervacijaKorisnici.FirstOrDefault(a => a.KorisnikID == KorisnikID);
-            var ima2 = _dbContext.Rezervacije.FirstOrDefault(a => a.RezervacijaID == ima1.RezervacijaID && PozivnicaID==a.PozivnicaID);
-            if (ima2 != null)
+            if (ima1 != null)
             {
-                return NoContent();
-            }
 
+
+                var ima2 = _dbContext.Rezervacije.FirstOrDefault(a => a.RezervacijaID == ima1.RezervacijaID && PozivnicaID == a.PozivnicaID);
+                if (ima2 != null)
+                {
+                    return NoContent();
+                }
+            }
             var ima = _dbContext.RezervacijaKorisnici.FirstOrDefault(a => a.KorisnikID == KorisnikID);
             if (ima == null)
             {

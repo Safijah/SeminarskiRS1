@@ -28,6 +28,7 @@ namespace RS_SEMINARSKI.Controllers
         }
         public IActionResult Prikaz(string korisnikID)
         {
+            
             var vm = new RezervacijaPrikazVM();
             vm.stavke = new List<RezervacijaPrikazVM.Rows>();
             var rez = _dbContext.RezervacijaKorisnici.FirstOrDefault(a => a.KorisnikID == korisnikID);
@@ -117,7 +118,7 @@ namespace RS_SEMINARSKI.Controllers
                   {
                       StavkaID = a.FotografID,
                       Cijena = a.Fotograf.SatnicaSlikanja,
-                      Kolicina = 10,
+                      Kolicina = 1,
                       UkupnaCijena = a.Fotograf.SatnicaSlikanja,
                       Naziv = a.Fotograf.ImeFotografa + " " + a.Fotograf.PrezimeFotografa,
                       PutanjaDoSlike = a.Fotograf.PutanjaDoSlikeFotografa,
