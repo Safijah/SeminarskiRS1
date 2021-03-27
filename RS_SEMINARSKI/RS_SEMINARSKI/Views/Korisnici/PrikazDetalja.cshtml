@@ -213,13 +213,26 @@
         color: gray;
         font-size: 15px;
     }
-
+    #forma {
+        position: absolute;
+        top: 150px;
+        left: 500px;
+        color: black;
+        height:30px;
+       /* font-size: 15px;*/
+    }
+    #btn11 {
+        position: absolute;
+        top: 150px;
+        left: 720px;
+        height: 30px;
+    }
     #UkupnaCijena {
         border: 1px solid transparent;
         position: relative;
         /*top:10px;*/
         bottom: 450px;
-        left: 500px;
+        left: 1120px;
         /*border-bottom:1px solid blue;*/
         height: 27px;
         width: 190px;
@@ -352,22 +365,26 @@
 
             </div>
         }
-        <form asp-controller="Rezervacija" asp-action="KreirajRacun">
+        
 
 
-            <input hidden asp-for="RezervacijaID" />
             <label id="datumVjecanja">Datum vjenčanja</label>
             <div id="picker" class="form-group">
                 <input id="datePicker" asp-for="dtmDate" type="date"  class="form-control form-control-sm" />
 
             </div>
+            <form  asp-action="PromijeniStatusRezervacije" asp-controller="Rezervacija"  >
+                <select id="forma" asp-for="StatusRezervacijeID" asp-items="@Model.StatusRezervacije"><option>Izaberite status rezervacije</option></select>
+            <input hidden asp-for="RezervacijaID" />
+                <input id="btn11" type="submit" value="Promijeni" />
+            </form>
             <label id="CijenaVjencanja">Ukupna cijena vjenčanja:</label>
             <input id="UkupnaCijena" asp-for="CijenaNarudzbe" style="background-color:none; border:none" />
             <span id="Km">KM</span>
 
 
             
-        </form>
+      
     </div>
 
 

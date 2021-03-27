@@ -1,4 +1,5 @@
-﻿using Data.EF;
+﻿using Core.Interfaces;
+using Data.EF;
 using Data.EFModels;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -18,13 +19,15 @@ namespace RS_SEMINARSKI.Controllers
         private readonly ApplicationDbContext _dbContext;
         private readonly ILogger<HomeController> _logger;
         private readonly IWebHostEnvironment WebHostEnvironment;
+        private readonly IEmailService _emailService;
 
         public RezervacijaController(ApplicationDbContext dbContext, ILogger<HomeController> logger,
-            IWebHostEnvironment webhostEnvironment)
+            IWebHostEnvironment webhostEnvironment, IEmailService emailService)
         {
             _dbContext = dbContext;
             _logger = logger;
             WebHostEnvironment = webhostEnvironment;
+            _emailService = emailService;
         }
         public IActionResult Prikaz(string korisnikID)
         {
@@ -288,6 +291,29 @@ namespace RS_SEMINARSKI.Controllers
             novi.nacinPlacanja = n;
 
             return View("PrikazRacuna", novi);
+        }
+        public async Task<IActionResult> PromijeniStatusRezervacijeAsync(RezervacijaPrikazVM vm)
+        {
+            var rezervacija = _dbContext.Rezervacije.FirstOrDefault(a => a.RezervacijaID == vm.RezervacijaID);
+            if (rezervacija != null)
+            {
+                rezervacija.StatusRezervacijeID = vm.StatusRezervacijeID;
+                _dbContext.SaveChanges();
+            }
+            var status = _dbContext.StatusRezervacije.Find(vm.StatusRezervacijeID).Naziv;
+            var KorisnikID = _dbContext.RezervacijaKorisnici.FirstOrDefault(a => a.RezervacijaID == vm.RezervacijaID).KorisnikID;
+            var Korisnik = _dbContext.Korisnici.FirstOrDefault(a => a.Id == KorisnikID);
+            if (status == "Odobrena")
+            {
+                await _emailService.SendEmailAsync(Korisnik.Email, "Klik do vjenčanja", "<h1>Poštovani, Vaša rezervacija je pregledana</h1>" +
+                    $"<p>Vaša rezervacija je odobrena, radujemo se Vašoj proslavi</p>");
+            }
+            else
+            {
+                await _emailService.SendEmailAsync(Korisnik.Email, "Klik do vjenčanja", "<h1>Poštovani, Vaša rezervacija je pregledana</h1>" +
+                   $"<p>Vaša rezervacija je odbijena, za detaljnije informacije javite nam se na broj 062-111-111</p>");
+            }
+            return RedirectToAction("PrikazKorisnika","Korisnici");
         }
 
     }

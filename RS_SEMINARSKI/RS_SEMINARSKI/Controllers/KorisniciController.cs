@@ -1,5 +1,6 @@
 ﻿using Data.EF;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using RS_SEMINARSKI.ViewModels;
 using System;
@@ -18,10 +19,12 @@ namespace RS_SEMINARSKI.Controllers
         }
         public IActionResult PrikazKorisnika()
         {
-            var korisnici = _dbContext.Korisnici.Where(a=>a.RolaID==2).Select(a => new PrikazKorisnikaVM.Row
+            var korisnici = _dbContext.Korisnici.Where(a => a.RolaID == 2).Select(a => new PrikazKorisnikaVM.Row
             {
                 ImeiPrezime = a.ImeKorisnika + " " + a.PrezimeKorisnika,
-                KorisnikID = a.Id
+                KorisnikID = a.Id,
+                StatusRezervacije= _dbContext.RezervacijaKorisnici.Include(b => b.Rezervacija).ThenInclude(b => b.StatusRezervacije).
+                    Where(b => a.Id == b.KorisnikID && b.Rezervacija.StatusRezervacijeID>0).Select(b=>b.Rezervacija.StatusRezervacije).FirstOrDefault().Naziv
             }).ToList();
             var vm = new PrikazKorisnikaVM();
             vm.Korisnici = korisnici;
@@ -37,7 +40,7 @@ namespace RS_SEMINARSKI.Controllers
             {
                 vm.RezervacijaID = rez.RezervacijaID;
                 var rezervacija = _dbContext.Rezervacije.Find(vm.RezervacijaID);
-                if (rezervacija.StatusRezervacije != null)
+                if (rezervacija.StatusRezervacijeID >0)
                 {
                     vm.dtmDate = rezervacija.DatumVjencanja;
 
@@ -184,6 +187,12 @@ namespace RS_SEMINARSKI.Controllers
                 
                 vm.KorisnikID = korisnikID;
             }
+            var statusi = _dbContext.StatusRezervacije.Select(a => new SelectListItem
+            {
+                Text = a.Naziv,
+                Value = a.StatusRezervacijeID.ToString()
+            }).ToList();
+            vm.StatusRezervacije = statusi;
             return View(vm);
         }
     }

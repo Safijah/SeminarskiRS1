@@ -9,14 +9,16 @@
     <tr>
         <td>Ime i prezime</td>
         <td>ID</td>
+        <td>Status Rezervacije</td>
         <td>Akcija</td>
     </tr>
     <tbody>
         @foreach (var x in Model.Korisnici)
         {
             <tr>
-                <td>@x.ImeiPrezime.</td>
+                <td>@x.ImeiPrezime</td>
                 <td>@x.KorisnikID</td>
+                <td>@x.StatusRezervacije</td>
                 <td><a href="/Korisnici/PrikazDetalja?korisnikID=@x.KorisnikID">Detalji</a></td>
             </tr>
         }

@@ -45,6 +45,7 @@ namespace Data.EF
         public DbSet<Rola> Rola { get; set; }
         public DbSet<NacinPlacanja> NacinPlacanja { get; set; }
         public DbSet<KreditnaKartica> KreditnaKartica { get; set; }
+        public DbSet<StatusRezervacije> StatusRezervacije { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             //modelBuilder.Entity<MuzikaBend>()
