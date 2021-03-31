@@ -1,5 +1,6 @@
 ﻿using Data.EFModels;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,6 +27,8 @@ namespace RS_SEMINARSKI.ViewModels
         public int RezervacijaID { get; set; }
         public float CijenaNarudzbe { get; set; }
         public DateTime dtmDate { get; set; }
+        public int StatusRezervacijeID { get; set; }
+        public List<SelectListItem> StatusRezervacije { get; set; }
         //public float CijenaRezervacije { get; set; }
     }
 }

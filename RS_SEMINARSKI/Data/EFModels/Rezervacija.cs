@@ -16,9 +16,10 @@ namespace Data.EFModels
         public float VremenskoTrajanjeVjencanja { get; set; }
         public int? RacunID { get; set; }
         public Racun Racun { get; set; }
-        public string StatusRezervacije { get; set; }
         public int ? NacinPlacanjaID {get;set;}
         public NacinPlacanja NacinPlacanja {get;set;}
         public int KolicinaPozivnica { get; set; }
+        public int? StatusRezervacijeID { get; set; }
+        public  StatusRezervacije StatusRezervacije { get; set; }
     }
 }

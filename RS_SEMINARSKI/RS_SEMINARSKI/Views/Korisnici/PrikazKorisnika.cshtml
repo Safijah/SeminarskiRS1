@@ -1,0 +1,26 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model RS_SEMINARSKI.ViewModels.PrikazKorisnikaVM
+
+<table class="table table-bordered">
+    <tr>
+        <td>Ime i prezime</td>
+        <td>ID</td>
+        <td>Status Rezervacije</td>
+        <td>Akcija</td>
+    </tr>
+    <tbody>
+        @foreach (var x in Model.Korisnici)
+        {
+            <tr>
+                <td>@x.ImeiPrezime</td>
+                <td>@x.KorisnikID</td>
+                <td>@x.StatusRezervacije</td>
+                <td><a href="/Korisnici/PrikazDetalja?korisnikID=@x.KorisnikID">Detalji</a></td>
+            </tr>
+        }
+    </tbody>
+</table>

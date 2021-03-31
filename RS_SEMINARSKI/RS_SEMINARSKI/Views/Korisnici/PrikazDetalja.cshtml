@@ -1,0 +1,423 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+@{
+    Layout = null;
+}
+@model RS_SEMINARSKI.ViewModels.RezervacijaPrikazVM
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+<style>
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    #LijeviNavBar {
+        height: 800px;
+        width: 21%;
+        float: left;
+        background-color: whitesmoke;
+        /*background-image: url("https://i.pinimg.com/564x/8f/c6/b7/8fc6b7eca6e1d9bba6500efc0cfd8bda.jpg");
+        background-position: center;
+        background-size: cover;
+        opacity: 1.5;*/
+        margin: 30px;
+        border-radius: 10px;
+    }
+
+    #NavMain {
+        height: 80px;
+        width: 93%;
+        background-color: whitesmoke;
+        color: white;
+        font-size: 20px;
+        border-radius: 20px;
+        /*padding: 20px;*/
+        position: relative;
+        top: 20px;
+        left: 35px;
+    }
+
+    #glavni {
+        width: 98%;
+        height: 800px;
+        /* background-image: url("https://i.pinimg.com/564x/8f/c6/b7/8fc6b7eca6e1d9bba6500efc0cfd8bda.jpg");
+        background-position: center;
+        background-size: cover;
+        opacity: 1.5;*/
+        float: right;
+        margin-top: 120px;
+        /*margin-left:10px;*/
+        /*background-color:red;*/
+    }
+
+    #wrapper {
+        /*background-color: darkblue;*/
+        width: 100%;
+        /*height: 100%;*/
+        height: 1200px;
+        background-image: url("https://i.pinimg.com/564x/8f/c6/b7/8fc6b7eca6e1d9bba6500efc0cfd8bda.jpg");
+        background-position: center;
+        background-size: cover;
+        opacity: 1.5;
+    }
+
+    #slika {
+        width: 100%;
+        height: 50%;
+        border: none;
+    }
+
+    #opis {
+        background-color: whitesmoke;
+        opacity: 0.7;
+        width: 100%;
+        height: 40%;
+        font-family: Calibri;
+        text-align: center;
+        padding-top: 20px;
+        /*border: 1px solid green;*/
+    }
+
+    #buttons {
+        background-color: transparent;
+        width: 100%;
+        height: 20%;
+    }
+
+    #prikazSlike {
+        width: 100%;
+        height: 100%;
+        border-radius: none;
+    }
+
+    label {
+        font-size: 10px;
+    }
+
+    #buttonDodaj {
+        width: 200px;
+        height: 45px;
+        background-color: whitesmoke;
+        margin-top: 47px;
+        border-radius: 12px;
+        border: solid 1px transparent;
+        margin-left: 25px;
+    }
+
+    .IzbornikStavka {
+        width: 96%;
+        padding-top: 15px;
+        height: 45px;
+        text-decoration: none;
+        /*font-family: dino odaberi :) Al da podržava kvačice */
+        float: left;
+        border: 1px solid transparent;
+        border-bottom: 1px solid #a3c2c2;
+        margin: 5px;
+        border-radius: 10px;
+        background-color: transparent;
+    }
+
+        .IzbornikStavka:hover {
+            background-color: #efeff5;
+            color: darkgray;
+        }
+
+    .zaFont {
+        /*padding-bottom:20px;*/
+        font-size: 13px;
+        opacity: 1;
+        margin-bottom: 10px;
+    }
+
+    .okvir {
+        /*background: rgba(76, 175, 80, 0.3);*/ /* Green background with 30% opacity */
+        /*background-color: purple;*/
+        background-color: transparent;
+        width: 300px;
+        height: 335px;
+        float: left;
+        margin-top: 30px;
+        margin-left: 30px;
+        border: none;
+        /*opacity:0.8;*/
+        /*width: 28%;
+        height: 40%;
+        margin: 5px;*/
+    }
+
+    img {
+        border: 0;
+        width: 100%;
+        height: 100%;
+        border-style: solid;
+    }
+
+    .btn {
+        position: relative;
+        margin-left: 70px;
+        margin-top: 25px;
+        background-color: whitesmoke;
+        width: 18%;
+        color: dimgray;
+        font-size: 17px;
+    }
+
+    .btn2 {
+        position: relative;
+        margin-left: 26px;
+        margin-top: 15px;
+        background-color: whitesmoke;
+        width: 250px;
+        height: 30px;
+        color: dimgray;
+        border-radius: 10px;
+        border: none;
+        opacity: 0.7;
+    }
+
+    #picker {
+        position: absolute;
+        height: 70px;
+        width: 300px;
+        /*background-color:yellow;*/
+        left: 60px;
+        top: 150px;
+        /*background-color:yellow;*/
+    }
+
+    #datePicker {
+        background-color: #e0ebeb;
+    }
+
+    #datumVjecanja {
+        /*position: absolute;
+        height: 70px;
+        width: 300px;*/
+        /*background-color:yellow;*/
+        /*left: 60px;
+        top: 130px;*/
+        position: absolute;
+        top: 120px;
+        font-family: Verdana;
+        left: 60px;
+        color: gray;
+        font-size: 15px;
+    }
+    #forma {
+        position: absolute;
+        top: 150px;
+        left: 500px;
+        color: black;
+        height:30px;
+       /* font-size: 15px;*/
+    }
+    #btn11 {
+        position: absolute;
+        top: 150px;
+        left: 720px;
+        height: 30px;
+    }
+    #UkupnaCijena {
+        border: 1px solid transparent;
+        position: relative;
+        /*top:10px;*/
+        bottom: 450px;
+        left: 1120px;
+        /*border-bottom:1px solid blue;*/
+        height: 27px;
+        width: 190px;
+        border-radius: 10px;
+        padding-left: 30px;
+        font-size: 20px;
+        background-color: whitesmoke;
+    }
+
+    #CijenaVjencanja {
+        font-size: 15px;
+        position: absolute;
+        top: 120px;
+        left: 930px;
+        font-family: Verdana;
+        color: gray;
+    }
+
+    #Km {
+        position: absolute;
+        top: 117px;
+        left: 1300px;
+        font-size: 17px;
+    }
+
+    #DodajRacun {
+        position: relative;
+        top: 450px;
+        left: 250px;
+        /* margin-left: 26px;
+        margin-top: 15px;*/
+        background-color: whitesmoke;
+        width: 250px;
+        height: 30px;
+        color: forestgreen;
+        border-radius: 10px;
+        border: none;
+        opacity: 0.9;
+    }
+</style>
+
+<div id="wrapper">
+
+
+
+    <div id="NavMain">
+        <button class="btn" onclick="window.location = '/Vjencanje/PrikazPocetne?KorisnikID=@Model.KorisnikID'">Početna strana </button>
+        <button class="btn" onclick="window.location ='/Korisnik/PrikazRacuna?korisnikID=@Model.KorisnikID'">Korisnički račun</button>
+        <button class="btn" onclick="window.location='/Rezervacija/Prikaz?korisnikID=@Model.KorisnikID'">Rezervacija</button>
+        <button class="btn" onclick="window.location='/Autentifikacija/LogOut'">Odjavi se</button>
+    </div>
+
+
+
+
+
+    @*<div id="LijeviNavBar">
+            <ul id="lijeviNav" class="nav nav-pills nav-stacked" role="tablist">
+                <li>
+                    <button class="IzbornikStavka" onclick="window.location = '/Vjencanje/PrikazPocetne?KorisnikID=@Model.KorisnikID'">Pocetna</button> <br />
+                </li>
+                <li>
+                    <button class="IzbornikStavka" onclick="window.location = '/Cvijece/PrikazCvijeca?KorisnikID=@Model.KorisnikID'">Cvijece</button> <br />
+                </li>
+                <li>
+                    <button class="IzbornikStavka" onclick="window.location = '/Dekoracija/PrikazDekoracije?KorisnikID=@Model.KorisnikID'">Dekoracije</button>
+                    <br />
+                </li>
+                <li>
+                    <button class="IzbornikStavka" onclick="window.location = '/Fotograf/PrikazFotografa?KorisnikID=@Model.KorisnikID'">Fotografi</button>
+                    <br />
+                </li>
+                <li>
+                    <button class="IzbornikStavka" onclick="window.location = '/Konobari/PrikazKonobara?KorisnikID=@Model.KorisnikID'">Konobari</button>
+                    <br />
+                </li>
+                <li>
+                    <button class="IzbornikStavka">Korisnici IMPLEMENTIRATI</button>
+                    <br />
+                </li>
+                <li>
+                    <button class="IzbornikStavka" onclick="window.location = '/Kuhar/PrikazKuhara?KorisnikID=@Model.KorisnikID'">Kuhari</button>
+                    <br />
+                </li>
+                <li>
+                    <button class="IzbornikStavka" onclick="window.location = '/Meni/PrikazMenija?KorisnikID=@Model.KorisnikID'">Hrana & piće</button>
+                    <br />
+                </li>
+                <li>
+                    <button class="IzbornikStavka" onclick="window.location = '/Pozivnica/PrikazPozivnica?KorisnikID=@Model.KorisnikID'">Pozivnice</button>
+                    <br />
+                </li>
+                <li>
+                    <button class="IzbornikStavka" onclick="window.location = '/Rezervacija/PrikazRezervacija?KorisnikID=@Model.KorisnikID'">Rezervacije</button>
+                    <br />
+                </li>
+                <li>
+                    <button class="IzbornikStavka">Evidentiraj novu narudžbu IMPLEMENTIRATI</button>
+                    <br />
+                </li>
+                <li>
+                    <button class="IzbornikStavka">Pregled računa (fakture) IMPLEMENTIRATI</button>
+                    <br />
+                </li>
+                <li>
+                    <button class="IzbornikStavka" onclick="window.location = '/Sala/PrikazSala?KorisnikID=@Model.KorisnikID'">Sale</button>
+                    <br />
+                </li>
+            </ul>
+        </div>*@
+    <div id="glavni">
+
+
+
+
+        @foreach (var x in Model.stavke)
+        {
+            <div class="okvir">
+                <div id="slika"><img id="prikazSlike" src="~/Slike/@x.PutanjaDoSlike" /></div>
+                <div id="opis">
+                    <label class="zaFont">Naziv: @x.Naziv</label><br />
+                    <label class="zaFont">Cijena: @x.Cijena</label><br />
+                    <label class="zaFont">Kolicina: @x.Kolicina</label><br />
+                    <label class="zaFont">Ukupna cijena: @x.UkupnaCijena KM </label><br />
+                    <label hidden class="zaFont">StavkaID @x.StavkaID</label><br />
+
+
+                </div>
+                
+
+            </div>
+        }
+        
+
+
+            <label id="datumVjecanja">Datum vjenčanja</label>
+            <div id="picker" class="form-group">
+                <input id="datePicker" asp-for="dtmDate" type="date"  class="form-control form-control-sm" />
+
+            </div>
+            <form  asp-action="PromijeniStatusRezervacije" asp-controller="Rezervacija"  >
+                <select id="forma" asp-for="StatusRezervacijeID" asp-items="@Model.StatusRezervacije"><option>Izaberite status rezervacije</option></select>
+            <input hidden asp-for="RezervacijaID" />
+                <input id="btn11" type="submit" value="Promijeni" />
+            </form>
+            <label id="CijenaVjencanja">Ukupna cijena vjenčanja:</label>
+            <input id="UkupnaCijena" asp-for="CijenaNarudzbe" style="background-color:none; border:none" />
+            <span id="Km">KM</span>
+
+
+            
+      
+    </div>
+
+
+</div>
+
+
+
+
+@*<link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+
+    @section scripts{
+
+        <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+
+
+        <script>
+
+            $(function () {
+                $(".datepicker").datepicker({
+                    datePickers.options.format = 'm/d/yyyy',
+                    //dateFormat: "dd/mm/yyy",
+                    changeMonth: true,
+                    changeYear: true,
+                    yearRange: "-10:+10",
+                    minDate: new Date(2017, 0, 1),
+                    maxDate: new Date(2018, 0, 1),
+                    showOn: "both",
+                    buttonText: "<i class='fa fa-calendar' ></i>",
+                    changeMinutes: true
+
+                });
+            });
+        </script>
+
+    }*@

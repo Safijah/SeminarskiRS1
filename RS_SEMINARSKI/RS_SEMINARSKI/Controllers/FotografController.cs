@@ -152,5 +152,48 @@ namespace RS_SEMINARSKI.Controllers
             _dbContext.SaveChanges();
             return Redirect("PrikazFotografa?KorisnikID=" + KorisnikID);
         }
+        public string DodajURezervaciju(string KorisnikID, int FotografID)
+        {
+            var ima1 = _dbContext.RezervacijaKorisnici.FirstOrDefault(a => a.KorisnikID == KorisnikID);
+            if (ima1 != null)
+            {
+                var ima2 = _dbContext.RezervacijaFotografi.FirstOrDefault(a => a.RezervacijaID == ima1.RezervacijaID && a.FotografID == FotografID);
+
+                if (ima2 != null)
+                {
+                    return ("Već ste odabrali ovog fotografa");
+                }
+            }
+            var ima = _dbContext.RezervacijaKorisnici.FirstOrDefault(a => a.KorisnikID == KorisnikID);
+            if (ima == null)
+            {
+                var rezervacija = new Rezervacija();
+                _dbContext.Add(rezervacija);
+                _dbContext.SaveChanges();
+                var rezkorisnici = new RezervacijaKorisnik()
+                {
+                    RezervacijaID = rezervacija.RezervacijaID,
+                    KorisnikID = KorisnikID
+                };
+                _dbContext.Add(rezkorisnici);
+                _dbContext.SaveChanges();
+                var SalaFotograf = new RezervacijaFotograf();
+                SalaFotograf.RezervacijaID = rezervacija.RezervacijaID;
+                SalaFotograf.FotografID = FotografID;
+                _dbContext.Add(SalaFotograf);
+                _dbContext.SaveChanges();
+
+            }
+            else
+            {
+                var SalaFotograf = new RezervacijaFotograf();
+                SalaFotograf.RezervacijaID = ima.RezervacijaID;
+                SalaFotograf.FotografID = FotografID;
+                _dbContext.Add(SalaFotograf);
+                _dbContext.SaveChanges();
+            }
+
+            return ("Uspješno ste odabrali fotografa");
+        }
     }
 }

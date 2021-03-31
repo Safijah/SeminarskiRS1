@@ -161,7 +161,7 @@
         margin-left: 70px;
         margin-top: 25px;
         background-color: whitesmoke;
-        width: 25%;
+        width: 18%;
         color: dimgray;
         font-size: 17px;
     }
@@ -178,6 +178,17 @@
         border: none;
         opacity: 0.7;
     }
+    #btn3 {
+        position: relative;
+        margin-left: 26px;
+        margin-top: 15px;
+        background-color: whitesmoke;
+        width: 260px;
+        height: 30px;
+        border-radius: 10px;
+        border: none;
+        opacity: 0.7;
+    }
 </style>
 
 <div id="wrapper">
@@ -185,8 +196,8 @@
     <div id="NavMain">
         <button class="btn" onclick="window.location = '/Vjencanje/PrikazPocetne?KorisnikID=@Model.KorisnikID'">Početna strana </button>
         <button class="btn" onclick="window.location ='/Korisnik/PrikazRacuna?korisnikID=@Model.KorisnikID'">Korisnički račun</button>
-        <button class="btn" onclick="window.location='/Autentifikacija/LogOut'">Odjavi se</button>
         <button class="btn" onclick="window.location='/Rezervacija/Prikaz?korisnikID=@Model.KorisnikID'">Rezervacija</button>
+        <button class="btn" onclick="window.location='/Autentifikacija/LogOut'">Odjavi se</button>
     </div>
 
     <div id="LijeviNavBar">
@@ -210,7 +221,7 @@
                 <br />
             </li>
             <li>
-                <button class="IzbornikStavka">Korisnici IMPLEMENTIRATI</button>
+                <button class="IzbornikStavka" onclick="window.location = '/Korisnici/PrikazKorisnika?KorisnikID=@Model.KorisnikID'">Korisnici </button>
                 <br />
             </li>
             <li>
@@ -264,7 +275,11 @@
                     @if (Model.RolaID == 1)
                     {<button class="btn2" style="color:mediumseagreen" onclick="window.location = '/Pozivnica/EvidentirajPozivnicu?KorisnikID=@Model.KorisnikID&PozivnicaID=@x.PozivnicaID'">Uredi</button>
                         <button class="btn2" style="color: indianred" onclick="window.location = '/Pozivnica/ObrisiPozivnicu?KorisnikID=@Model.KorisnikID&PozivnicaID=@x.PozivnicaID'">Obriši</button>
-                        <button class="btn2" style="color: indianred" onclick="window.location = '/Pozivnica/DodajURezervaciju?KorisnikID=@Model.KorisnikID&PozivnicaID=@x.PozivnicaID'">Dodaj</button>
+                    }
+                    else
+                    {
+                <button id="btn3" style="color: black" onclick="window.location = '/Pozivnica/DodajURezervaciju?KorisnikID=@Model.KorisnikID&PozivnicaID=@x.PozivnicaID'">Dodaj u rezervaciju</button>
+
                     }
                 </div>
 

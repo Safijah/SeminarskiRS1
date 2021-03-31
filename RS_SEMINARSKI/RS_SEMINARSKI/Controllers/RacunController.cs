@@ -105,7 +105,7 @@ namespace RS_SEMINARSKI.Controllers
             rezervacija.RacunID = novi.RacunID;
             rezervacija.NacinPlacanjaID = x.nacinPlacanjaID;
             rezervacija.DatumVjencanja = x.dtmDate;
-            rezervacija.StatusRezervacije = "Na cekanju";
+            rezervacija.StatusRezervacijeID = 1;
             _dbContext.SaveChanges();
             return View("Plati");
 
