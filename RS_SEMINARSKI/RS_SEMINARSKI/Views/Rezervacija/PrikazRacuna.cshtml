@@ -47,7 +47,7 @@
         color: dimgrey;
         background-color: white;
         margin-top: 25px;
-        margin-left: 20px;
+        margin-left: 120px;
         font-size: 15px;
         width: 130px;
         bottom: 5px;
@@ -163,7 +163,7 @@
         padding-left: 48px;
         margin-left: 40px;
         font-weight: normal;
-        color: dimgrey;
+        color: black;
         display: block;
         margin-left: 30px;
         position: relative;
@@ -181,32 +181,6 @@
         cursor: pointer;
         margin-top: 30px;
     }
-
-    #ajax1 {
-        /*background-color: rebeccapurple;*/
-        /*margin-top:200px;*/
-        position: relative;
-        top: 272px;
-        left: 550px;
-        /*width:250px;*/
-        padding-left: 40px;
-        border: 1px solid transparent;
-        border-bottom: 1px solid lightblue;
-        padding-left: 30px;
-        padding-right: 20px;
-    }
-
-    #ajax2 {
-        /*background-color: yellow;*/
-        position: relative;
-        top: 250px;
-        left: 30px;
-        /*width:250px;*/
-        padding-left: 40px;
-        border: 1px solid transparent;
-        border-bottom: 1px solid lightblue;
-        padding-right: 20px;
-    }
 </style>
 
 
@@ -215,18 +189,20 @@
     <div id="NavMain">
         @*<button class="btn " onclick="window.location = '/Vjencanje/PrikazPocetne?KorisnikID=@Model.KorisnikID'">Klik do vjenčanja </button>*@
         @*<button class="btn " onclick="window.location ='/Korisnik/PrikazRacuna?korisnikID=@Model.KorisnikID'">Korisnički račun</button>*@
-        <button class="btn " onclick="window.location='/Autentifikacija/LogOut'">Odjavi se</button>
+        <a class="btn " asp-area="" asp-controller="Home" asp-action="Index">Početna stranica</a>
+        <button class="btn" onclick="window.location='/Autentifikacija/LogOut'">Odjavi se</button>
     </div>
     <div id="GLAVNI">
         <div id="Slika">
-            <img id="vjecanje" src="https://i.pinimg.com/236x/f2/e3/7d/f2e37d0c3a91f8acea63e5e36d323f95.jpg" alt="Mountains">
+            <img id="vjecanje" src="https://i.pinimg.com/564x/07/a6/3b/07a63b510508cbe1cf1dab62814f1cbb.jpg" alt="Mountains">
 
         </div>
+        @*var model=@Model.RacunID + " " + @Model.RezervacijaID + " " + @Model.dtmDate + " " + @Model.UkupanIznos + " " + @Model.nacinPlacanjaID + " " + @Model.KreditnaKarticaBroj + " " + @Model.MjesecIstekaKartice + " " + @Model.GodinaIstekaKartice + " " + @Model.CVC;*@
         <div id="SpanElement">
             <span>Evidentiraj plaćanje </span><br />
         </div>
         <div id="KorPodaci">
-            <form asp-controller="Racun" asp-action="Plati">
+            <form asp-controller="Racun" asp-action="Plati" id="formID">
 
 
                 @*RacunID*@
@@ -235,51 +211,117 @@
 
 
                 @*RezervacijaID*@
-                <input asp-for="RezervacijaID" hidden />
+                <input asp-for="RezervacijaID" hidden id="RezervacijaID" />
                 <br />
 
                 <label id="labela">Datum vjenčanja</label>
-                <input class="input_polje" asp-for="dtmDate" type="date" disabled />
+                <input class="input_polje" asp-for="dtmDate" type="date" disabled id="DatumID" />
                 <br />
 
                 <label id="labela">Ukupan iznos vjenčanja</label>
-                <input class="input_polje" asp-for="UkupanIznos" disabled />
+                <input class="input_polje" asp-for="UkupanIznos" disabled id="UkupanIznosID" />
                 <br />
 
 
                 @*<label id="labela">Način plaćanja</label>*@
                 <br />
-                <select class="input_polje" asp-for="nacinPlacanjaID" asp-items="Model.nacinPlacanja"><option>Izaberite nacin placanja</option></select>
+                <select class="input_polje" asp-for="nacinPlacanjaID" asp-items="Model.nacinPlacanja" id="NacinPlacanjaID" onchange="prikaz()"><option selected disabled>IZABERITE NAČIN PLAĆANJA</option></select>
                 <br />
 
-                
+                <div id="blok">
                 <label id="labela">Broj kreditne kartice</label>
-                <input class="input_polje" asp-for="KreditnaKarticaBroj" />
+                <input class="input_polje" asp-for="KreditnaKarticaBroj" id="BrojKreditneID" />
                 <br />
 
 
                 <label id="labela">Mjesec isteka kreditne kartice</label>
-                <input class="input_polje" asp-for="MjesecIstekaKartice" />
+                <input class="input_polje" asp-for="MjesecIstekaKartice" id="MjesecID" />
 
                 <br />
 
                 <label id="labela">Godina isteka kreditne kartice</label>
 
-                <input class="input_polje" asp-for="GodinaIstekaKartice" />
+                <input class="input_polje" asp-for="GodinaIstekaKartice" id="GodinaID" />
                 <br />
 
                 <label id="labela">CVC</label>
-                <input class="input_polje" asp-for="CVC" />
+                <input class="input_polje" asp-for="CVC" id="CVCID" />
+                <br />
+
+                <br />
+                    </div>
+                <br />
                 <br />
                 
-                <br />
-                <input class="input_polje" type="submit" value="Plati"  />
-
-
-
+                @*<input class="input_polje" type="submit" value="Plati" />*@
 
 
             </form>
-            </div>
+            @*<input id="ajax1" onclick="PrikaziPorukuPlacanja()" type="submit">Plati ajax</input>*@
+            <input class="input_polje" style="color:#ff8080" type="submit" onclick="PrikaziPorukuPlacanja()" value="Izvrši plaćanje"/>
         </div>
     </div>
+</div>
+<div id="Ajax2"></div>
+
+
+
+@*<script src="../../Jquery/prettify.js"></script>*@
+<script>
+
+
+    var prikaz = () => {
+        console.log(document.getElementById("NacinPlacanjaID").value);
+        if (document.getElementById("NacinPlacanjaID").value == 1) {
+            document.getElementById("blok").style.display = "block";
+        } else {
+            document.getElementById("blok").style.display = "none";
+        }
+    }
+    prikaz();
+
+
+
+
+
+ setTimeout(function () {
+        var msg = document.getElementById("Ajax2");
+        msg.parentNode.removeChild(msg);
+    }, 8000);
+
+
+    function PrikaziPorukuPlacanja() {
+        //var forma = $("#formID");
+
+        var RezervacijaID = $("#RezervacijaID").val();
+        var CVC = $("#CVCID").val();
+        var Mjesec = $("#MjesecID").val();
+        var Godina = $("#GodinaID").val();
+        var BrojKreditne = $("#BrojKreditneID").val();
+        var NacinPlacanja = $("#NacinPlacanjaID").val();
+        var UkupanIznos = $("#UkupanIznosID").val();
+        var Datum = $("#DatumID").val();
+
+        var data = {
+            "RezervacijaID": RezervacijaID,
+            "CVC": CVC,
+            "MjesecIstekaKartice": Mjesec,
+            "GodinaIstekaKartice": Godina,
+            "KreditnaKarticaBroj": BrojKreditne,
+            "nacinPlacanjaID": NacinPlacanja,
+            "UkupanIznos": UkupanIznos,
+            "dtmDate": Datum
+        };
+
+        $.ajax({
+            url: '@Url.Action("Plati", "Racun")',
+            type: "POST",
+            data: data,
+            success: function (data) {
+                $("#Ajax2").html(data);
+            }
+        });
+        //alert("Uspjesno snimljeno");
+    }
+
+</script>

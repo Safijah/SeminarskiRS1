@@ -3,6 +3,7 @@ using Data.EFModels;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 using RS_SEMINARSKI.ViewModels;
 using Stripe;
 using System;
@@ -25,7 +26,13 @@ namespace RS_SEMINARSKI.Controllers
             _logger = logger;
             WebHostEnvironment = webhostEnvironment;
         }
-        public async Task<IActionResult> PlatiAsync(RacunVM x)
+
+
+        //public IActionResult IspisiPoruku()
+        //{
+        //    return View("Plati"); 
+        //}
+        public async Task<IActionResult> Plati(RacunVM x)
         {
             var KorisnikID = _dbContext.RezervacijaKorisnici.FirstOrDefault(a => a.RezervacijaID == x.RezervacijaID).KorisnikID;
             Racun novi = new Racun()
