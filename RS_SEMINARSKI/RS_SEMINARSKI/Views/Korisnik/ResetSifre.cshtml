@@ -1,0 +1,19 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = null;
+}
+@model RS_SEMINARSKI.ViewModels.ResetSifreVM
+<form asp-action="PromjenaSifre" asp-controller="Korisnik">
+    <input asp-for="Email" value="@Model.Email"  />
+    <br />
+    Unesite novu šifru
+    <br />
+    <input asp-for="NovaSifra" />
+    <br />
+    Ponovo unesite sifru
+    <br />
+    <input name="Ponovo" />
+    <input type="submit" value="Ponovo postavi"
+</form>
