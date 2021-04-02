@@ -271,7 +271,12 @@ namespace RS_SEMINARSKI.Controllers
 
         public IActionResult KreirajRacun(RezervacijaPrikazVM x)
         {
-
+            var datum = _dbContext.Rezervacije.Where(a => a.DatumVjencanja == x.dtmDate && a.StatusRezervacijeID != 0).Any();
+            if (datum == true )
+            {
+                TempData["msg"] = "<script>alert('Žao nam je, odabrani datum je već rezervisan. Molimo vas da odaberete drugi datum');</script>";
+                return Redirect("Prikaz?korisnikID=" + x.KorisnikID);
+            }
             List<SelectListItem> n = _dbContext.NacinPlacanja.Select(d => new SelectListItem
             {
                 Value = d.NacinPlacanjaID.ToString(),

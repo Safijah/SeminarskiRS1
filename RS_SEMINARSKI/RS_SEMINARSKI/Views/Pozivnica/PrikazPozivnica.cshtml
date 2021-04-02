@@ -220,10 +220,13 @@
                 <button class="IzbornikStavka" onclick="window.location = '/Konobari/PrikazKonobara?KorisnikID=@Model.KorisnikID'">Konobari</button>
                 <br />
             </li>
-            <li>
-                <button class="IzbornikStavka" onclick="window.location = '/Korisnici/PrikazKorisnika?KorisnikID=@Model.KorisnikID'">Korisnici </button>
-                <br />
-            </li>
+            @if (Model.RolaID == 1)
+            {
+                <li>
+                    <button class="IzbornikStavka" onclick="window.location = '/Korisnici/PrikazKorisnika?KorisnikID=@Model.KorisnikID'">Korisnici </button>
+                    <br />
+                </li>
+            }
             <li>
                 <button class="IzbornikStavka" onclick="window.location = '/Kuhar/PrikazKuhara?KorisnikID=@Model.KorisnikID'">Kuhari</button>
                 <br />
@@ -263,28 +266,28 @@
 
         @foreach (var x in Model.pozivnice)
         {
-            <div class="okvir">
-                <div id="slika"><img id="prikazSlike" src="~/Slike/@x.PutanjaDoSlikePozivnice" /></div>
-                <div id="opis">
-                    <label class="zaFont">PozivnicaID @x.PozivnicaID</label><br />
-                    <label class="zaFont">Cijena pozivnice @x.CijenaPozivnice</label><br />
-                    <label class="zaFont">Opis pozivnice @x.OpisPozivnice</label><br />
+    <div class="okvir">
+        <div id="slika"><img id="prikazSlike" src="~/Slike/@x.PutanjaDoSlikePozivnice" /></div>
+        <div id="opis">
+            <label class="zaFont">PozivnicaID @x.PozivnicaID</label><br />
+            <label class="zaFont">Cijena pozivnice @x.CijenaPozivnice</label><br />
+            <label class="zaFont">Opis pozivnice @x.OpisPozivnice</label><br />
 
-                </div>
-                <div id="buttons">
-                    @if (Model.RolaID == 1)
-                    {<button class="btn2" style="color:mediumseagreen" onclick="window.location = '/Pozivnica/EvidentirajPozivnicu?KorisnikID=@Model.KorisnikID&PozivnicaID=@x.PozivnicaID'">Uredi</button>
-                        <button class="btn2" style="color: indianred" onclick="window.location = '/Pozivnica/ObrisiPozivnicu?KorisnikID=@Model.KorisnikID&PozivnicaID=@x.PozivnicaID'">Obriši</button>
-                    }
-                    else
-                    {
+        </div>
+        <div id="buttons">
+            @if (Model.RolaID == 1)
+            {<button class="btn2" style="color:mediumseagreen" onclick="window.location = '/Pozivnica/EvidentirajPozivnicu?KorisnikID=@Model.KorisnikID&PozivnicaID=@x.PozivnicaID'">Uredi</button>
+                <button class="btn2" style="color: indianred" onclick="window.location = '/Pozivnica/ObrisiPozivnicu?KorisnikID=@Model.KorisnikID&PozivnicaID=@x.PozivnicaID'">Obriši</button>
+            }
+            else
+            {
                 <button id="btn3" style="color: black" onclick="window.location = '/Pozivnica/DodajURezervaciju?KorisnikID=@Model.KorisnikID&PozivnicaID=@x.PozivnicaID'">Dodaj u rezervaciju</button>
 
-                    }
-                </div>
-
-            </div>
+            }
+        </div>
+    </div>
         }
     </div>
 
 </div>
+ @Html.Raw(TempData["msg"])

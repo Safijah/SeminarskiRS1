@@ -152,7 +152,7 @@ namespace RS_SEMINARSKI.Controllers
             _dbContext.SaveChanges();
             return Redirect("PrikazFotografa?KorisnikID=" + KorisnikID);
         }
-        public string DodajURezervaciju(string KorisnikID, int FotografID)
+        public IActionResult DodajURezervaciju(string KorisnikID, int FotografID)
         {
             var ima1 = _dbContext.RezervacijaKorisnici.FirstOrDefault(a => a.KorisnikID == KorisnikID);
             if (ima1 != null)
@@ -161,7 +161,8 @@ namespace RS_SEMINARSKI.Controllers
 
                 if (ima2 != null)
                 {
-                    return ("Već ste odabrali ovog fotografa");
+                    TempData["msg"] = "<script>alert('Već ste odabrali ovog fotografa');</script>";
+                    return Redirect("PrikazFotografa?KorisnikID=" + KorisnikID);
                 }
             }
             var ima = _dbContext.RezervacijaKorisnici.FirstOrDefault(a => a.KorisnikID == KorisnikID);
@@ -193,7 +194,7 @@ namespace RS_SEMINARSKI.Controllers
                 _dbContext.SaveChanges();
             }
 
-            return ("Uspješno ste odabrali fotografa");
+            return Redirect("PrikazFotografa?KorisnikID=" + KorisnikID);
         }
     }
 }

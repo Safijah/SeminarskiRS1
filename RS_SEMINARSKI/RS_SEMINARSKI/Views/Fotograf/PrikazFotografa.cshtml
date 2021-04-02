@@ -179,6 +179,7 @@
         border: none;
         opacity: 0.7;
     }
+
     #btn3 {
         position: relative;
         margin-left: 26px;
@@ -221,10 +222,13 @@
                 <button class="IzbornikStavka" onclick="window.location = '/Konobari/PrikazKonobara?KorisnikID=@Model.KorisnikID'">Konobari</button>
                 <br />
             </li>
-            <li>
-                <button class="IzbornikStavka">Korisnici IMPLEMENTIRATI</button>
-                <br />
-            </li>
+            @if (Model.RolaID == 1)
+            {
+                <li>
+                    <button class="IzbornikStavka" onclick="window.location = '/Korisnici/PrikazKorisnika?KorisnikID=@Model.KorisnikID'">Korisnici </button>
+                    <br />
+                </li>
+            }
             <li>
                 <button class="IzbornikStavka" onclick="window.location = '/Kuhar/PrikazKuhara?KorisnikID=@Model.KorisnikID'">Kuhari</button>
                 <br />
@@ -290,3 +294,4 @@
     </div>
 
 </div>
+@Html.Raw(TempData["msg"])
