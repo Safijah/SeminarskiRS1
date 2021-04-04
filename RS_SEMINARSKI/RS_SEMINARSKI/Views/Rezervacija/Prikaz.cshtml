@@ -350,12 +350,16 @@
 
 
                 </div>
+                @if(Model.StatusRezervacijeID!=2)
+                {
+
                 <div id="buttons">
 
                     <button class="btn2" style="color: indianred" onclick="window.location = '/Rezervacija/ObrisiStavku?KorisnikID=@Model.KorisnikID&StavkaID=@x.StavkaID&Tip=@x.Tip'">Ukloni iz rezervacje</button>
 
 
                 </div>
+                }
 
             </div>
         }
@@ -372,8 +376,11 @@
             <input id="UkupnaCijena" asp-for="CijenaNarudzbe" style="background-color:none; border:none" />
             <span id="Km">KM</span>
             <input asp-for="KorisnikID" hidden/>
+            @if (Model.StatusRezervacijeID != 2)
+            {
 
             <button id="DodajRacun"> Dodaj racun</button>
+            }
         </form>
     </div>
 
