@@ -19,6 +19,6 @@ namespace RS_SEMINARSKI.ViewModels
         public int MjesecIstekaKartice { get; set; }
         public int GodinaIstekaKartice { get; set; }
         public string CVC { get; set; }
-        //public string KorisnikID { get; set; }
+        public string KorisnikID { get; set; }
     }
 }

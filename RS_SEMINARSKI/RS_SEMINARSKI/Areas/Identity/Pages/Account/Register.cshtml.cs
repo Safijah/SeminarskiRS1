@@ -90,7 +90,7 @@ namespace RS_SEMINARSKI.Areas.Identity.Pages.Account
             if (ModelState.IsValid)
             {
                
-                var user = new Korisnik { UserName = Input.UserName, Email = Input.Email,ImeKorisnika = Input.FirstName,
+                var user = new Korisnik { UserName = Input.Email, Email = Input.Email,ImeKorisnika = Input.FirstName,
                     PrezimeKorisnika = Input.LastName, RolaID=2
                 };
                 var result = await _userManager.CreateAsync(user, Input.Password);

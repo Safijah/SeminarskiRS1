@@ -253,12 +253,12 @@
                 <br />
                 <br />
                 
-                @*<input class="input_polje" type="submit" value="Plati" />*@
+                @*<input id="dugme" onclick="disableButton()" class="input_polje" type="submit" value="Plati" />*@
 
 
             </form>
             @*<input id="ajax1" onclick="PrikaziPorukuPlacanja()" type="submit">Plati ajax</input>*@
-            <input class="input_polje" style="color:#ff8080" type="submit" onclick="PrikaziPorukuPlacanja()" value="Izvrši plaćanje"/>
+            <input class="input_polje" id="dugme"    style="color:#ff8080" type="submit" onclick="PrikaziPorukuPlacanja()" value="Izvrši plaćanje"/>
         </div>
     </div>
 </div>
@@ -311,6 +311,7 @@
             "nacinPlacanjaID": NacinPlacanja,
             "UkupanIznos": UkupanIznos,
             "dtmDate": Datum
+
         };
 
         $.ajax({
@@ -322,6 +323,17 @@
             }
         });
         //alert("Uspjesno snimljeno");
+        document.getElementById("dugme").disable = 'true';
     }
-
+    function disableButton() {
+        //var lblText = document.getElementById('dugme').innerHTML;
+        //if (lblText == "true") {
+        //    document.getElementById('dugme').innerHTML = "false";
+        //    return true;
+        //}
+        //else {
+        //    return false;
+        //}
+        document.getElementById("dugme").disable = 'true';
+    }
 </script>

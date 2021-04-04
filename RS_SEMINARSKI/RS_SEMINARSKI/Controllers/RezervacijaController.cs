@@ -39,6 +39,7 @@ namespace RS_SEMINARSKI.Controllers
             {
                 vm.RezervacijaID = rez.RezervacijaID;
                 var rezervacija = _dbContext.Rezervacije.Find(vm.RezervacijaID);
+                vm.StatusRezervacijeID = rezervacija.StatusRezervacijeID;
                 var pozivnica = _dbContext.Pozivnice.FirstOrDefault(a=>a.PozivnicaID==rezervacija.PozivnicaID);
                 if(pozivnica!=null)
                 {
@@ -291,8 +292,8 @@ namespace RS_SEMINARSKI.Controllers
                 dtmDate = x.dtmDate,
                 UkupanIznos = x.CijenaNarudzbe
             };
-            //string KorisnikID = _dbContext.RezervacijaKorisnici.FirstOrDefault(d => d.RezervacijaID == x.RezervacijaID && d.KorisnikID == x.KorisnikID).ToString();
-            //novi.KorisnikID = KorisnikID;
+            string KorisnikID = _dbContext.RezervacijaKorisnici.FirstOrDefault(d => d.RezervacijaID == x.RezervacijaID && d.KorisnikID == x.KorisnikID).ToString();
+            novi.KorisnikID = KorisnikID;
             novi.nacinPlacanja = n;
 
             return View("PrikazRacuna", novi);
