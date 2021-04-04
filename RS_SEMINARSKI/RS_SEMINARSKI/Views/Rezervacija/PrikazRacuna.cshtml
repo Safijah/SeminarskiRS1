@@ -258,7 +258,7 @@
 
             </form>
             @*<input id="ajax1" onclick="PrikaziPorukuPlacanja()" type="submit">Plati ajax</input>*@
-            <input class="input_polje" style="color:#ff8080" type="submit" onclick="PrikaziPorukuPlacanja()" value="Izvrši plaćanje"/>
+            <input  id="btnSubmit" class="input_polje" style="color:#ff8080" type="submit" onclick="PrikaziPorukuPlacanja()" value="Izvrši plaćanje"/>
         </div>
     </div>
 </div>
@@ -268,6 +268,10 @@
 
 @*<script src="../../Jquery/prettify.js"></script>*@
 <script>
+
+
+   
+
 
 
     var prikaz = () => {
@@ -322,6 +326,7 @@
             }
         });
         //alert("Uspjesno snimljeno");
+        $("#btnSubmit").attr("disabled", true);
     }
 
 </script>
