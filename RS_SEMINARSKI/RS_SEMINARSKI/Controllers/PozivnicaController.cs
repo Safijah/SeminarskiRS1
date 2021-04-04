@@ -46,6 +46,7 @@ namespace RS_SEMINARSKI.Controllers
                 x.RolaID = 2;
             x.pozivnice = pozivnice;
             x.KorisnikID = KorisnikID;
+            
             return View(x);
         }
 
@@ -147,7 +148,8 @@ namespace RS_SEMINARSKI.Controllers
                 var ima2 = _dbContext.Rezervacije.FirstOrDefault(a => a.RezervacijaID == ima1.RezervacijaID && PozivnicaID == a.PozivnicaID);
                 if (ima2 != null)
                 {
-                    return NoContent();
+                    TempData["msg"] = "<script>alert('Već ste odabrali ove pozivnice');</script>";
+                    return Redirect("PrikazPozivnica?KorisnikID=" + KorisnikID);
                 }
             }
             var ima = _dbContext.RezervacijaKorisnici.FirstOrDefault(a => a.KorisnikID == KorisnikID);

@@ -140,7 +140,7 @@ namespace RS_SEMINARSKI.Controllers
 
             return Redirect("PrikazSala?KorisnikID="+ KorisnikID);
         }
-        public  string  DodajURezervaciju (string KorisnikID, int SalaID)
+        public  IActionResult  DodajURezervaciju (string KorisnikID, int SalaID)
         {
             var ima1 = _dbContext.RezervacijaKorisnici.FirstOrDefault(a => a.KorisnikID == KorisnikID);
             if (ima1 != null)
@@ -149,7 +149,8 @@ namespace RS_SEMINARSKI.Controllers
 
                 if (ima2 != null)
                 {
-                    return ("Već ste odabrali ovu salu");
+                    TempData["msg"] = "<script>alert('Već ste odabrali ovu salu');</script>";
+                    return Redirect("PrikazSala?KorisnikID=" + KorisnikID);
                 }
             }
             var ima = _dbContext.RezervacijaKorisnici.FirstOrDefault(a => a.KorisnikID == KorisnikID);
@@ -180,8 +181,8 @@ namespace RS_SEMINARSKI.Controllers
                 _dbContext.Add(SalaRezervacija);
                 _dbContext.SaveChanges();
             }
-            
-            return ("Uspješno ste odabrali salu");
+
+            return Redirect("PrikazSala?KorisnikID=" + KorisnikID);
         }
     }
 }

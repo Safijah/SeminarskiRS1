@@ -1,0 +1,157 @@
+﻿@using RS_SEMINARSKI.ModelViews;
+
+@model KorisnikEvidentirajVM
+
+
+<style>
+
+    #Pocetna {
+        background-color: white;
+        width: 100%;
+        height: 600px;
+        position: relative;
+        top: 15px;
+    }
+
+    label {
+        display: block;
+        position: relative;
+        left: 100px;
+        top: 40px;
+        font-size: 10px;
+    }
+
+    .input_polje {
+        width: 400px;
+        position: relative;
+        left: 100px;
+        top: 40px;
+        border: 1px solid transparent;
+        border-bottom: 1px solid lightblue;
+    }
+
+    #Slika {
+        background-image: url("https://i.pinimg.com/564x/e2/9d/ed/e29ded39b4663bdbe0c2bc810f9aa84a.jpg");
+        background-color: aqua;
+        width: 35%;
+        height: 600px;
+        float: left;
+        background-size: cover;
+        background-position: center;
+    }
+
+
+    #Submit {
+        width: 500px;
+        position: relative;
+        left: 60px;
+        top: 30px;
+        margin-top: 20px;
+        border: 1px solid transparent;
+        border-radius: 25px;
+        background-color: lightgreen;
+        color: white;
+        
+    }
+
+    body {
+        background-image: url("https://i.pinimg.com/564x/8f/c6/b7/8fc6b7eca6e1d9bba6500efc0cfd8bda.jpg");
+        background-size: cover;
+        background-position: center;
+        opacity: 0.9;
+    }
+
+    span {
+        color: lightblue;
+        padding-top: 40px;
+        font-size: 40px;
+        padding-left: 50px;
+        position: relative;
+        top: 40px;
+        left:40px;
+    }
+    #input_polje {
+        width: 320px;
+        position: relative;
+        left: 100px;
+        top: 40px;
+        border: 1px solid transparent;
+        border-bottom: 1px solid lightblue;
+    }
+    #Pass {
+        
+        color:black;
+        font-size:10px;
+        position:absolute;
+        top:300px;
+        left:760px;
+        
+        
+    }
+    #Chekc{
+        margin-right:2px;
+    }
+</style>
+
+
+
+<div id="Pocetna">
+    <div id="Slika">
+    </div>
+    <form asp-controller="Korisnik" asp-action="Snimi">
+
+        @*<div>
+            <label>KorisnikID</label>
+            <input asp-for="KorisnikID" value="@Model.KorisnikID"/>
+        </div>*@
+
+
+        <span>Uredi račun </span>
+
+       
+
+        <div>
+            <label>Korisnik ID</label>
+            <input class="input_polje" readonly asp-for="KorisnikID" />
+
+        </div>
+        <div>
+            <label>Ime</label>
+            <input class="input_polje" asp-for="ImeKorisnika" />
+        </div>
+        <div>
+            <label>Prezime</label>
+            <input class="input_polje" asp-for="PrezimeKorisnika" />
+        </div>
+        <div>
+            <label>Korisnicko ime</label>
+            <input class="input_polje" asp-for="KorisnickoIme" />
+        </div>
+        @*<div>
+
+            <label>Lozinka</label>
+            <input id="input_polje" asp-for="Lozinka" type="password" />
+
+            <span id="Pass"><input id="Chekc" type="checkbox" onclick="myFunction()">Prikaži lozinku</span>
+        </div>*@
+        <div>
+            <div>
+                <label>Email</label>
+                <input class="input_polje" asp-for="Email" />
+            </div>
+            
+
+        <input type="submit" value="Snimi" id="Submit" />
+    </form>
+</div>
+<script>
+    function myFunction() {
+        var x = document.getElementById("input_polje");
+        if (x.type === "password") {
+            x.type = "text";
+        } else {
+            x.type = "password";
+        }
+    }
+
+</script>

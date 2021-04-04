@@ -31,9 +31,17 @@ namespace RS_SEMINARSKI.Controllers
         public async Task<IActionResult> SnimiAsync(AutentifikacijaPrijavaVM m)
         {
 
-
+            if(m.KorisnickoIme==null)
+            {
+                TempData["Poruka"] = "Nisu ispravni podaci za prijavu !";
+                return Redirect("Prijava");
+            }
             var korisnik = await _userManager.FindByNameAsync(m.KorisnickoIme);
-
+            if(await _userManager.CheckPasswordAsync(korisnik, m.Lozinka)==false)
+            {
+                TempData["Poruka"] = "Nisu ispravni podaci za prijavu !";
+                return Redirect("Prijava");
+            }
             if(korisnik == null)
             {
                 TempData["Poruka"] = "Nisu ispravni podaci za prijavu !"; 

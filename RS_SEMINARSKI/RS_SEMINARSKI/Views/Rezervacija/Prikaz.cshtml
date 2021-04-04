@@ -48,13 +48,14 @@
 
     #glavni {
         width: 98%;
-        height: 800px;
+         height: 800px;
+      
         /* background-image: url("https://i.pinimg.com/564x/8f/c6/b7/8fc6b7eca6e1d9bba6500efc0cfd8bda.jpg");
         background-position: center;
         background-size: cover;
         opacity: 1.5;*/
         float: right;
-        margin-top:120px;
+        margin-top: 120px;
         /*margin-left:10px;*/
         /*background-color:red;*/
     }
@@ -64,6 +65,7 @@
         width: 100%;
         /*height: 100%;*/
         height: 1200px;
+      
         background-image: url("https://i.pinimg.com/564x/8f/c6/b7/8fc6b7eca6e1d9bba6500efc0cfd8bda.jpg");
         background-position: center;
         background-size: cover;
@@ -133,11 +135,10 @@
         }
 
     .zaFont {
-
         /*padding-bottom:20px;*/
         font-size: 13px;
         opacity: 1;
-        margin-bottom:10px;
+        margin-bottom: 10px;
     }
 
     .okvir {
@@ -185,19 +186,21 @@
         border: none;
         opacity: 0.7;
     }
-    #picker{
-        position:absolute;
-        height:70px; 
-        width:300px;
+
+    #picker {
+        position: absolute;
+        height: 70px;
+        width: 300px;
         /*background-color:yellow;*/
-        left:60px;
-        top:150px;
+        left: 60px;
+        top: 150px;
         /*background-color:yellow;*/
-        
     }
+
     #datePicker {
         background-color: #e0ebeb;
     }
+
     #datumVjecanja {
         /*position: absolute;
         height: 70px;
@@ -205,13 +208,14 @@
         /*background-color:yellow;*/
         /*left: 60px;
         top: 130px;*/
-        position:absolute; 
-        top:120px;
-        font-family:Verdana;
-        left:60px;
-        color:gray;
-        font-size:15px;
+        position: absolute;
+        top: 120px;
+        font-family: Verdana;
+        left: 60px;
+        color: gray;
+        font-size: 15px;
     }
+
     #UkupnaCijena {
         border: 1px solid transparent;
         position: relative;
@@ -224,27 +228,30 @@
         border-radius: 10px;
         padding-left: 30px;
         font-size: 20px;
-        background-color:whitesmoke;
+        background-color: whitesmoke;
     }
+
     #CijenaVjencanja {
         font-size: 15px;
         position: absolute;
         top: 120px;
         left: 930px;
         font-family: Verdana;
-        color:gray;
+        color: gray;
     }
+
     #Km {
         position: absolute;
         top: 117px;
         left: 1300px;
         font-size: 17px;
     }
+
     #DodajRacun {
         position: relative;
-        top:450px; 
-        left:250px;
-       /* margin-left: 26px;
+        top: 450px;
+        left: 250px;
+        /* margin-left: 26px;
         margin-top: 15px;*/
         background-color: whitesmoke;
         width: 250px;
@@ -267,68 +274,68 @@
         <button class="btn" onclick="window.location='/Autentifikacija/LogOut'">Odjavi se</button>
     </div>
 
-   
+
 
 
 
     @*<div id="LijeviNavBar">
-        <ul id="lijeviNav" class="nav nav-pills nav-stacked" role="tablist">
-            <li>
-                <button class="IzbornikStavka" onclick="window.location = '/Vjencanje/PrikazPocetne?KorisnikID=@Model.KorisnikID'">Pocetna</button> <br />
-            </li>
-            <li>
-                <button class="IzbornikStavka" onclick="window.location = '/Cvijece/PrikazCvijeca?KorisnikID=@Model.KorisnikID'">Cvijece</button> <br />
-            </li>
-            <li>
-                <button class="IzbornikStavka" onclick="window.location = '/Dekoracija/PrikazDekoracije?KorisnikID=@Model.KorisnikID'">Dekoracije</button>
-                <br />
-            </li>
-            <li>
-                <button class="IzbornikStavka" onclick="window.location = '/Fotograf/PrikazFotografa?KorisnikID=@Model.KorisnikID'">Fotografi</button>
-                <br />
-            </li>
-            <li>
-                <button class="IzbornikStavka" onclick="window.location = '/Konobari/PrikazKonobara?KorisnikID=@Model.KorisnikID'">Konobari</button>
-                <br />
-            </li>
-            <li>
-                <button class="IzbornikStavka">Korisnici IMPLEMENTIRATI</button>
-                <br />
-            </li>
-            <li>
-                <button class="IzbornikStavka" onclick="window.location = '/Kuhar/PrikazKuhara?KorisnikID=@Model.KorisnikID'">Kuhari</button>
-                <br />
-            </li>
-            <li>
-                <button class="IzbornikStavka" onclick="window.location = '/Meni/PrikazMenija?KorisnikID=@Model.KorisnikID'">Hrana & piće</button>
-                <br />
-            </li>
-            <li>
-                <button class="IzbornikStavka" onclick="window.location = '/Pozivnica/PrikazPozivnica?KorisnikID=@Model.KorisnikID'">Pozivnice</button>
-                <br />
-            </li>
-            <li>
-                <button class="IzbornikStavka" onclick="window.location = '/Rezervacija/PrikazRezervacija?KorisnikID=@Model.KorisnikID'">Rezervacije</button>
-                <br />
-            </li>
-            <li>
-                <button class="IzbornikStavka">Evidentiraj novu narudžbu IMPLEMENTIRATI</button>
-                <br />
-            </li>
-            <li>
-                <button class="IzbornikStavka">Pregled računa (fakture) IMPLEMENTIRATI</button>
-                <br />
-            </li>
-            <li>
-                <button class="IzbornikStavka" onclick="window.location = '/Sala/PrikazSala?KorisnikID=@Model.KorisnikID'">Sale</button>
-                <br />
-            </li>
-        </ul>
-    </div>*@
+            <ul id="lijeviNav" class="nav nav-pills nav-stacked" role="tablist">
+                <li>
+                    <button class="IzbornikStavka" onclick="window.location = '/Vjencanje/PrikazPocetne?KorisnikID=@Model.KorisnikID'">Pocetna</button> <br />
+                </li>
+                <li>
+                    <button class="IzbornikStavka" onclick="window.location = '/Cvijece/PrikazCvijeca?KorisnikID=@Model.KorisnikID'">Cvijece</button> <br />
+                </li>
+                <li>
+                    <button class="IzbornikStavka" onclick="window.location = '/Dekoracija/PrikazDekoracije?KorisnikID=@Model.KorisnikID'">Dekoracije</button>
+                    <br />
+                </li>
+                <li>
+                    <button class="IzbornikStavka" onclick="window.location = '/Fotograf/PrikazFotografa?KorisnikID=@Model.KorisnikID'">Fotografi</button>
+                    <br />
+                </li>
+                <li>
+                    <button class="IzbornikStavka" onclick="window.location = '/Konobari/PrikazKonobara?KorisnikID=@Model.KorisnikID'">Konobari</button>
+                    <br />
+                </li>
+                <li>
+                    <button class="IzbornikStavka">Korisnici IMPLEMENTIRATI</button>
+                    <br />
+                </li>
+                <li>
+                    <button class="IzbornikStavka" onclick="window.location = '/Kuhar/PrikazKuhara?KorisnikID=@Model.KorisnikID'">Kuhari</button>
+                    <br />
+                </li>
+                <li>
+                    <button class="IzbornikStavka" onclick="window.location = '/Meni/PrikazMenija?KorisnikID=@Model.KorisnikID'">Hrana & piće</button>
+                    <br />
+                </li>
+                <li>
+                    <button class="IzbornikStavka" onclick="window.location = '/Pozivnica/PrikazPozivnica?KorisnikID=@Model.KorisnikID'">Pozivnice</button>
+                    <br />
+                </li>
+                <li>
+                    <button class="IzbornikStavka" onclick="window.location = '/Rezervacija/PrikazRezervacija?KorisnikID=@Model.KorisnikID'">Rezervacije</button>
+                    <br />
+                </li>
+                <li>
+                    <button class="IzbornikStavka">Evidentiraj novu narudžbu IMPLEMENTIRATI</button>
+                    <br />
+                </li>
+                <li>
+                    <button class="IzbornikStavka">Pregled računa (fakture) IMPLEMENTIRATI</button>
+                    <br />
+                </li>
+                <li>
+                    <button class="IzbornikStavka" onclick="window.location = '/Sala/PrikazSala?KorisnikID=@Model.KorisnikID'">Sale</button>
+                    <br />
+                </li>
+            </ul>
+        </div>*@
     <div id="glavni">
 
 
-        
+
 
         @foreach (var x in Model.stavke)
         {
@@ -352,55 +359,55 @@
 
             </div>
         }
-    <form asp-controller="Rezervacija" asp-action="KreirajRacun">
+        <form asp-controller="Rezervacija" asp-action="KreirajRacun">
 
 
-        <input hidden asp-for="RezervacijaID" />
+            <input hidden asp-for="RezervacijaID" />
             <label id="datumVjecanja">Odaberite datum Vašeg vjenčanja</label>
-        <div id="picker" class="form-group">
-            <input  id="datePicker" asp-for="dtmDate" type="date"  class="form-control form-control-sm"/>
+            <div id="picker" class="form-group">
+                <input id="datePicker" asp-for="dtmDate" type="date" class="form-control form-control-sm" />
 
-        </div>
-        <label id="CijenaVjencanja">Ukupna cijena vjenčanja:</label>
-        <input id="UkupnaCijena" asp-for="CijenaNarudzbe" style="background-color:none; border:none"/>
-        <span id="Km">KM</span>
-        
+            </div>
+            <label id="CijenaVjencanja">Ukupna cijena vjenčanja:</label>
+            <input id="UkupnaCijena" asp-for="CijenaNarudzbe" style="background-color:none; border:none" />
+            <span id="Km">KM</span>
+            <input asp-for="KorisnikID" hidden/>
 
-        <button id="DodajRacun"> Dodaj racun</button>
-    </form>
+            <button id="DodajRacun"> Dodaj racun</button>
+        </form>
     </div>
 
 
 </div>
 
-
+@Html.Raw(TempData["msg"])
 
 
 @*<link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />
-<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
 
-@section scripts{
+    @section scripts{
 
-    <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+        <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
 
 
-    <script>
+        <script>
 
-        $(function () {
-            $(".datepicker").datepicker({
-                datePickers.options.format = 'm/d/yyyy',
-                //dateFormat: "dd/mm/yyy",
-                changeMonth: true,
-                changeYear: true,
-                yearRange: "-10:+10",
-                minDate: new Date(2017, 0, 1),
-                maxDate: new Date(2018, 0, 1),
-                showOn: "both",
-                buttonText: "<i class='fa fa-calendar' ></i>",
-                changeMinutes: true
-                
+            $(function () {
+                $(".datepicker").datepicker({
+                    datePickers.options.format = 'm/d/yyyy',
+                    //dateFormat: "dd/mm/yyy",
+                    changeMonth: true,
+                    changeYear: true,
+                    yearRange: "-10:+10",
+                    minDate: new Date(2017, 0, 1),
+                    maxDate: new Date(2018, 0, 1),
+                    showOn: "both",
+                    buttonText: "<i class='fa fa-calendar' ></i>",
+                    changeMinutes: true
+
+                });
             });
-        });
-    </script>
+        </script>
 
-}*@
+    }*@

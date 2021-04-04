@@ -180,6 +180,7 @@
         border: none;
         opacity: 0.7;
     }
+
     #Error {
         font-size: 30px;
         color: crimson;
@@ -187,6 +188,7 @@
         margin-left: 600px;
         font-weight: bold;
     }
+
     #btn3 {
         position: relative;
         margin-left: 26px;
@@ -229,10 +231,13 @@
                 <button class="IzbornikStavka" onclick="window.location = '/Konobari/PrikazKonobara?KorisnikID=@Model.KorisnikID'">Konobari</button>
                 <br />
             </li>
-            <li>
-                <button class="IzbornikStavka">Korisnici IMPLEMENTIRATI</button>
-                <br />
-            </li>
+            @if (Model.RolaID == 1)
+            {
+                <li>
+                    <button class="IzbornikStavka" onclick="window.location = '/Korisnici/PrikazKorisnika?KorisnikID=@Model.KorisnikID'">Korisnici </button>
+                    <br />
+                </li>
+            }
             <li>
                 <button class="IzbornikStavka" onclick="window.location = '/Kuhar/PrikazKuhara?KorisnikID=@Model.KorisnikID'">Kuhari</button>
                 <br />
@@ -272,38 +277,38 @@
 
         @foreach (var x in Model.sale)
         {
-    <div class="okvir">
-        <div id="slika"><img id="prikazSlike" src="~/Slike/@x.PutanjaDoSlike" /></div>
-        <div id="opis">
-            <label class="zaFont">Kapacitet sale @x.KapacitetSale</label><br />
-            <label class="zaFont">Naziv @x.NazivSale</label><br />
-            <label class="zaFont">Opis sale @x.OpisSale</label><br />
-            <label class="zaFont">Cijena iznajmljivanja sale @x.CijenaIznajmljivanjaSale KM</label><br />
-            <label class="zaFont" hidden>SalaID @x.SalaID</label><br />
-        </div>
-        <div id="buttons">
-            @if (Model.RolaID == 1)
-            {<button class="btn2" style="color:mediumseagreen" onclick="window.location = '/Sala/EvidentirajSalu?KorisnikID=@Model.KorisnikID&SalaID=@x.SalaID'">Uredi</button>
-                <button class="btn2" style="color: indianred" onclick="window.location = '/Sala/ObrisiSalu?KorisnikID=@Model.KorisnikID&SalaID=@x.SalaID'">Obriši</button>
-            }
-            else
-            {
-        <button id="btn3" style="color: black" onclick="window.location='/Sala/DodajURezervaciju?KorisnikID=@Model.KorisnikID&SalaID=@x.SalaID'">Dodaj u rezervaciju</button>
+            <div class="okvir">
+                <div id="slika"><img id="prikazSlike" src="~/Slike/@x.PutanjaDoSlike" /></div>
+                <div id="opis">
+                    <label class="zaFont">Kapacitet sale @x.KapacitetSale</label><br />
+                    <label class="zaFont">Naziv @x.NazivSale</label><br />
+                    <label class="zaFont">Opis sale @x.OpisSale</label><br />
+                    <label class="zaFont">Cijena iznajmljivanja sale @x.CijenaIznajmljivanjaSale KM</label><br />
+                    <label class="zaFont" hidden>SalaID @x.SalaID</label><br />
+                </div>
+                <div id="buttons">
+                    @if (Model.RolaID == 1)
+                    {<button class="btn2" style="color:mediumseagreen" onclick="window.location = '/Sala/EvidentirajSalu?KorisnikID=@Model.KorisnikID&SalaID=@x.SalaID'">Uredi</button>
+                        <button class="btn2" style="color: indianred" onclick="window.location = '/Sala/ObrisiSalu?KorisnikID=@Model.KorisnikID&SalaID=@x.SalaID'">Obriši</button>
+                    }
+                    else
+                    {
+                        <button id="btn3" style="color: black" onclick="window.location='/Sala/DodajURezervaciju?KorisnikID=@Model.KorisnikID&SalaID=@x.SalaID'">Dodaj u rezervaciju</button>
 
-            }
-        </div>
-        <div id="Error">@poruka</div>
-    </div>
+                    }
+                </div>
+                
+            </div>
         }
     </div>
 
 </div>
-
+@Html.Raw(TempData["msg"])
 <script>
-    function DodajSalu( SalaID) {
+    function DodajSalu(SalaID) {
 
         window.localStorage.setItem("sala", SalaID);
         alert("Izvrsilo se " + SalaID);
     }
-   
+
 </script>
