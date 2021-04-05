@@ -375,7 +375,7 @@
 
             </div>
             <label id="CijenaVjencanja">Ukupna cijena vjenčanja:</label>
-            <input id="UkupnaCijena" asp-for="CijenaNarudzbe" style="background-color:none; border:none" />
+            <input readonly id="UkupnaCijena" asp-for="CijenaNarudzbe" style="background-color:none; border:none" />
             <span id="Km">KM</span>
             <input asp-for="KorisnikID" hidden/>
             @if (Model.StatusRezervacijeID != 2)
