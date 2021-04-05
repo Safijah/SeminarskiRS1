@@ -20,7 +20,12 @@
         margin: 0;
         padding: 0;
     }
-
+    body {
+        background-image: url("https://i.pinimg.com/564x/8f/c6/b7/8fc6b7eca6e1d9bba6500efc0cfd8bda.jpg");
+        background-position: center;
+        background-size: cover;
+        opacity: 1.5;
+    }
     #LijeviNavBar {
         height: 600px;
         width: 21%;
@@ -296,7 +301,7 @@
                 <div id="buttons">
                     @if (Model.RolaID == 1)
                     {
-                        <button class="btn2" style="color:mediumseagreen" onclick="window.location = '/Dekoracija/EvidentirajDekoraciju?KorisnikID=@Model.KorisnikID&DekoracijaID=@x.DekoracijaID'">Uredi cvijet</button>
+                        <button class="btn2" style="color:mediumseagreen" onclick="window.location = '/Dekoracija/EvidentirajDekoraciju?KorisnikID=@Model.KorisnikID&DekoracijaID=@x.DekoracijaID'">Uredi dekoraciju</button>
                         <button class="btn2" style="color: indianred" onclick="window.location = '/Dekoracija/ObrisiDekoraciju?KorisnikID=@Model.KorisnikID&DekoracijaID=@x.DekoracijaID'">Obrisi</button>
 
                     }
