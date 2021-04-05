@@ -167,13 +167,13 @@
                 <input asp-for="PozivnicaID" value="@Model.PozivnicaID" hidden />
                 <input class="input_polje" asp-for="KorisnikID" value="@Model.KorisnikID" hidden />
                 <label>Opis pozivnice </label>
-                <input class="input_polje" asp-for="OpisPozivnice" />
+                <input required class="input_polje" asp-for="OpisPozivnice" />
                 <br />
                 <label>Cijena </label>
-                <input class="input_polje" asp-for="CijenaPozivnice" />
+                <input required class="input_polje" asp-for="CijenaPozivnice" />
                 <br />
                 <label asp-for="SlikaPozivnice" class="control-label">Odaberite fotografiju pozivnice</label>
-                <input class="input_poljee" asp-for="SlikaPozivnice" class="form-control " />
+                <input  required class="input_poljee" asp-for="SlikaPozivnice" class="form-control " />
                 <span asp-validation-for="SlikaPozivnice" class="text-danger"></span>
                 <input id="neko" type="submit" value="Snimi" />
 
