@@ -25,7 +25,7 @@
         opacity: 1.5;
     }
     #LijeviNavBar {
-        height: 800px;
+        height: 600px;
         width: 21%;
         float: left;
         background-color: whitesmoke;
@@ -107,7 +107,7 @@
     .IzbornikStavka {
         width: 96%;
         padding-top: 15px;
-        height: 45px;
+        height: 49px;
         text-decoration: none;
         float: left;
         border: 1px solid transparent;
@@ -115,6 +115,8 @@
         margin: 5px;
         border-radius: 10px;
         background-color: transparent;
+        text-align: center;
+        cursor:pointer;
     }
 
     .IzbornikStavka:hover {
@@ -179,67 +181,60 @@
 
     <div id="LijeviNavBar">
         <ul id="lijeviNav" class="nav nav-pills nav-stacked" role="tablist">
-            <li>
-                <button class="IzbornikStavka" onclick="window.location = '/Vjencanje/PrikazPocetne?KorisnikID=@Model.KorisnikID'">Pocetna</button> <br />
+            <li class="IzbornikStavka" onclick="window.location = '/Muzika/PrikazBendova?KorisnikID=@Model.KorisnikID'">
+                Bendovi <br />
             </li>
-            <li>
-                <button class="IzbornikStavka" onclick="window.location = '/Cvijece/PrikazCvijeca?KorisnikID=@Model.KorisnikID'">Cvijece</button> <br />
+            <li class="IzbornikStavka" onclick="window.location = '/Cvijece/PrikazCvijeca?KorisnikID=@Model.KorisnikID'">
+                Cvijece <br />
             </li>
-            <li>
-                <button class="IzbornikStavka" onclick="window.location = '/Dekoracija/PrikazDekoracije?KorisnikID=@Model.KorisnikID'">Dekoracije</button>
+            <li class="IzbornikStavka" onclick="window.location = '/Dekoracija/PrikazDekoracije?KorisnikID=@Model.KorisnikID'">
+                Dekoracije <br />
+
+            </li>
+            <li class="IzbornikStavka" onclick="window.location = '/Fotograf/PrikazFotografa?KorisnikID=@Model.KorisnikID'">
+                Fotografi
                 <br />
             </li>
-            <li>
-                <button class="IzbornikStavka" onclick="window.location = '/Fotograf/PrikazFotografa?KorisnikID=@Model.KorisnikID'">Fotografi</button>
-                <br />
-            </li>
-            <li>
-                <button class="IzbornikStavka" onclick="window.location = '/Konobari/PrikazKonobara?KorisnikID=@Model.KorisnikID'">Konobari</button>
+            <li class="IzbornikStavka" onclick="window.location = '/Konobari/PrikazKonobara?KorisnikID=@Model.KorisnikID'">
+                Konobari
                 <br />
             </li>
             @if (Model.RolaID == 1)
             {
-                <li>
-                    <button class="IzbornikStavka" onclick="window.location = '/Korisnici/PrikazKorisnika?KorisnikID=@Model.KorisnikID'">Korisnici </button>
+                <li class="IzbornikStavka" onclick="window.location = '/Korisnici/PrikazKorisnika?KorisnikID=@Model.KorisnikID'">
+                    Korisnici
                     <br />
                 </li>
             }
-            <li>
-                <button class="IzbornikStavka" onclick="window.location = '/Kuhar/PrikazKuhara?KorisnikID=@Model.KorisnikID'">Kuhari</button>
+            <li class="IzbornikStavka" onclick="window.location = '/Kuhar/PrikazKuhara?KorisnikID=@Model.KorisnikID'">
+                Kuhari
                 <br />
             </li>
-            <li>
-                <button class="IzbornikStavka" onclick="window.location = '/Meni/PrikazMenija?KorisnikID=@Model.KorisnikID'">Hrana & piće</button>
+            <li class="IzbornikStavka" onclick="window.location = '/Meni/PrikazMenija?KorisnikID=@Model.KorisnikID'">
+                Hrana & piće
                 <br />
             </li>
-            <li>
-                <button class="IzbornikStavka" onclick="window.location = '/Pozivnica/PrikazPozivnica?KorisnikID=@Model.KorisnikID'">Pozivnice</button>
+            <li class="IzbornikStavka" onclick="window.location = '/Pozivnica/PrikazPozivnica?KorisnikID=@Model.KorisnikID'">
+                Pozivnice
                 <br />
             </li>
-            <li>
-                <button class="IzbornikStavka" onclick="window.location = '/Rezervacija/Prikaz?KorisnikID=@Model.KorisnikID'">Rezervacije</button>
+            <li class="IzbornikStavka" onclick="window.location = '/Rezervacija/Prikaz?KorisnikID=@Model.KorisnikID'">
+                Rezervacije
                 <br />
             </li>
-            <li>
-                <button class="IzbornikStavka">Evidentiraj novu narudžbu IMPLEMENTIRATI</button>
-                <br />
-            </li>
-            <li>
-                <button class="IzbornikStavka">Pregled računa (fakture) IMPLEMENTIRATI</button>
-                <br />
-            </li>
-            <li>
-                <button class="IzbornikStavka" onclick="window.location = '/Sala/PrikazSala?KorisnikID=@Model.KorisnikID'">Sale</button>
+            <li class="IzbornikStavka" onclick="window.location = '/Sala/PrikazSala?KorisnikID=@Model.KorisnikID'">
+                Sale
                 <br />
             </li>
         </ul>
     </div>
+
     <div id="glavni">
-    @if (Model.RolaID == 1)
-    {
-        <button id="buttonDodaj" onclick="window.location='/Meni/EvidentirajMeni?KorisnikID=@Model.KorisnikID&MeniID=0'">Dodaj novi meni</button>
-        <br />
-    }
+        @if (Model.RolaID == 1)
+        {
+            <button id="buttonDodaj" onclick="window.location='/Meni/EvidentirajMeni?KorisnikID=@Model.KorisnikID&MeniID=0'">Dodaj novi meni</button>
+            <br />
+        }
         @foreach (var x in Model.meniji)
         {
             <div class="okvir">
