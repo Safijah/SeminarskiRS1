@@ -292,7 +292,8 @@ namespace RS_SEMINARSKI.Controllers
                 dtmDate = x.dtmDate,
                 UkupanIznos = x.CijenaNarudzbe
             };
-            string KorisnikID = _dbContext.RezervacijaKorisnici.FirstOrDefault(d => d.RezervacijaID == x.RezervacijaID && d.KorisnikID == x.KorisnikID).ToString();
+            string KorisnikID = _dbContext.RezervacijaKorisnici.Where(d => d.KorisnikID == x.KorisnikID && d.RezervacijaID == x.RezervacijaID).FirstOrDefault().KorisnikID;
+            //string KorisnikID = _dbContext.RezervacijaKorisnici.FirstOrDefault(d => d.RezervacijaID == x.RezervacijaID && d.KorisnikID == x.KorisnikID).ToString();
             novi.KorisnikID = KorisnikID;
             novi.nacinPlacanja = n;
 

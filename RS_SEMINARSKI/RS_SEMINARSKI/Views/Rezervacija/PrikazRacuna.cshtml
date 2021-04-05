@@ -47,7 +47,7 @@
         color: dimgrey;
         background-color: white;
         margin-top: 25px;
-        margin-left: 120px;
+        margin-left: 40px;
         font-size: 15px;
         width: 130px;
         bottom: 5px;
@@ -187,10 +187,18 @@
 
 <div id="KONT_STRANICE">
     <div id="NavMain">
-        @*<button class="btn " onclick="window.location = '/Vjencanje/PrikazPocetne?KorisnikID=@Model.KorisnikID'">Klik do vjenčanja </button>*@
-        @*<button class="btn " onclick="window.location ='/Korisnik/PrikazRacuna?korisnikID=@Model.KorisnikID'">Korisnički račun</button>*@
+        @*<button class="btn " onclick="window.location = '/Vjencanje/PrikazPocetne?KorisnikID=@Model.KorisnikID'">Klik do vjenčanja </button>
+        <button class="btn " onclick="window.location ='/Korisnik/PrikazRacuna?korisnikID=@Model.KorisnikID'">Korisnički račun</button>
         <a class="btn " asp-area="" asp-controller="Home" asp-action="Index">Početna stranica</a>
-        <button class="btn" onclick="window.location='/Autentifikacija/LogOut'">Odjavi se</button>
+        <button class="btn" onclick="window.location='/Autentifikacija/LogOut'">Odjavi se</button>*@
+
+        <div id="NavMain">
+            <button class="btn" onclick="window.location = '/Vjencanje/PrikazPocetne?KorisnikID=@Model.KorisnikID'">Početna strana </button>
+            <button class="btn" onclick="window.location='/Rezervacija/Prikaz?korisnikID=@Model.KorisnikID'">Rezervacija</button>
+            @*<button class="btn" onclick="window.location ='/Korisnik/PrikazRacuna?korisnikID=@Model.KorisnikID'">Korisnički račun</button>*@
+            @*<button class="btn" onclick="window.location='/Autentifikacija/LogOut'">Odjavi se</button>*@
+        </div>
+
     </div>
     <div id="GLAVNI">
         <div id="Slika">
