@@ -22,9 +22,15 @@
         margin: 0;
         padding: 0;
     }
+    body {
+        background-image: url("https://i.pinimg.com/564x/8f/c6/b7/8fc6b7eca6e1d9bba6500efc0cfd8bda.jpg");
+        background-position: center;
+        background-size: cover;
+        opacity: 1.5;
+    }
 
     #LijeviNavBar {
-        height: 800px;
+        height: 600px;
         width: 21%;
         float: left;
         background-color: whitesmoke;
@@ -235,10 +241,13 @@
                 <button class="IzbornikStavka" onclick="window.location = '/Konobari/PrikazKonobara?KorisnikID=@Model.KorisnikID'">Konobari</button>
                 <br />
             </li>
-            <li>
-                <button class="IzbornikStavka">Korisnici IMPLEMENTIRATI</button>
-                <br />
-            </li>
+            @if (Model.RolaID == 1)
+            {
+                <li>
+                    <button class="IzbornikStavka" onclick="window.location = '/Korisnici/PrikazKorisnika?KorisnikID=@Model.KorisnikID'">Korisnici </button>
+                    <br />
+                </li>
+            }
             <li>
                 <button class="IzbornikStavka" onclick="window.location = '/Kuhar/PrikazKuhara?KorisnikID=@Model.KorisnikID'">Kuhari</button>
                 <br />
@@ -255,14 +264,14 @@
                 <button class="IzbornikStavka" onclick="window.location = '/Rezervacija/PrikazRezervacija?KorisnikID=@Model.KorisnikID'">Rezervacije</button>
                 <br />
             </li>
-            <li>
+            @*<li>
                 <button class="IzbornikStavka">Evidentiraj novu narudžbu IMPLEMENTIRATI</button>
                 <br />
             </li>
             <li>
                 <button class="IzbornikStavka">Pregled računa (fakture) IMPLEMENTIRATI</button>
                 <br />
-            </li>
+            </li>*@
             <li>
                 <button class="IzbornikStavka" onclick="window.location = '/Sala/PrikazSala?KorisnikID=@Model.KorisnikID'">Sale</button>
                 <br />

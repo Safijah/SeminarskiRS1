@@ -151,6 +151,7 @@
         margin-top: 30px;
         margin-left: 30px;
         border: none;
+        margin-bottom:20px;
         /*opacity:0.8;*/
         /*width: 28%;
         height: 40%;
@@ -218,12 +219,13 @@
 
     #UkupnaCijena {
         border: 1px solid transparent;
-        position: relative;
-        /*top:10px;*/
+        /*position: relative;*/
+        position:relative;
+        top:38px;
         /*bottom: 250px;*/
-        left: 10px;
+        left: 800px;
         /*top:200px;*/
-        bottom:82px;
+        /*bottom:585px;*/
         /*border-bottom:1px solid blue;*/
         height: 27px;
         width: 190px;
@@ -234,25 +236,29 @@
     }
 
     #CijenaVjencanja {
+        
         font-size: 15px;
         position: absolute;
         top: 120px;
-        left: 470px;
+        left: 120px;
+       /*margin-top:-100px;*/
+       margin-bottom:60px;
+       margin-left:450px;
         font-family: Verdana;
         color: gray;
     }
 
     #Km {
         position: absolute;
-        top: 119px;
-        left: 840px;
+        top: 120px;
+        left: 930px;
         font-size: 17px;
     }
 
     #DodajRacun {
-        position: relative;
-        top: 450px;
-        left: 250px;
+        position: absolute;
+        top: 1050px;
+        left: 1150px;
         /* margin-left: 26px;
         margin-top: 15px;*/
         background-color: whitesmoke;
@@ -334,6 +340,25 @@
                 </li>
             </ul>
         </div>*@
+    <form asp-controller="Rezervacija" asp-action="KreirajRacun">
+
+
+        <input hidden asp-for="RezervacijaID" />
+        <label id="datumVjecanja">Odaberite datum Vašeg vjenčanja</label>
+        <div id="picker" class="form-group">
+            <input id="datePicker" asp-for="dtmDate" type="date" class="form-control form-control-sm" />
+
+        </div>
+        <label id="CijenaVjencanja">Ukupna cijena vjenčanja:</label>
+        <input readonly id="UkupnaCijena" asp-for="CijenaNarudzbe" style="background-color:none; border:none" />
+        <span id="Km">KM</span>
+        <input asp-for="KorisnikID" hidden />
+        @if (Model.StatusRezervacijeID != 2)
+        {
+
+            <button id="DodajRacun"> Dodaj racun</button>
+        }
+    </form>
     <div id="glavni">
 
 
@@ -352,38 +377,20 @@
 
 
                 </div>
-                @if(Model.StatusRezervacijeID!=2)
+                @if (Model.StatusRezervacijeID != 2)
                 {
 
-                <div id="buttons">
+                    <div id="buttons">
 
-                    <button class="btn2" style="color: indianred" onclick="window.location = '/Rezervacija/ObrisiStavku?KorisnikID=@Model.KorisnikID&StavkaID=@x.StavkaID&Tip=@x.Tip'">Ukloni iz rezervacje</button>
+                        <button class="btn2" style="color: indianred" onclick="window.location = '/Rezervacija/ObrisiStavku?KorisnikID=@Model.KorisnikID&StavkaID=@x.StavkaID&Tip=@x.Tip'">Ukloni iz rezervacje</button>
 
 
-                </div>
+                    </div>
                 }
 
             </div>
         }
-        <form asp-controller="Rezervacija" asp-action="KreirajRacun">
 
-
-            <input hidden asp-for="RezervacijaID" />
-            <label id="datumVjecanja">Odaberite datum Vašeg vjenčanja</label>
-            <div id="picker" class="form-group">
-                <input id="datePicker" asp-for="dtmDate" type="date" class="form-control form-control-sm" />
-
-            </div>
-            <label id="CijenaVjencanja">Ukupna cijena vjenčanja:</label>
-            <input readonly id="UkupnaCijena" asp-for="CijenaNarudzbe" style="background-color:none; border:none" />
-            <span id="Km">KM</span>
-            <input asp-for="KorisnikID" hidden/>
-            @if (Model.StatusRezervacijeID != 2)
-            {
-
-            <button id="DodajRacun"> Dodaj racun</button>
-            }
-        </form>
     </div>
 
 

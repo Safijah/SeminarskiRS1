@@ -57,17 +57,19 @@ namespace RS_SEMINARSKI.Controllers
                     vm.CijenaNarudzbe += pozivnice.UkupnaCijena; 
                     vm.stavke.Add(pozivnice);
                 }
-                var bendovi = _dbContext.MuzikaBendovi.Include(a=>a.Muzika).Include(a=>a.Bend).FirstOrDefault(a => a.BendID == rezervacija.BendID);
+                //var bendovi = _dbContext.MuzikaBendovi.Include(a=>a.Muzika).Include(a=>a.Bend).FirstOrDefault(a => a.BendID == rezervacija.BendID);
+                var bendovi = _dbContext.Bendovi.FirstOrDefault(a => a.BendID == rezervacija.BendID);
+
                 if (bendovi != null)
                 {
                     var bend = new RezervacijaPrikazVM.Rows
                     {
                         StavkaID = bendovi.BendID,
-                        Cijena = bendovi.Bend.SatnicaSviranja,
+                        Cijena = bendovi.SatnicaSviranja,
                         Kolicina = 1,
-                        UkupnaCijena = bendovi.Bend.SatnicaSviranja ,
-                        Naziv = bendovi.Muzika.NazivZanra,
-                        PutanjaDoSlike = bendovi.Bend.PutanjaDoSlikeBenda,
+                        UkupnaCijena = bendovi.SatnicaSviranja ,
+                        Naziv = bendovi.NazivBenda,
+                        PutanjaDoSlike = bendovi.PutanjaDoSlikeBenda,
                         Tip="bendovi"
                     };
                     bend.UkupnaCijena = bend.Kolicina* bend.Cijena;
