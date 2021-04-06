@@ -905,7 +905,7 @@ namespace Data.Migrations
                     b.HasOne("Data.EFModels.TipCvijeca", "TipCvijeca")
                         .WithMany()
                         .HasForeignKey("TipCvijecaID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
                 });
 
@@ -914,7 +914,7 @@ namespace Data.Migrations
                     b.HasOne("Data.EFModels.TipDekoracije", "TipDekoracije")
                         .WithMany()
                         .HasForeignKey("TipDekoracijeID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
                 });
 
@@ -923,13 +923,13 @@ namespace Data.Migrations
                     b.HasOne("Data.EFModels.Meni", "Meni")
                         .WithMany()
                         .HasForeignKey("MeniID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("Data.EFModels.Rezervacija", "Rezervacija")
                         .WithMany()
                         .HasForeignKey("RezervacijaID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
                 });
 
@@ -938,7 +938,7 @@ namespace Data.Migrations
                     b.HasOne("Data.EFModels.Fotografija", "Fotografija")
                         .WithMany()
                         .HasForeignKey("FotografijaID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
                 });
 
@@ -947,7 +947,7 @@ namespace Data.Migrations
                     b.HasOne("Data.EFModels.Rola", "Rola")
                         .WithMany()
                         .HasForeignKey("RolaID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
                 });
 
@@ -963,13 +963,13 @@ namespace Data.Migrations
                     b.HasOne("Data.EFModels.Kuhar", "Kuhar")
                         .WithMany()
                         .HasForeignKey("KuharID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("Data.EFModels.Meni", "Meni")
                         .WithMany()
                         .HasForeignKey("MeniID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
                 });
 
@@ -978,7 +978,7 @@ namespace Data.Migrations
                     b.HasOne("Data.EFModels.TipMenija", "TipMenija")
                         .WithMany()
                         .HasForeignKey("TipMenijaID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
                 });
 
@@ -987,13 +987,13 @@ namespace Data.Migrations
                     b.HasOne("Data.EFModels.Bend", "Bend")
                         .WithMany()
                         .HasForeignKey("BendID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("Data.EFModels.Muzika", "Muzika")
                         .WithMany()
                         .HasForeignKey("MuzikaID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
                 });
 
@@ -1032,13 +1032,13 @@ namespace Data.Migrations
                     b.HasOne("Data.EFModels.Cvijece", "Cvijece")
                         .WithMany()
                         .HasForeignKey("CvijeceID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("Data.EFModels.Rezervacija", "Rezervacija")
                         .WithMany()
                         .HasForeignKey("RezervacijaID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
                 });
 
@@ -1047,13 +1047,13 @@ namespace Data.Migrations
                     b.HasOne("Data.EFModels.Dekoracija", "Dekoracija")
                         .WithMany()
                         .HasForeignKey("DekoracijaID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("Data.EFModels.Rezervacija", "Rezervacija")
                         .WithMany()
                         .HasForeignKey("RezervacijaID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
                 });
 
@@ -1062,13 +1062,13 @@ namespace Data.Migrations
                     b.HasOne("Data.EFModels.Fotograf", "Fotograf")
                         .WithMany()
                         .HasForeignKey("FotografID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("Data.EFModels.Rezervacija", "Rezervacija")
                         .WithMany()
                         .HasForeignKey("RezervacijaID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
                 });
 
@@ -1077,13 +1077,13 @@ namespace Data.Migrations
                     b.HasOne("Data.EFModels.Korisnik", "Korisnik")
                         .WithMany()
                         .HasForeignKey("KorisnikID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("Data.EFModels.Rezervacija", "Rezervacija")
                         .WithMany()
                         .HasForeignKey("RezervacijaID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
                 });
 
@@ -1092,13 +1092,13 @@ namespace Data.Migrations
                     b.HasOne("Data.EFModels.Rezervacija", "Rezervacija")
                         .WithMany()
                         .HasForeignKey("RezervacijaID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("Data.EFModels.Sala", "Sala")
                         .WithMany()
                         .HasForeignKey("SalaID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
                 });
 
@@ -1107,13 +1107,13 @@ namespace Data.Migrations
                     b.HasOne("Data.EFModels.Konobar", "Konobar")
                         .WithMany()
                         .HasForeignKey("KonobarID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("Data.EFModels.Sala", "Sala")
                         .WithMany()
                         .HasForeignKey("SalaID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
                 });
 
@@ -1122,13 +1122,13 @@ namespace Data.Migrations
                     b.HasOne("Data.EFModels.Meni", "Meni")
                         .WithMany()
                         .HasForeignKey("MeniID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("Data.EFModels.StavkaUlaz", "StavkaUlaz")
                         .WithMany("StavkeRacuna")
                         .HasForeignKey("StavkaUlazID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
                 });
 
@@ -1137,7 +1137,7 @@ namespace Data.Migrations
                     b.HasOne("Data.EFModels.Sala", "Sala")
                         .WithMany()
                         .HasForeignKey("SalaID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
                 });
 
@@ -1146,7 +1146,7 @@ namespace Data.Migrations
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
                 });
 
@@ -1155,7 +1155,7 @@ namespace Data.Migrations
                     b.HasOne("Data.EFModels.Korisnik", null)
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
                 });
 
@@ -1164,7 +1164,7 @@ namespace Data.Migrations
                     b.HasOne("Data.EFModels.Korisnik", null)
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
                 });
 
@@ -1173,13 +1173,13 @@ namespace Data.Migrations
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("Data.EFModels.Korisnik", null)
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
                 });
 
@@ -1188,7 +1188,7 @@ namespace Data.Migrations
                     b.HasOne("Data.EFModels.Korisnik", null)
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
                 });
 #pragma warning restore 612, 618

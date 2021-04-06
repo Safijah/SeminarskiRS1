@@ -22,34 +22,6 @@ namespace Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "AspNetUsers",
-                columns: table => new
-                {
-                    Id = table.Column<string>(nullable: false),
-                    UserName = table.Column<string>(maxLength: 256, nullable: true),
-                    NormalizedUserName = table.Column<string>(maxLength: 256, nullable: true),
-                    Email = table.Column<string>(maxLength: 256, nullable: true),
-                    NormalizedEmail = table.Column<string>(maxLength: 256, nullable: true),
-                    EmailConfirmed = table.Column<bool>(nullable: false),
-                    PasswordHash = table.Column<string>(nullable: true),
-                    SecurityStamp = table.Column<string>(nullable: true),
-                    ConcurrencyStamp = table.Column<string>(nullable: true),
-                    PhoneNumber = table.Column<string>(nullable: true),
-                    PhoneNumberConfirmed = table.Column<bool>(nullable: false),
-                    TwoFactorEnabled = table.Column<bool>(nullable: false),
-                    LockoutEnd = table.Column<DateTimeOffset>(nullable: true),
-                    LockoutEnabled = table.Column<bool>(nullable: false),
-                    AccessFailedCount = table.Column<int>(nullable: false),
-                    AdresaStanovanja = table.Column<string>(nullable: true),
-                    ImeKorisnika = table.Column<string>(nullable: true),
-                    PrezimeKorisnika = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_AspNetUsers", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Bendovi",
                 columns: table => new
                 {
@@ -122,6 +94,19 @@ namespace Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "NacinPlacanja",
+                columns: table => new
+                {
+                    NacinPlacanjaID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    NacinPlacanjaNaziv = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_NacinPlacanja", x => x.NacinPlacanjaID);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Pozivnice",
                 columns: table => new
                 {
@@ -137,16 +122,16 @@ namespace Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Racuni",
+                name: "Rola",
                 columns: table => new
                 {
-                    RacunID = table.Column<int>(nullable: false)
+                    RolaID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    IznosRacuna = table.Column<float>(nullable: false)
+                    NazivRole = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Racuni", x => x.RacunID);
+                    table.PrimaryKey("PK_Rola", x => x.RolaID);
                 });
 
             migrationBuilder.CreateTable(
@@ -164,6 +149,19 @@ namespace Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Sale", x => x.SalaID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "StatusRezervacije",
+                columns: table => new
+                {
+                    StatusRezervacijeID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Naziv = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_StatusRezervacije", x => x.StatusRezervacijeID);
                 });
 
             migrationBuilder.CreateTable(
@@ -240,91 +238,6 @@ namespace Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "AspNetUserClaims",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    UserId = table.Column<string>(nullable: false),
-                    ClaimType = table.Column<string>(nullable: true),
-                    ClaimValue = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_AspNetUserClaims", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_AspNetUserClaims_AspNetUsers_UserId",
-                        column: x => x.UserId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "AspNetUserLogins",
-                columns: table => new
-                {
-                    LoginProvider = table.Column<string>(maxLength: 128, nullable: false),
-                    ProviderKey = table.Column<string>(maxLength: 128, nullable: false),
-                    ProviderDisplayName = table.Column<string>(nullable: true),
-                    UserId = table.Column<string>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_AspNetUserLogins", x => new { x.LoginProvider, x.ProviderKey });
-                    table.ForeignKey(
-                        name: "FK_AspNetUserLogins_AspNetUsers_UserId",
-                        column: x => x.UserId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "AspNetUserRoles",
-                columns: table => new
-                {
-                    UserId = table.Column<string>(nullable: false),
-                    RoleId = table.Column<string>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_AspNetUserRoles", x => new { x.UserId, x.RoleId });
-                    table.ForeignKey(
-                        name: "FK_AspNetUserRoles_AspNetRoles_RoleId",
-                        column: x => x.RoleId,
-                        principalTable: "AspNetRoles",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
-                    table.ForeignKey(
-                        name: "FK_AspNetUserRoles_AspNetUsers_UserId",
-                        column: x => x.UserId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "AspNetUserTokens",
-                columns: table => new
-                {
-                    UserId = table.Column<string>(nullable: false),
-                    LoginProvider = table.Column<string>(maxLength: 128, nullable: false),
-                    Name = table.Column<string>(maxLength: 128, nullable: false),
-                    Value = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_AspNetUserTokens", x => new { x.UserId, x.LoginProvider, x.Name });
-                    table.ForeignKey(
-                        name: "FK_AspNetUserTokens_AspNetUsers_UserId",
-                        column: x => x.UserId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Fotografi",
                 columns: table => new
                 {
@@ -374,39 +287,37 @@ namespace Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Rezervacije",
+                name: "AspNetUsers",
                 columns: table => new
                 {
-                    RezervacijaID = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    MuzikaID = table.Column<int>(nullable: false),
-                    PozivnicaID = table.Column<int>(nullable: false),
-                    DatumVjencanja = table.Column<DateTime>(nullable: false),
-                    VremenskoTrajanjeVjencanja = table.Column<float>(nullable: false),
-                    RacunID = table.Column<int>(nullable: false),
-                    StatusRezervacije = table.Column<string>(nullable: true),
-                    NacinPlacanjaRacuna = table.Column<string>(nullable: true)
+                    Id = table.Column<string>(nullable: false),
+                    UserName = table.Column<string>(maxLength: 256, nullable: true),
+                    NormalizedUserName = table.Column<string>(maxLength: 256, nullable: true),
+                    Email = table.Column<string>(maxLength: 256, nullable: true),
+                    NormalizedEmail = table.Column<string>(maxLength: 256, nullable: true),
+                    EmailConfirmed = table.Column<bool>(nullable: false),
+                    PasswordHash = table.Column<string>(nullable: true),
+                    SecurityStamp = table.Column<string>(nullable: true),
+                    ConcurrencyStamp = table.Column<string>(nullable: true),
+                    PhoneNumber = table.Column<string>(nullable: true),
+                    PhoneNumberConfirmed = table.Column<bool>(nullable: false),
+                    TwoFactorEnabled = table.Column<bool>(nullable: false),
+                    LockoutEnd = table.Column<DateTimeOffset>(nullable: true),
+                    LockoutEnabled = table.Column<bool>(nullable: false),
+                    AccessFailedCount = table.Column<int>(nullable: false),
+                    AdresaStanovanja = table.Column<string>(nullable: true),
+                    ImeKorisnika = table.Column<string>(nullable: true),
+                    PrezimeKorisnika = table.Column<string>(nullable: true),
+                    RolaID = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Rezervacije", x => x.RezervacijaID);
+                    table.PrimaryKey("PK_AspNetUsers", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Rezervacije_Muzika_MuzikaID",
-                        column: x => x.MuzikaID,
-                        principalTable: "Muzika",
-                        principalColumn: "MuzikaID",
-                        onDelete: ReferentialAction.NoAction);
-                    table.ForeignKey(
-                        name: "FK_Rezervacije_Pozivnice_PozivnicaID",
-                        column: x => x.PozivnicaID,
-                        principalTable: "Pozivnice",
-                        principalColumn: "PozivnicaID",
-                        onDelete: ReferentialAction.NoAction);
-                    table.ForeignKey(
-                        name: "FK_Rezervacije_Racuni_RacunID",
-                        column: x => x.RacunID,
-                        principalTable: "Racuni",
-                        principalColumn: "RacunID",
+                        name: "FK_AspNetUsers_Rola_RolaID",
+                        column: x => x.RolaID,
+                        principalTable: "Rola",
+                        principalColumn: "RolaID",
                         onDelete: ReferentialAction.NoAction);
                 });
 
@@ -525,6 +436,312 @@ namespace Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "AspNetUserClaims",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserId = table.Column<string>(nullable: false),
+                    ClaimType = table.Column<string>(nullable: true),
+                    ClaimValue = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetUserClaims", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_AspNetUserClaims_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.NoAction);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AspNetUserLogins",
+                columns: table => new
+                {
+                    LoginProvider = table.Column<string>(maxLength: 128, nullable: false),
+                    ProviderKey = table.Column<string>(maxLength: 128, nullable: false),
+                    ProviderDisplayName = table.Column<string>(nullable: true),
+                    UserId = table.Column<string>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetUserLogins", x => new { x.LoginProvider, x.ProviderKey });
+                    table.ForeignKey(
+                        name: "FK_AspNetUserLogins_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.NoAction);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AspNetUserRoles",
+                columns: table => new
+                {
+                    UserId = table.Column<string>(nullable: false),
+                    RoleId = table.Column<string>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetUserRoles", x => new { x.UserId, x.RoleId });
+                    table.ForeignKey(
+                        name: "FK_AspNetUserRoles_AspNetRoles_RoleId",
+                        column: x => x.RoleId,
+                        principalTable: "AspNetRoles",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.NoAction);
+                    table.ForeignKey(
+                        name: "FK_AspNetUserRoles_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.NoAction);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AspNetUserTokens",
+                columns: table => new
+                {
+                    UserId = table.Column<string>(nullable: false),
+                    LoginProvider = table.Column<string>(maxLength: 128, nullable: false),
+                    Name = table.Column<string>(maxLength: 128, nullable: false),
+                    Value = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetUserTokens", x => new { x.UserId, x.LoginProvider, x.Name });
+                    table.ForeignKey(
+                        name: "FK_AspNetUserTokens_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.NoAction);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "KreditnaKartica",
+                columns: table => new
+                {
+                    KreditnaKarticaID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    BrojKreditneKartice = table.Column<string>(nullable: true),
+                    MjesecIstekaKartice = table.Column<int>(nullable: false),
+                    GodinaIstekaKartice = table.Column<int>(nullable: false),
+                    CVC = table.Column<string>(nullable: true),
+                    KorisnikID = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_KreditnaKartica", x => x.KreditnaKarticaID);
+                    table.ForeignKey(
+                        name: "FK_KreditnaKartica_AspNetUsers_KorisnikID",
+                        column: x => x.KorisnikID,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "KuharMeni",
+                columns: table => new
+                {
+                    MeniID = table.Column<int>(nullable: false),
+                    KuharID = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_KuharMeni", x => new { x.MeniID, x.KuharID });
+                    table.ForeignKey(
+                        name: "FK_KuharMeni_Kuhari_KuharID",
+                        column: x => x.KuharID,
+                        principalTable: "Kuhari",
+                        principalColumn: "KuharID",
+                        onDelete: ReferentialAction.NoAction);
+                    table.ForeignKey(
+                        name: "FK_KuharMeni_Meniji_MeniID",
+                        column: x => x.MeniID,
+                        principalTable: "Meniji",
+                        principalColumn: "MeniID",
+                        onDelete: ReferentialAction.NoAction);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Stavke",
+                columns: table => new
+                {
+                    StavkaID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    MeniID = table.Column<int>(nullable: false),
+                    StavkaUlazID = table.Column<int>(nullable: false),
+                    KolicinaNarucenog = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Stavke", x => x.StavkaID);
+                    table.ForeignKey(
+                        name: "FK_Stavke_Meniji_MeniID",
+                        column: x => x.MeniID,
+                        principalTable: "Meniji",
+                        principalColumn: "MeniID",
+                        onDelete: ReferentialAction.NoAction);
+                    table.ForeignKey(
+                        name: "FK_Stavke_StavkaUlaz_StavkaUlazID",
+                        column: x => x.StavkaUlazID,
+                        principalTable: "StavkaUlaz",
+                        principalColumn: "StavkaUlazID",
+                        onDelete: ReferentialAction.NoAction);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Racuni",
+                columns: table => new
+                {
+                    RacunID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    IznosRacuna = table.Column<float>(nullable: false),
+                    KreditnaKarticaID = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Racuni", x => x.RacunID);
+                    table.ForeignKey(
+                        name: "FK_Racuni_KreditnaKartica_KreditnaKarticaID",
+                        column: x => x.KreditnaKarticaID,
+                        principalTable: "KreditnaKartica",
+                        principalColumn: "KreditnaKarticaID",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Rezervacije",
+                columns: table => new
+                {
+                    RezervacijaID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    BendID = table.Column<int>(nullable: true),
+                    PozivnicaID = table.Column<int>(nullable: true),
+                    DatumVjencanja = table.Column<DateTime>(nullable: false),
+                    VremenskoTrajanjeVjencanja = table.Column<float>(nullable: false),
+                    RacunID = table.Column<int>(nullable: true),
+                    NacinPlacanjaID = table.Column<int>(nullable: true),
+                    KolicinaPozivnica = table.Column<int>(nullable: false),
+                    StatusRezervacijeID = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Rezervacije", x => x.RezervacijaID);
+                    table.ForeignKey(
+                        name: "FK_Rezervacije_Bendovi_BendID",
+                        column: x => x.BendID,
+                        principalTable: "Bendovi",
+                        principalColumn: "BendID",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Rezervacije_NacinPlacanja_NacinPlacanjaID",
+                        column: x => x.NacinPlacanjaID,
+                        principalTable: "NacinPlacanja",
+                        principalColumn: "NacinPlacanjaID",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Rezervacije_Pozivnice_PozivnicaID",
+                        column: x => x.PozivnicaID,
+                        principalTable: "Pozivnice",
+                        principalColumn: "PozivnicaID",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Rezervacije_Racuni_RacunID",
+                        column: x => x.RacunID,
+                        principalTable: "Racuni",
+                        principalColumn: "RacunID",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Rezervacije_StatusRezervacije_StatusRezervacijeID",
+                        column: x => x.StatusRezervacijeID,
+                        principalTable: "StatusRezervacije",
+                        principalColumn: "StatusRezervacijeID",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Evidencije",
+                columns: table => new
+                {
+                    EvidencijaID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    RezervacijaID = table.Column<int>(nullable: false),
+                    MeniID = table.Column<int>(nullable: false),
+                    Kolicina = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Evidencije", x => x.EvidencijaID);
+                    table.ForeignKey(
+                        name: "FK_Evidencije_Meniji_MeniID",
+                        column: x => x.MeniID,
+                        principalTable: "Meniji",
+                        principalColumn: "MeniID",
+                        onDelete: ReferentialAction.NoAction);
+                    table.ForeignKey(
+                        name: "FK_Evidencije_Rezervacije_RezervacijaID",
+                        column: x => x.RezervacijaID,
+                        principalTable: "Rezervacije",
+                        principalColumn: "RezervacijaID",
+                        onDelete: ReferentialAction.NoAction);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "RezervacijaCvijece",
+                columns: table => new
+                {
+                    CvijeceID = table.Column<int>(nullable: false),
+                    RezervacijaID = table.Column<int>(nullable: false),
+                    KolicinaNarucenogCvijeca = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_RezervacijaCvijece", x => new { x.CvijeceID, x.RezervacijaID });
+                    table.ForeignKey(
+                        name: "FK_RezervacijaCvijece_Cvijece_CvijeceID",
+                        column: x => x.CvijeceID,
+                        principalTable: "Cvijece",
+                        principalColumn: "CvijeceID",
+                        onDelete: ReferentialAction.NoAction);
+                    table.ForeignKey(
+                        name: "FK_RezervacijaCvijece_Rezervacije_RezervacijaID",
+                        column: x => x.RezervacijaID,
+                        principalTable: "Rezervacije",
+                        principalColumn: "RezervacijaID",
+                        onDelete: ReferentialAction.NoAction);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "RezervacijaDekoracije",
+                columns: table => new
+                {
+                    RezervacijaID = table.Column<int>(nullable: false),
+                    DekoracijaID = table.Column<int>(nullable: false),
+                    KolicinaNarucenihDekoracija = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_RezervacijaDekoracije", x => new { x.RezervacijaID, x.DekoracijaID });
+                    table.ForeignKey(
+                        name: "FK_RezervacijaDekoracije_Dekoracije_DekoracijaID",
+                        column: x => x.DekoracijaID,
+                        principalTable: "Dekoracije",
+                        principalColumn: "DekoracijaID",
+                        onDelete: ReferentialAction.NoAction);
+                    table.ForeignKey(
+                        name: "FK_RezervacijaDekoracije_Rezervacije_RezervacijaID",
+                        column: x => x.RezervacijaID,
+                        principalTable: "Rezervacije",
+                        principalColumn: "RezervacijaID",
+                        onDelete: ReferentialAction.NoAction);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "RezervacijaFotografi",
                 columns: table => new
                 {
@@ -596,134 +813,6 @@ namespace Data.Migrations
                         onDelete: ReferentialAction.NoAction);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "RezervacijaCvijece",
-                columns: table => new
-                {
-                    CvijeceID = table.Column<int>(nullable: false),
-                    RezervacijaID = table.Column<int>(nullable: false),
-                    KolicinaNarucenogCvijeca = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_RezervacijaCvijece", x => new { x.CvijeceID, x.RezervacijaID });
-                    table.ForeignKey(
-                        name: "FK_RezervacijaCvijece_Cvijece_CvijeceID",
-                        column: x => x.CvijeceID,
-                        principalTable: "Cvijece",
-                        principalColumn: "CvijeceID",
-                        onDelete: ReferentialAction.NoAction);
-                    table.ForeignKey(
-                        name: "FK_RezervacijaCvijece_Rezervacije_RezervacijaID",
-                        column: x => x.RezervacijaID,
-                        principalTable: "Rezervacije",
-                        principalColumn: "RezervacijaID",
-                        onDelete: ReferentialAction.NoAction);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "RezervacijaDekoracije",
-                columns: table => new
-                {
-                    RezervacijaID = table.Column<int>(nullable: false),
-                    DekoracijaID = table.Column<int>(nullable: false),
-                    KolicinaNarucenihDekoracija = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_RezervacijaDekoracije", x => new { x.RezervacijaID, x.DekoracijaID });
-                    table.ForeignKey(
-                        name: "FK_RezervacijaDekoracije_Dekoracije_DekoracijaID",
-                        column: x => x.DekoracijaID,
-                        principalTable: "Dekoracije",
-                        principalColumn: "DekoracijaID",
-                        onDelete: ReferentialAction.NoAction);
-                    table.ForeignKey(
-                        name: "FK_RezervacijaDekoracije_Rezervacije_RezervacijaID",
-                        column: x => x.RezervacijaID,
-                        principalTable: "Rezervacije",
-                        principalColumn: "RezervacijaID",
-                        onDelete: ReferentialAction.NoAction);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Evidencije",
-                columns: table => new
-                {
-                    EvidencijaID = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    RezervacijaID = table.Column<int>(nullable: false),
-                    MeniID = table.Column<int>(nullable: false),
-                    Kolicina = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Evidencije", x => x.EvidencijaID);
-                    table.ForeignKey(
-                        name: "FK_Evidencije_Meniji_MeniID",
-                        column: x => x.MeniID,
-                        principalTable: "Meniji",
-                        principalColumn: "MeniID",
-                        onDelete: ReferentialAction.NoAction);
-                    table.ForeignKey(
-                        name: "FK_Evidencije_Rezervacije_RezervacijaID",
-                        column: x => x.RezervacijaID,
-                        principalTable: "Rezervacije",
-                        principalColumn: "RezervacijaID",
-                        onDelete: ReferentialAction.NoAction);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "KuharMeni",
-                columns: table => new
-                {
-                    MeniID = table.Column<int>(nullable: false),
-                    KuharID = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_KuharMeni", x => new { x.MeniID, x.KuharID });
-                    table.ForeignKey(
-                        name: "FK_KuharMeni_Kuhari_KuharID",
-                        column: x => x.KuharID,
-                        principalTable: "Kuhari",
-                        principalColumn: "KuharID",
-                        onDelete: ReferentialAction.NoAction);
-                    table.ForeignKey(
-                        name: "FK_KuharMeni_Meniji_MeniID",
-                        column: x => x.MeniID,
-                        principalTable: "Meniji",
-                        principalColumn: "MeniID",
-                        onDelete: ReferentialAction.NoAction);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Stavke",
-                columns: table => new
-                {
-                    StavkaID = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    MeniID = table.Column<int>(nullable: false),
-                    StavkaUlazID = table.Column<int>(nullable: false),
-                    KolicinaNarucenog = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Stavke", x => x.StavkaID);
-                    table.ForeignKey(
-                        name: "FK_Stavke_Meniji_MeniID",
-                        column: x => x.MeniID,
-                        principalTable: "Meniji",
-                        principalColumn: "MeniID",
-                        onDelete: ReferentialAction.NoAction);
-                    table.ForeignKey(
-                        name: "FK_Stavke_StavkaUlaz_StavkaUlazID",
-                        column: x => x.StavkaUlazID,
-                        principalTable: "StavkaUlaz",
-                        principalColumn: "StavkaUlazID",
-                        onDelete: ReferentialAction.NoAction);
-                });
-
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -764,6 +853,11 @@ namespace Data.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
+                name: "IX_AspNetUsers_RolaID",
+                table: "AspNetUsers",
+                column: "RolaID");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Cvijece_TipCvijecaID",
                 table: "Cvijece",
                 column: "TipCvijecaID");
@@ -789,6 +883,11 @@ namespace Data.Migrations
                 column: "FotografijaID");
 
             migrationBuilder.CreateIndex(
+                name: "IX_KreditnaKartica_KorisnikID",
+                table: "KreditnaKartica",
+                column: "KorisnikID");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_KuharMeni_KuharID",
                 table: "KuharMeni",
                 column: "KuharID");
@@ -807,6 +906,11 @@ namespace Data.Migrations
                 name: "IX_MuzikaBendovi_MuzikaID",
                 table: "MuzikaBendovi",
                 column: "MuzikaID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Racuni_KreditnaKarticaID",
+                table: "Racuni",
+                column: "KreditnaKarticaID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_RezervacijaCvijece_RezervacijaID",
@@ -834,9 +938,14 @@ namespace Data.Migrations
                 column: "SalaID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Rezervacije_MuzikaID",
+                name: "IX_Rezervacije_BendID",
                 table: "Rezervacije",
-                column: "MuzikaID");
+                column: "BendID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Rezervacije_NacinPlacanjaID",
+                table: "Rezervacije",
+                column: "NacinPlacanjaID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Rezervacije_PozivnicaID",
@@ -847,6 +956,11 @@ namespace Data.Migrations
                 name: "IX_Rezervacije_RacunID",
                 table: "Rezervacije",
                 column: "RacunID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Rezervacije_StatusRezervacijeID",
+                table: "Rezervacije",
+                column: "StatusRezervacijeID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_SalaKonobari_KonobarID",
@@ -931,7 +1045,7 @@ namespace Data.Migrations
                 name: "Kuhari");
 
             migrationBuilder.DropTable(
-                name: "Bendovi");
+                name: "Muzika");
 
             migrationBuilder.DropTable(
                 name: "Cvijece");
@@ -941,9 +1055,6 @@ namespace Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "Fotografi");
-
-            migrationBuilder.DropTable(
-                name: "AspNetUsers");
 
             migrationBuilder.DropTable(
                 name: "Rezervacije");
@@ -970,7 +1081,10 @@ namespace Data.Migrations
                 name: "Fotografije");
 
             migrationBuilder.DropTable(
-                name: "Muzika");
+                name: "Bendovi");
+
+            migrationBuilder.DropTable(
+                name: "NacinPlacanja");
 
             migrationBuilder.DropTable(
                 name: "Pozivnice");
@@ -979,7 +1093,19 @@ namespace Data.Migrations
                 name: "Racuni");
 
             migrationBuilder.DropTable(
+                name: "StatusRezervacije");
+
+            migrationBuilder.DropTable(
                 name: "TipMenija");
+
+            migrationBuilder.DropTable(
+                name: "KreditnaKartica");
+
+            migrationBuilder.DropTable(
+                name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "Rola");
         }
     }
 }

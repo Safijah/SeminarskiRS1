@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210319171001_initial")]
+    [Migration("20210405140136_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -238,6 +238,9 @@ namespace Data.Migrations
                     b.Property<string>("PrezimeKorisnika")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("RolaID")
+                        .HasColumnType("int");
+
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
 
@@ -258,7 +261,38 @@ namespace Data.Migrations
                         .HasName("UserNameIndex")
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
+                    b.HasIndex("RolaID");
+
                     b.ToTable("AspNetUsers");
+                });
+
+            modelBuilder.Entity("Data.EFModels.KreditnaKartica", b =>
+                {
+                    b.Property<int>("KreditnaKarticaID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("BrojKreditneKartice")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CVC")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("GodinaIstekaKartice")
+                        .HasColumnType("int");
+
+                    b.Property<string>("KorisnikID")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("MjesecIstekaKartice")
+                        .HasColumnType("int");
+
+                    b.HasKey("KreditnaKarticaID");
+
+                    b.HasIndex("KorisnikID");
+
+                    b.ToTable("KreditnaKartica");
                 });
 
             modelBuilder.Entity("Data.EFModels.Kuhar", b =>
@@ -363,6 +397,21 @@ namespace Data.Migrations
                     b.ToTable("MuzikaBendovi");
                 });
 
+            modelBuilder.Entity("Data.EFModels.NacinPlacanja", b =>
+                {
+                    b.Property<int>("NacinPlacanjaID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("NacinPlacanjaNaziv")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("NacinPlacanjaID");
+
+                    b.ToTable("NacinPlacanja");
+                });
+
             modelBuilder.Entity("Data.EFModels.Pozivnica", b =>
                 {
                     b.Property<int>("PozivnicaID")
@@ -394,7 +443,12 @@ namespace Data.Migrations
                     b.Property<float>("IznosRacuna")
                         .HasColumnType("real");
 
+                    b.Property<int?>("KreditnaKarticaID")
+                        .HasColumnType("int");
+
                     b.HasKey("RacunID");
+
+                    b.HasIndex("KreditnaKarticaID");
 
                     b.ToTable("Racuni");
                 });
@@ -406,34 +460,41 @@ namespace Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int?>("BendID")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("DatumVjencanja")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("MuzikaID")
+                    b.Property<int>("KolicinaPozivnica")
                         .HasColumnType("int");
 
-                    b.Property<string>("NacinPlacanjaRacuna")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("PozivnicaID")
+                    b.Property<int?>("NacinPlacanjaID")
                         .HasColumnType("int");
 
-                    b.Property<int>("RacunID")
+                    b.Property<int?>("PozivnicaID")
                         .HasColumnType("int");
 
-                    b.Property<string>("StatusRezervacije")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int?>("RacunID")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("StatusRezervacijeID")
+                        .HasColumnType("int");
 
                     b.Property<float>("VremenskoTrajanjeVjencanja")
                         .HasColumnType("real");
 
                     b.HasKey("RezervacijaID");
 
-                    b.HasIndex("MuzikaID");
+                    b.HasIndex("BendID");
+
+                    b.HasIndex("NacinPlacanjaID");
 
                     b.HasIndex("PozivnicaID");
 
                     b.HasIndex("RacunID");
+
+                    b.HasIndex("StatusRezervacijeID");
 
                     b.ToTable("Rezervacije");
                 });
@@ -519,6 +580,21 @@ namespace Data.Migrations
                     b.ToTable("RezervacijaSale");
                 });
 
+            modelBuilder.Entity("Data.EFModels.Rola", b =>
+                {
+                    b.Property<int>("RolaID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("NazivRole")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("RolaID");
+
+                    b.ToTable("Rola");
+                });
+
             modelBuilder.Entity("Data.EFModels.Sala", b =>
                 {
                     b.Property<int>("SalaID")
@@ -566,6 +642,21 @@ namespace Data.Migrations
                     b.HasIndex("SalaID");
 
                     b.ToTable("SalaKonobari");
+                });
+
+            modelBuilder.Entity("Data.EFModels.StatusRezervacije", b =>
+                {
+                    b.Property<int>("StatusRezervacijeID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Naziv")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("StatusRezervacijeID");
+
+                    b.ToTable("StatusRezervacije");
                 });
 
             modelBuilder.Entity("Data.EFModels.Stavka", b =>
@@ -816,7 +907,7 @@ namespace Data.Migrations
                     b.HasOne("Data.EFModels.TipCvijeca", "TipCvijeca")
                         .WithMany()
                         .HasForeignKey("TipCvijecaID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
                 });
 
@@ -825,7 +916,7 @@ namespace Data.Migrations
                     b.HasOne("Data.EFModels.TipDekoracije", "TipDekoracije")
                         .WithMany()
                         .HasForeignKey("TipDekoracijeID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
                 });
 
@@ -834,13 +925,13 @@ namespace Data.Migrations
                     b.HasOne("Data.EFModels.Meni", "Meni")
                         .WithMany()
                         .HasForeignKey("MeniID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("Data.EFModels.Rezervacija", "Rezervacija")
                         .WithMany()
                         .HasForeignKey("RezervacijaID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
                 });
 
@@ -849,8 +940,24 @@ namespace Data.Migrations
                     b.HasOne("Data.EFModels.Fotografija", "Fotografija")
                         .WithMany()
                         .HasForeignKey("FotografijaID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Data.EFModels.Korisnik", b =>
+                {
+                    b.HasOne("Data.EFModels.Rola", "Rola")
+                        .WithMany()
+                        .HasForeignKey("RolaID")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Data.EFModels.KreditnaKartica", b =>
+                {
+                    b.HasOne("Data.EFModels.Korisnik", "Korisnik")
+                        .WithMany()
+                        .HasForeignKey("KorisnikID");
                 });
 
             modelBuilder.Entity("Data.EFModels.KuharMeni", b =>
@@ -858,13 +965,13 @@ namespace Data.Migrations
                     b.HasOne("Data.EFModels.Kuhar", "Kuhar")
                         .WithMany()
                         .HasForeignKey("KuharID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("Data.EFModels.Meni", "Meni")
                         .WithMany()
                         .HasForeignKey("MeniID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
                 });
 
@@ -873,7 +980,7 @@ namespace Data.Migrations
                     b.HasOne("Data.EFModels.TipMenija", "TipMenija")
                         .WithMany()
                         .HasForeignKey("TipMenijaID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
                 });
 
@@ -882,35 +989,44 @@ namespace Data.Migrations
                     b.HasOne("Data.EFModels.Bend", "Bend")
                         .WithMany()
                         .HasForeignKey("BendID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("Data.EFModels.Muzika", "Muzika")
                         .WithMany()
                         .HasForeignKey("MuzikaID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Data.EFModels.Racun", b =>
+                {
+                    b.HasOne("Data.EFModels.KreditnaKartica", "KreditnaKartica")
+                        .WithMany()
+                        .HasForeignKey("KreditnaKarticaID");
                 });
 
             modelBuilder.Entity("Data.EFModels.Rezervacija", b =>
                 {
-                    b.HasOne("Data.EFModels.Muzika", "Muzika")
+                    b.HasOne("Data.EFModels.Bend", "Bend")
                         .WithMany()
-                        .HasForeignKey("MuzikaID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("BendID");
+
+                    b.HasOne("Data.EFModels.NacinPlacanja", "NacinPlacanja")
+                        .WithMany()
+                        .HasForeignKey("NacinPlacanjaID");
 
                     b.HasOne("Data.EFModels.Pozivnica", "Pozivnica")
                         .WithMany()
-                        .HasForeignKey("PozivnicaID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("PozivnicaID");
 
                     b.HasOne("Data.EFModels.Racun", "Racun")
                         .WithMany()
-                        .HasForeignKey("RacunID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("RacunID");
+
+                    b.HasOne("Data.EFModels.StatusRezervacije", "StatusRezervacije")
+                        .WithMany()
+                        .HasForeignKey("StatusRezervacijeID");
                 });
 
             modelBuilder.Entity("Data.EFModels.RezervacijaCvijece", b =>
@@ -918,13 +1034,13 @@ namespace Data.Migrations
                     b.HasOne("Data.EFModels.Cvijece", "Cvijece")
                         .WithMany()
                         .HasForeignKey("CvijeceID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("Data.EFModels.Rezervacija", "Rezervacija")
                         .WithMany()
                         .HasForeignKey("RezervacijaID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
                 });
 
@@ -933,13 +1049,13 @@ namespace Data.Migrations
                     b.HasOne("Data.EFModels.Dekoracija", "Dekoracija")
                         .WithMany()
                         .HasForeignKey("DekoracijaID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("Data.EFModels.Rezervacija", "Rezervacija")
                         .WithMany()
                         .HasForeignKey("RezervacijaID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
                 });
 
@@ -948,13 +1064,13 @@ namespace Data.Migrations
                     b.HasOne("Data.EFModels.Fotograf", "Fotograf")
                         .WithMany()
                         .HasForeignKey("FotografID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("Data.EFModels.Rezervacija", "Rezervacija")
                         .WithMany()
                         .HasForeignKey("RezervacijaID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
                 });
 
@@ -963,13 +1079,13 @@ namespace Data.Migrations
                     b.HasOne("Data.EFModels.Korisnik", "Korisnik")
                         .WithMany()
                         .HasForeignKey("KorisnikID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("Data.EFModels.Rezervacija", "Rezervacija")
                         .WithMany()
                         .HasForeignKey("RezervacijaID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
                 });
 
@@ -978,13 +1094,13 @@ namespace Data.Migrations
                     b.HasOne("Data.EFModels.Rezervacija", "Rezervacija")
                         .WithMany()
                         .HasForeignKey("RezervacijaID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("Data.EFModels.Sala", "Sala")
                         .WithMany()
                         .HasForeignKey("SalaID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
                 });
 
@@ -993,13 +1109,13 @@ namespace Data.Migrations
                     b.HasOne("Data.EFModels.Konobar", "Konobar")
                         .WithMany()
                         .HasForeignKey("KonobarID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("Data.EFModels.Sala", "Sala")
                         .WithMany()
                         .HasForeignKey("SalaID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
                 });
 
@@ -1008,13 +1124,13 @@ namespace Data.Migrations
                     b.HasOne("Data.EFModels.Meni", "Meni")
                         .WithMany()
                         .HasForeignKey("MeniID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("Data.EFModels.StavkaUlaz", "StavkaUlaz")
                         .WithMany("StavkeRacuna")
                         .HasForeignKey("StavkaUlazID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
                 });
 
@@ -1023,7 +1139,7 @@ namespace Data.Migrations
                     b.HasOne("Data.EFModels.Sala", "Sala")
                         .WithMany()
                         .HasForeignKey("SalaID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
                 });
 
@@ -1032,7 +1148,7 @@ namespace Data.Migrations
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
                 });
 
@@ -1041,7 +1157,7 @@ namespace Data.Migrations
                     b.HasOne("Data.EFModels.Korisnik", null)
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
                 });
 
@@ -1050,7 +1166,7 @@ namespace Data.Migrations
                     b.HasOne("Data.EFModels.Korisnik", null)
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
                 });
 
@@ -1059,13 +1175,13 @@ namespace Data.Migrations
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("Data.EFModels.Korisnik", null)
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
                 });
 
@@ -1074,7 +1190,7 @@ namespace Data.Migrations
                     b.HasOne("Data.EFModels.Korisnik", null)
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
                 });
 #pragma warning restore 612, 618

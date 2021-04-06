@@ -11,8 +11,6 @@ using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Hosting;
 using System.IO;
 using Microsoft.AspNetCore.Authorization;
-using Data.Migrations;
-
 namespace RS_SEMINARSKI.Controllers
 {
     

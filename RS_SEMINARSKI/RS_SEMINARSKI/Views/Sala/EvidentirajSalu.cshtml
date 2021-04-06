@@ -174,11 +174,14 @@
                     <label>Cijena</label>
                     <input class="input_polje" asp-for="CijenaIznajmljivanjaSale" />
                     <br />
+                    <label>Opis sale</label>
+                    <input class="input_polje" asp-for="OpisSale" />
+                    <br />
                     <label asp-for="SlikaSale" class="control-label">Odaberite</label>
                     <input class="input_poljee" asp-for="SlikaSale" class="form-control " />
                     <span asp-validation-for="SlikaSale" class="text-danger"></span>
-                    <input  id="neko" type="submit" value="Snimi" />
-                   
+                    <input id="neko" type="submit" value="Snimi" />
+
                 </form>
             </div>
         </div>
