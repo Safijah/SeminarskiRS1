@@ -3,7 +3,9 @@ using Data.EFModels;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.SignalR;
 using Microsoft.Extensions.Logging;
+using RS_SEMINARSKI.notHub;
 using RS_SEMINARSKI.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -18,13 +20,15 @@ namespace RS_SEMINARSKI.Controllers
         private readonly ApplicationDbContext _dbContext;
         private readonly ILogger<HomeController> _logger;
         private readonly IWebHostEnvironment WebHostEnvironment;
+        IHubContext<NotHub> _hubContext;
 
         public DekoracijaController(ApplicationDbContext dbContext, ILogger<HomeController> logger,
-            IWebHostEnvironment webhostEnvironment)
+            IWebHostEnvironment webhostEnvironment, IHubContext<NotHub> hubContext)
         {
             _dbContext = dbContext;
             _logger = logger;
             WebHostEnvironment = webhostEnvironment;
+            _hubContext = hubContext;
         }
         public IActionResult PrikazDekoracije(string KorisnikID)
         {
@@ -145,6 +149,9 @@ namespace RS_SEMINARSKI.Controllers
             dekoracija.TipDekoracijeID = x.TipDekoracijeID;
             dekoracija.VrstaDekoracije = x.NazivDekoracije;
             _dbContext.SaveChanges();
+
+            _hubContext.Clients.All.SendAsync("prijemDekoracije", dekoracija.CijenaDekoracije,dekoracija.TipDekoracije,dekoracija.PutanjaDoSlikeDekoracije);
+
             return Redirect("PrikazDekoracije?KorisnikID=" + x.KorisnikID);
         }
 

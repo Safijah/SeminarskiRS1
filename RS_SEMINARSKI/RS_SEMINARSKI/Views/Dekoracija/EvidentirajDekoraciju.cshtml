@@ -5,6 +5,10 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/lib/signalr/dist/browser/signalr.js"></script>
+<script src="~/js/site.js" asp-append-version="true"></script>
 
 @{
     Layout = null;
@@ -76,7 +80,7 @@
         border-radius: 10px;
         margin-top: 20px;
     }
-/*
+    /*
     form label {
         padding-top: 12px;
         padding-left: 48px;
@@ -97,7 +101,7 @@
         border: 1px solid transparent;
         border-bottom: 1px solid lightblue;
         color: gray;
-        cursor:pointer;
+        cursor: pointer;
     }
 
     #Slika {
@@ -145,12 +149,14 @@
         height:20%;
         float:left;
     }*/
-    .form-control{
-        cursor:pointer;
+    .form-control {
+        cursor: pointer;
     }
-    .text-danger{
-        cursor:pointer;
+
+    .text-danger {
+        cursor: pointer;
     }
+
     #labela {
         padding-top: 12px;
         padding-left: 48px;
@@ -159,9 +165,10 @@
         color: dimgrey;
         display: block;
         margin-left: 30px;
-        position:relative; 
-        left:66px;
+        position: relative;
+        left: 66px;
     }
+
     #snimi {
         border: 1px solid transparent;
         margin-left: 20px;
@@ -171,9 +178,8 @@
         border-bottom: 1px solid lightblue;
         color: gray;
         cursor: pointer;
-        margin-top:30px;
+        margin-top: 30px;
     }
-   
 </style>
 
 
@@ -203,22 +209,22 @@
                 <label id="labela">Cijena dekoracije</label>
                 <input class="input_polje" asp-for="CijenaDekoracije" /><br />
 
-                <label id="labela" >Naziv Dekoracije</label>
+                <label id="labela">Naziv Dekoracije</label>
                 <input class="input_polje" asp-for="NazivDekoracije" /><br />
 
-                <label id="labela" >Tip dekoracije</label>
+                <label id="labela">Tip dekoracije</label>
                 <select class="input_polje" asp-for="TipDekoracijeID" asp-items="@Model.TipDekoracije"></select> <br />
 
                 <label id="labela" asp-for="SlikaDekoracije" class="control-label">Odaberite sliku</label>
                 <input class="input_polje" asp-for="SlikaDekoracije" class="form-control " />
                 <span asp-validation-for="SlikaDekoracije" class="text-danger"></span>
-                <input  id="snimi" class="input_polje" type="submit" value="Snimi" />
+                <input id="snimi" class="input_polje" type="submit" value="Snimi" />
 
             </form>
             @*<div id="butoni">
-                <button class="btn alert-danger" id="neko" onclick="window.location = '/Korisnik/Obrisi?KorisnikID=@Model.KorisnikID'">Obriši</button>
-                <button class="btn alert-danger" id="neko2" onclick="window.location = '/Korisnik/Evidentiraj?KorisnikID=@Model.KorisnikID'">Uredi</button>
-            </div>*@
+                    <button class="btn alert-danger" id="neko" onclick="window.location = '/Korisnik/Obrisi?KorisnikID=@Model.KorisnikID'">Obriši</button>
+                    <button class="btn alert-danger" id="neko2" onclick="window.location = '/Korisnik/Evidentiraj?KorisnikID=@Model.KorisnikID'">Uredi</button>
+                </div>*@
         </div>
     </div>
 </div>

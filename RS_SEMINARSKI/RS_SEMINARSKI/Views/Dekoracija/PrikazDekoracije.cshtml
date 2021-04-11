@@ -20,12 +20,14 @@
         margin: 0;
         padding: 0;
     }
+
     body {
         background-image: url("https://i.pinimg.com/564x/8f/c6/b7/8fc6b7eca6e1d9bba6500efc0cfd8bda.jpg");
         background-position: center;
         background-size: cover;
         opacity: 1.5;
     }
+
     #LijeviNavBar {
         height: 600px;
         width: 21%;
@@ -133,7 +135,7 @@
         margin: 5px;
         border-radius: 10px;
         background-color: transparent;
-        cursor:pointer;
+        cursor: pointer;
     }
 
         .IzbornikStavka:hover {
@@ -193,6 +195,7 @@
         opacity: 0.7;
         cursor: pointer;
     }
+
     #btn3 {
         position: relative;
         margin-left: 26px;
@@ -200,11 +203,11 @@
         background-color: whitesmoke;
         width: 260px;
         height: 30px;
-        
         border-radius: 10px;
         border: none;
         opacity: 0.7;
     }
+
     .cvijet {
         float: left;
         width: 28%;
@@ -214,7 +217,6 @@
         margin-left: 10px;
         margin-bottom: 25px;
     }
-
 </style>
 
 <div id="wrapper">
@@ -251,7 +253,7 @@
                     <button class="IzbornikStavka" onclick="window.location = '/Korisnici/PrikazKorisnika?KorisnikID=@Model.KorisnikID'">Korisnici </button>
                     <br />
                 </li>
-                }
+            }
             <li>
                 <button class="IzbornikStavka" onclick="window.location = '/Kuhar/PrikazKuhara?KorisnikID=@Model.KorisnikID'">Kuhari</button>
                 <br />
@@ -269,13 +271,13 @@
                 <br />
             </li>
             @*<li>
-            <button class="IzbornikStavka">Evidentiraj novu narudžbu IMPLEMENTIRATI</button>
-            <br />
-        </li>
-        <li>
-            <button class="IzbornikStavka">Pregled računa (fakture) IMPLEMENTIRATI</button>
-            <br />
-        </li>*@
+                    <button class="IzbornikStavka">Evidentiraj novu narudžbu IMPLEMENTIRATI</button>
+                    <br />
+                </li>
+                <li>
+                    <button class="IzbornikStavka">Pregled računa (fakture) IMPLEMENTIRATI</button>
+                    <br />
+                </li>*@
             <li>
                 <button class="IzbornikStavka" onclick="window.location = '/Sala/PrikazSala?KorisnikID=@Model.KorisnikID'">Sale</button>
                 <br />
@@ -285,7 +287,7 @@
 
     @if (Model.RolaID == 1)
     {
-        <button  id="buttonDodaj" onclick="window.location = '/Dekoracija/EvidentirajDekoraciju?KorisnikID=@Model.KorisnikID&DekoracijaID=0'">Dodaj novu dekoraciju</button>
+        <button id="buttonDodaj" onclick="window.location = '/Dekoracija/EvidentirajDekoraciju?KorisnikID=@Model.KorisnikID&DekoracijaID=0'">Dodaj novu dekoraciju</button>
     }
     <div id="glavni">
         @foreach (var x in Model.Dekoracije)
@@ -293,10 +295,10 @@
             <div class="cvijet">
                 <div id="slika"><img id="prikazSlike" src="~/Slike/@x.PutanjaDoSlike" /> </div>
                 <div id="opis">
-                    <label  class="zaFont"  >Naziv dekoracije: @x.NazivDekoracije</label><br />
-                    <label  class="zaFont" >Tip dekoracije: @x.TipDekoracije</label><br />
-                    <label  class="zaFont" >Cijena: @x.CijenaDekoracije KM</label><br />
-                    <label  class="zaFont" hidden >DekoracijaID @x.DekoracijaID</label><br />
+                    <label class="zaFont">Naziv dekoracije: @x.NazivDekoracije</label><br />
+                    <label class="zaFont">Tip dekoracije: @x.TipDekoracije</label><br />
+                    <label class="zaFont">Cijena: @x.CijenaDekoracije KM</label><br />
+                    <label class="zaFont" hidden>DekoracijaID @x.DekoracijaID</label><br />
                 </div>
                 <div id="buttons">
                     @if (Model.RolaID == 1)
@@ -320,6 +322,12 @@
     </div>
 
 </div>
+
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/lib/signalr/dist/browser/signalr.js"></script>
+<script src="~/js/site.js" asp-append-version="true"></script>
 
 
 
