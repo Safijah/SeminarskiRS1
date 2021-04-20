@@ -25,7 +25,7 @@
         opacity: 1.5;
     }
     #LijeviNavBar {
-        height: 800px;
+        height: 600px;
         width: 21%;
         float: left;
         background-color: whitesmoke;
@@ -35,7 +35,7 @@
         opacity: 1.5;*/
         margin: 30px;
         border-radius: 10px;
-      
+        cursor: pointer;
     }
 
     #NavMain {
@@ -127,11 +127,13 @@
         margin: 5px;
         border-radius: 10px;
         background-color: transparent;
+        cursor: pointer;
     }
 
         .IzbornikStavka:hover {
             background-color: #efeff5;
             color: darkgray;
+            cursor: pointer;
         }
 
     .zaFont {
@@ -209,7 +211,7 @@
     <div id="LijeviNavBar">
         <ul id="lijeviNav" class="nav nav-pills nav-stacked" role="tablist">
             <li>
-                <button class="IzbornikStavka" onclick="window.location = '/Vjencanje/PrikazPocetne?KorisnikID=@Model.KorisnikID'">Pocetna</button> <br />
+                <button class="IzbornikStavka" onclick="window.location = '/Muzika/PrikazBendova?KorisnikID=@Model.KorisnikID'">Muzika</button> <br />
             </li>
             <li>
                 <button class="IzbornikStavka" onclick="window.location = '/Cvijece/PrikazCvijeca?KorisnikID=@Model.KorisnikID'">Cvijece</button> <br />
@@ -246,23 +248,11 @@
                 <br />
             </li>
             <li>
-                <button class="IzbornikStavka" onclick="window.location = '/Rezervacija/PrikazRezervacija?KorisnikID=@Model.KorisnikID'">Rezervacije</button>
-                <br />
-            </li>
-            <li>
-                <button class="IzbornikStavka">Evidentiraj novu narudžbu IMPLEMENTIRATI</button>
-                <br />
-            </li>
-            <li>
-                <button class="IzbornikStavka">Pregled računa (fakture) IMPLEMENTIRATI</button>
-                <br />
-            </li>
-            <li>
                 <button class="IzbornikStavka" onclick="window.location = '/Sala/PrikazSala?KorisnikID=@Model.KorisnikID'">Sale</button>
                 <br />
             </li>
         </ul>
-    </div >
+    </div>
     <div id="glavni">
         @if (Model.RolaID == 1)
         {
@@ -272,26 +262,26 @@
 
         @foreach (var x in Model.pozivnice)
         {
-    <div class="okvir">
-        <div id="slika"><img id="prikazSlike" src="~/Slike/@x.PutanjaDoSlikePozivnice" /></div>
-        <div id="opis">
-            <label class="zaFont">Cijena pozivnice: @x.CijenaPozivnice KM</label><br />
-            <label class="zaFont">Opis pozivnice: @x.OpisPozivnice</label><br />
-            <label class="zaFont" hidden>PozivnicaID @x.PozivnicaID </label><br />
+            <div class="okvir">
+                <div id="slika"><img id="prikazSlike" src="~/Slike/@x.PutanjaDoSlikePozivnice" /></div>
+                <div id="opis">
+                    <label class="zaFont">Cijena pozivnice: @x.CijenaPozivnice KM</label><br />
+                    <label class="zaFont">Opis pozivnice: @x.OpisPozivnice</label><br />
+                    <label class="zaFont" hidden>PozivnicaID @x.PozivnicaID </label><br />
 
-        </div>
-        <div id="buttons">
-            @if (Model.RolaID == 1)
-            {<button class="btn2" style="color:mediumseagreen" onclick="window.location = '/Pozivnica/EvidentirajPozivnicu?KorisnikID=@Model.KorisnikID&PozivnicaID=@x.PozivnicaID'">Uredi</button>
-                <button class="btn2" style="color: indianred" onclick="window.location = '/Pozivnica/ObrisiPozivnicu?KorisnikID=@Model.KorisnikID&PozivnicaID=@x.PozivnicaID'">Obriši</button>
-            }
-            else
-            {
-                <button id="btn3" style="color: black" onclick="window.location = '/Pozivnica/DodajURezervaciju?KorisnikID=@Model.KorisnikID&PozivnicaID=@x.PozivnicaID'">Dodaj u rezervaciju</button>
+                </div>
+                <div id="buttons">
+                    @if (Model.RolaID == 1)
+                    {<button class="btn2" style="color:mediumseagreen" onclick="window.location = '/Pozivnica/EvidentirajPozivnicu?KorisnikID=@Model.KorisnikID&PozivnicaID=@x.PozivnicaID'">Uredi</button>
+                        <button class="btn2" style="color: indianred" onclick="window.location = '/Pozivnica/ObrisiPozivnicu?KorisnikID=@Model.KorisnikID&PozivnicaID=@x.PozivnicaID'">Obriši</button>
+                    }
+                    else
+                    {
+                        <button id="btn3" style="color: black" onclick="window.location = '/Pozivnica/DodajURezervaciju?KorisnikID=@Model.KorisnikID&PozivnicaID=@x.PozivnicaID'">Dodaj u rezervaciju</button>
 
-            }
-        </div>
-    </div>
+                    }
+                </div>
+            </div>
         }
     </div>
 

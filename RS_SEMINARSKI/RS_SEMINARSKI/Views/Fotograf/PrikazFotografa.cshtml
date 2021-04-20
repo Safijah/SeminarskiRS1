@@ -21,7 +21,7 @@
     }
 
     #LijeviNavBar {
-        height: 800px;
+        height: 600px;
         width: 21%;
         float: left;
         background-color: whitesmoke;
@@ -31,6 +31,7 @@
         opacity: 1.5;*/
         margin: 30px;
         border-radius: 10px;
+        cursor: pointer;
     }
 
     #NavMain {
@@ -122,11 +123,13 @@
         margin: 5px;
         border-radius: 10px;
         background-color: transparent;
+        cursor: pointer;
     }
 
         .IzbornikStavka:hover {
             background-color: #efeff5;
             color: darkgray;
+            cursor: pointer;
         }
 
     .zaFont {
@@ -205,7 +208,7 @@
     <div id="LijeviNavBar">
         <ul id="lijeviNav" class="nav nav-pills nav-stacked" role="tablist">
             <li>
-                <button class="IzbornikStavka" onclick="window.location = '/Vjencanje/PrikazPocetne?KorisnikID=@Model.KorisnikID'">Pocetna</button> <br />
+                <button class="IzbornikStavka" onclick="window.location = '/Muzika/PrikazBendova?KorisnikID=@Model.KorisnikID'">Muzika</button> <br />
             </li>
             <li>
                 <button class="IzbornikStavka" onclick="window.location = '/Cvijece/PrikazCvijeca?KorisnikID=@Model.KorisnikID'">Cvijece</button> <br />
@@ -239,18 +242,6 @@
             </li>
             <li>
                 <button class="IzbornikStavka" onclick="window.location = '/Pozivnica/PrikazPozivnica?KorisnikID=@Model.KorisnikID'">Pozivnice</button>
-                <br />
-            </li>
-            <li>
-                <button class="IzbornikStavka" onclick="window.location = '/Rezervacija/PrikazRezervacija?KorisnikID=@Model.KorisnikID'">Rezervacije</button>
-                <br />
-            </li>
-            <li>
-                <button class="IzbornikStavka">Evidentiraj novu narudžbu IMPLEMENTIRATI</button>
-                <br />
-            </li>
-            <li>
-                <button class="IzbornikStavka">Pregled računa (fakture) IMPLEMENTIRATI</button>
                 <br />
             </li>
             <li>
