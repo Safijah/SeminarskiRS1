@@ -35,13 +35,11 @@ class DodajUredi extends Component {
         this.setState({KorisnicnoIme:event.target.value});
       }
       handleSubmit(event){
-        event.preventDefault();
-
-
-        axios.post("https://localhost:44367/AdminApi", this.state)
-          .then(function (response) {
-            console.log(response);
-          })
+        console.log(this.state);
+        // axios.post("https://localhost:44367/AdminApi", this.state)
+        //   .then(function (response) {
+        //     console.log(response);
+        //   })
 
       }
             
