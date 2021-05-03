@@ -1,9 +1,12 @@
-
-import './App.css';
-
+import React from 'react'
+import DodajUredi from './Component/DodajUredi/DodajUredi';
+import Tabela from './Container/Tabela'
 function App() {
+ 
   return (
-    <div></div>
+    <div>
+    <DodajUredi/>
+    </div>
   );
 }
 
