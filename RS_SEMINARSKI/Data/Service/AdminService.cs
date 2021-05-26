@@ -43,9 +43,18 @@ namespace Data.Service
             {
                 ImeKorisnika = a.ImeKorisnika,
                 PrezimeKorisnika = a.PrezimeKorisnika,
-                Email = a.Email
+                Email = a.Email,
+                KorisnikID=a.Id
             }).FirstOrDefault();
             return vm;
+        }
+        public void EditAdmina(KorisnikEvidentirajVM vm)
+        {
+            var korisnik = _context.Korisnici.Find(vm.KorisnikID);
+            korisnik.ImeKorisnika = vm.ImeKorisnika;
+            korisnik.PrezimeKorisnika = vm.PrezimeKorisnika;
+            _context.SaveChanges();
+            
         }
     }
 }

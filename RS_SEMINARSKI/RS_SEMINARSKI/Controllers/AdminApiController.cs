@@ -38,5 +38,11 @@ namespace RS_SEMINARSKI.Controllers
         {
             return Ok(_adminInterface.GetAdmin(id));
         }
+        [HttpPut]
+        public IActionResult EditAdmina(KorisnikEvidentirajVM vm )
+        {
+            _adminInterface.EditAdmina( vm);
+            return Ok();
+        }
     }
 }

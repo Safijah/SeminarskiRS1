@@ -11,5 +11,6 @@ namespace Data.Interface
         List<Korisnik> GetAdmina();
         void DodajAdministratora(KorisnikEvidentirajVM vm);
         public KorisnikEvidentirajVM GetAdmin(string id);
+        void EditAdmina(KorisnikEvidentirajVM vm);
     }
 }

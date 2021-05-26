@@ -39,6 +39,8 @@ namespace RS_SEMINARSKI
             services.AddControllersWithViews();
             services.AddTransient<IEmailService, EmailService>();
             services.AddTransient<IAdminService, AdminService>();
+            services.AddTransient<IKuharService, KuharService>();
+            services.AddTransient<IKonobarService, KonobarService>();
             services.AddRazorPages();
             services.AddSignalR();
             services.AddCors();

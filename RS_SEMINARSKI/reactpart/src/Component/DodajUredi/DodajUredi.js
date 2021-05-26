@@ -5,16 +5,16 @@ class DodajUredi extends Component {
     constructor(props){
         super(props);
     this.state = {
-       
-        ime: "",
-        prezime: "",
+        KorisnikID:"",
+        ImeKorisnika: "",
+        PrezimeKorisnika: "",
         KorisnicnoIme: "",
         Email: "",
         
 
     }
-    this.handleIme = this.handleIme.bind(this);
-    this.handlePrezime = this.handlePrezime.bind(this);
+    this.handleImeKorisnika = this.handleImeKorisnika.bind(this);
+    this.handlePrezimeKorisnika = this.handlePrezimeKorisnika.bind(this);
     this.handleEmail = this.handleEmail.bind(this);
     this.handleKorisnicno = this.handleKorisnicno.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -22,11 +22,11 @@ class DodajUredi extends Component {
 
 
 }
-    handleIme(event) {
-        this.setState({ime:event.target.value});
+    handleImeKorisnika(event) {
+        this.setState({ImeKorisnika:event.target.value});
       } 
-      handlePrezime(event) {
-        this.setState({prezime:event.target.value});
+      handlePrezimeKorisnika(event) {
+        this.setState({PrezimeKorisnika:event.target.value});
       } 
       handleEmail(event) {
         this.setState({Email:event.target.value});
@@ -35,23 +35,32 @@ class DodajUredi extends Component {
         this.setState({KorisnicnoIme:event.target.value});
       }
       handleSubmit(event){
+        event.preventDefault();
         console.log(this.state);
+       
         // axios.post("https://localhost:44367/AdminApi", this.state)
         //   .then(function (response) {
         //     console.log(response);
         //   })
 
+          axios.put("https://localhost:44367/AdminApi",this.state)
+              .then(function (response) {
+                  console.log(response);
+              })
+
       }
             
       componentDidMount(){
-        // axios.get("https://localhost:44367/AdminApi/c249e795-9ecd-4fde-a8b9-460043d21a1e").then(result=>(
-        //     this.setState({
-        //         ime:result.data.imeKorisnika,
-        //         prezime:result.data.prezimeKorisnika,
-        //         KorisnicnoIme:" ",
-        //         Email:result.data.email
-        //     })
-        // ));
+        
+        axios.get("https://localhost:44367/AdminApi/c249e795-9ecd-4fde-a8b9-460043d21a1e").then(result=>(
+            this.setState({
+                KorisnikID:result.data.korisnikID,
+                ImeKorisnika:result.data.imeKorisnika,
+                PrezimeKorisnika:result.data.prezimeKorisnika,
+                KorisnicnoIme:" ",
+                Email:result.data.email
+            })
+        ));
       }
       render() {
 
@@ -62,11 +71,11 @@ class DodajUredi extends Component {
                 <form onSubmit={this.handleSubmit}>
                     <div>
                         <label>Ime</label>
-                        <input type="text" className="input_polje" value={this.state.ime} onChange={this.handleIme} />
+                        <input type="text" className="input_polje" value={this.state.ImeKorisnika} onChange={this.handleImeKorisnika} />
                     </div>
                     <div>
-                        <label>Prezime</label>
-                        <input type="text" className="input_polje" value={this.state.prezime} onChange={this.handlePrezime}/>
+                        <label>PrezimeKorisnika</label>
+                        <input type="text" className="input_polje" value={this.state.PrezimeKorisnika} onChange={this.handlePrezimeKorisnika}/>
                     </div>
                     <div>
                         <label>Email</label>

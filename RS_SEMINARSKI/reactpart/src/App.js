@@ -1,11 +1,11 @@
 import React from 'react'
-import DodajUredi from './Component/DodajUredi/DodajUredi';
-import Tabela from './Container/Tabela'
+import Main from './Component/DodajUredi/Main/Main';
+
 function App() {
  
   return (
     <div>
-    <DodajUredi/>
+      <Main/>
     </div>
   );
 }

@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import Button from '@material-ui/core/Button';
 
-import './Tabela.css';
+import './Konobari.css';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -27,7 +27,6 @@ const StyledTableRow = withStyles((theme) => ({
   root: {
     '&:nth-of-type(odd)': {
       backgroundColor: theme.palette.action.hover,
-      
     },
   },
 }))(TableRow);
@@ -44,13 +43,13 @@ const useStyles = makeStyles({
 
 
 
-function Tabela() {
+function Konobari() {
   const classes = useStyles();
 
-  const [Admini,SetAdmini]=useState({data: []});
+  const [Konobari,SetKonobari]=useState({data: []});
   useEffect(()=>{
-    axios.get("https://localhost:44367/AdminApi").then(result=>(
-    SetAdmini({data:result.data})
+    axios.get("https://localhost:44367/KonobarApi").then(result=>(
+      SetKonobari({data:result.data})
     ))
   },[]);
   return (
@@ -64,24 +63,21 @@ function Tabela() {
       <Table className={classes.table} aria-label="customized table">
         <TableHead>
           <TableRow>
-            <StyledTableCell >Ime</StyledTableCell>
+            <StyledTableCell>Ime</StyledTableCell>
             <StyledTableCell align="right">Prezime</StyledTableCell>
-            <StyledTableCell align="right">E-mail</StyledTableCell>
-            <StyledTableCell align="right">Rola</StyledTableCell>
-            <StyledTableCell align="right" >Akcija</StyledTableCell>
+            <StyledTableCell align="right">Plata</StyledTableCell>
+            <StyledTableCell align="right">Akcija</StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {Admini.data.map((row) => (
-            <StyledTableRow key={row.id}>
+          {Konobari.data.map((row) => (
+            <StyledTableRow key={row.konobarID}>
               <StyledTableCell component="th" scope="row">
-                {row.imeKorisnika}
+                {row.imeKonobara}
               </StyledTableCell>
-              <StyledTableCell align="right">{row.prezimeKorisnika}</StyledTableCell>
-              <StyledTableCell align="right">{row.email}</StyledTableCell>
-              <StyledTableCell align="right">Administrator</StyledTableCell>
-              <StyledTableCell align="right" ><Button variant="outlined" >Uredi</Button>
-</StyledTableCell>
+              <StyledTableCell align="right">{row.prezimeKonobara}</StyledTableCell>
+              <StyledTableCell align="right">{row.plataKonobara}</StyledTableCell>
+              <StyledTableCell align="right"><Button variant="outlined">Uredi</Button></StyledTableCell>
             </StyledTableRow>
           ))}
         </TableBody>
@@ -91,4 +87,4 @@ function Tabela() {
   );
 }
 
-export default Tabela;
+export default Konobari;

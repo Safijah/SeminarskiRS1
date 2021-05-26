@@ -1,0 +1,104 @@
+#Pocetna {
+    background-color: white;
+    width: 70%;
+    height: 600px;
+    position: relative;
+    top: 15px;
+    left:200px;
+    border-radius:10px;
+}
+
+label {
+    display: block;
+    position: relative;
+    left: 100px;
+    top: 40px;
+    font-size: 10px;
+}
+
+.input_polje {
+    width: 400px;
+    position: relative;
+    left: 100px;
+    top: 40px;
+    border: 1px solid transparent;
+    border-bottom: 1px solid lightblue;
+}
+
+#Slika {
+    background-image: url("https://i.pinimg.com/564x/e2/9d/ed/e29ded39b4663bdbe0c2bc810f9aa84a.jpg");
+    background-color: aqua;
+    width: 35%;
+    height: 600px;
+    float: left;
+    background-size: cover;
+    background-position: center;
+}
+
+
+#Submit {
+    width: 500px;
+    position: relative;
+    left: 60px;
+    top: 70px;
+    margin-top: 20px;
+    border: 1px solid transparent;
+    border-radius: 25px;
+    background-color: lightgreen;
+    color: white;
+}
+
+body {
+    background-image: url("https://i.pinimg.com/564x/8f/c6/b7/8fc6b7eca6e1d9bba6500efc0cfd8bda.jpg");
+    background-size: cover;
+    background-position: center;
+    opacity: 0.9;
+}
+
+span {
+    color: lightblue;
+    padding-top: 40px;
+    font-size: 40px;
+    padding-left: 50px;
+    position: relative;
+    top: 20px;
+    left: 40px;
+}
+
+#input_polje {
+    width: 320px;
+    position: relative;
+    left: 100px;
+    top: 40px;
+    border: 1px solid transparent;
+    border-bottom: 1px solid lightblue;
+}
+
+#Pass {
+    color: black;
+    font-size: 10px;
+    position: absolute;
+    top: 250px;
+    left: 800px;
+}
+
+#Chekc {
+    margin-right: 2px;
+}
+.text-danger {
+    
+    font-size: 10px;
+   
+}
+#potvrdi{
+    padding-top:10px;
+}
+.btn {
+    position: relative;
+   /* margin-left: 10px;*/
+    margin-top: 25px;
+    background-color: whitesmoke;
+    width: 25%;
+    color: dimgray;
+    font-size: 17px;
+}
