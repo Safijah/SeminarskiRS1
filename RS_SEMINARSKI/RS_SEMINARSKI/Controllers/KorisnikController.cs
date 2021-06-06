@@ -135,7 +135,7 @@ namespace RS_SEMINARSKI.Controllers
                     var user = await _userManager.FindByNameAsync(KorisnickoIme);
                     if (user != null)
                     {
-                        string url = $"https://localhost:44367/Korisnik/ResetSifre?Email={KorisnickoIme}";
+                        string url = $"https://p2048.app.fit.ba/Korisnik/ResetSifre?Email={KorisnickoIme}";
                         await _emailService.SendEmailAsync(user.Email, "Reset Šifre", "<h1>Pratite instrukcije da resetujete Vašu šifru</h1>" +
                     $"<p>Da ponovo postavite Vašu šifru <a href='{url}'>Kliknite ovdje</a></p>");
                     }

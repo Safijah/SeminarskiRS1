@@ -150,7 +150,7 @@ namespace RS_SEMINARSKI.Controllers
             dekoracija.VrstaDekoracije = x.NazivDekoracije;
             _dbContext.SaveChanges();
             var nazivv = _dbContext.TipDekoracija.Where(a => a.TipDekoracijeID == dekoracija.TipDekoracijeID).FirstOrDefault().NazivTipaDekoracije;
-            _hubContext.Clients.All.SendAsync("prijemDekoracije", dekoracija.CijenaDekoracije, nazivv, dekoracija.PutanjaDoSlikeDekoracije,x.NazivDekoracije,x.KorisnikID,dekoracija.DekoracijaID);
+            _hubContext.Clients.All.SendAsync("prijemDekoracije", dekoracija.CijenaDekoracije, nazivv, dekoracija.PutanjaDoSlikeDekoracije,x.NazivDekoracije,dekoracija.DekoracijaID);
 
             return Redirect("PrikazDekoracije?KorisnikID=" + x.KorisnikID);
         }

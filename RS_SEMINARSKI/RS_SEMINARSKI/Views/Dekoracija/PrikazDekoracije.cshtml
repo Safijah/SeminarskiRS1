@@ -299,6 +299,7 @@
                     <label class="zaFont">Tip dekoracije: @x.TipDekoracije</label><br />
                     <label class="zaFont">Cijena: @x.CijenaDekoracije KM</label><br />
                     <label class="zaFont" hidden>DekoracijaID @x.DekoracijaID</label><br />
+                   
                 </div>
                 <div id="buttons">
                     @if (Model.RolaID == 1)
@@ -318,7 +319,7 @@
             </div>
         }
 
-
+        <input id="korisnik" asp-for="KorisnikID" hidden />
     </div>
 
 </div>
