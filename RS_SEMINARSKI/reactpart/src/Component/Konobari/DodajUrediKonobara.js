@@ -1,6 +1,8 @@
 import axios from 'axios';
 import React, { Component } from 'react'
+import Kuhari from '../Kuhari/Kuhari';
 import './DodajUrediKonobara.css'
+import Konobari from './Konobari';
 class DodajUrediKonobara extends Component {
     constructor(props){
         super(props);
@@ -46,10 +48,22 @@ class DodajUrediKonobara extends Component {
               })
 
       }
-            
+    konobari=()=>{
+        console.log(this.props);
+            this.props.history.replace({pathname: '/konobari'})
+
+      }
+    kuhari=()=>{
+        this.props.history.replace({pathname: '/kuhari'})
+
+  }
+  rezervacije=()=>{
+    this.props.history.replace({pathname: '/rezervacije'})
+
+}
       componentDidMount(){
         
-        axios.get("https://localhost:44367/KonobarApi/1").then(result=>(
+        axios.get("https://localhost:44367/KonobarApi/"+this.props.match.params.id).then(result=>(
             this.setState({
                 KonobarID:result.data.konobarID,
                 ImeKonobara:result.data.imeKonobara,
@@ -61,6 +75,13 @@ class DodajUrediKonobara extends Component {
       render() {
 
         return <div>
+            <div className="flexx">
+            <button className="button" onClick={this.konobari}>Konobari</button>
+            <button className="button" onClick={this.kuhari}>Kuhari</button>
+            <button className="button" onClick={this.rezervacije}>Rezervacije</button>
+            </div>
+                  <button onClick={()=>{this.props.history.goBack()}} className="button">Prethodno</button>
+
             <div id="Pocetna">
                 <div id="Slika">
                 </div>

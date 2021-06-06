@@ -102,3 +102,17 @@ span {
     color: dimgray;
     font-size: 17px;
 }
+.flexx{
+    display: flex;
+    flex-flow: row;
+    justify-content: space-evenly;
+
+}
+.flexx button{
+    border: none;
+    border-radius: 20px;
+
+}
+.flexx button:hover{
+    background-color: lightcyan;
+}
