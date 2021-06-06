@@ -47,9 +47,23 @@ class DodajUrediKuhara extends Component {
 
       }
             
-      componentDidMount(){
+      konobari=()=>{
+        console.log(this.props);
+            this.props.history.replace({pathname: '/konobari'})
+
+      }
+    kuhari=()=>{
+        this.props.history.replace({pathname: '/kuhari'})}
+        rezervacije=()=>{
+            this.props.history.replace({pathname: '/rezervacije'})
         
-        axios.get("https://localhost:44367/KuharApi/1").then(result=>(
+        }
+        rezervacije=()=>{
+            this.props.history.replace({pathname: '/rezervacije'})
+        
+        }
+      componentDidMount(){
+        axios.get("https://localhost:44367/KuharApi/"+this.props.match.params.id).then(result=>(
             this.setState({
                 KuharID:result.data.kuharID,
                 ImeKuhara:result.data.imeKuhara,
@@ -58,9 +72,18 @@ class DodajUrediKuhara extends Component {
             })
         ));
       }
+      
       render() {
 
         return <div>
+             <div className="flexx">
+            <button className="button" onClick={this.konobari}>Konobari</button>
+            <button className="button" onClick={this.kuhari}>Kuhari</button>
+            <button className="button" onClick={this.rezervacije}>Rezervacije</button>
+            
+            </div>
+      <button onClick={()=>{this.props.history.goBack()}} className="button">Prethodno</button>
+
             <div id="Pocetna">
                 <div id="Slika">
                 </div>

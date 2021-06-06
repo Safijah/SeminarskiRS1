@@ -43,7 +43,7 @@ const useStyles = makeStyles({
 
 
 
-function Kuhari() {
+function Kuhari(props) {
   const classes = useStyles();
 
   const [Kuhari,SetKuhari]=useState({data: []});
@@ -52,10 +52,32 @@ function Kuhari() {
     SetKuhari({data:result.data})
     ))
   },[]);
+
+  var Redirect=(id)=>{
+    props.history.push({pathname:props.match.url + '/editkuhar'+'/' + id})
+    
+  }
+  var konobari=()=>{
+        props.history.replace({pathname: '/konobari'})
+
+  }
+ var kuhari=()=>{
+    props.history.replace({pathname: '/kuhari'})
+
+}
+var rezervacije=()=>{
+  props.history.replace({pathname: '/rezervacije'})
+
+}
   return (
     <div>
+          <div className="flexx">
+            <button className="button" onClick={konobari}>Konobari</button>
+            <button className="button" onClick={kuhari}>Kuhari</button>
+            <button className="button" onClick={rezervacije}>Rezervacije</button>
+            </div>
       <br/>
-      <Button variant="outlined">Dodaj novog</Button>
+      <button className="button" onClick={()=>Redirect(0)}>Dodaj novog</button>
       <br/>
       <br/>
 
@@ -77,7 +99,7 @@ function Kuhari() {
               </StyledTableCell>
               <StyledTableCell align="right">{row.prezimeKuhara}</StyledTableCell>
               <StyledTableCell align="right">{row.plataKuhara}</StyledTableCell>
-              <StyledTableCell align="right"><Button variant="outlined">Uredi</Button>
+              <StyledTableCell align="right"><button className="button" onClick={()=>Redirect(row.kuharID)}>Uredi</button>
 </StyledTableCell>
             </StyledTableRow>
           ))}

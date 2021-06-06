@@ -43,19 +43,41 @@ const useStyles = makeStyles({
 
 
 
-function Konobari() {
+function Konobari(props) {
   const classes = useStyles();
 
+  var konobari=()=>{
+        props.history.replace({pathname: '/konobari'})
+
+  }
+var kuhari=()=>{
+    props.history.replace({pathname: '/kuhari'})
+
+}
+var rezervacije=()=>{
+  this.props.history.replace({pathname: '/rezervacije'})
+
+}
   const [Konobari,SetKonobari]=useState({data: []});
   useEffect(()=>{
     axios.get("https://localhost:44367/KonobarApi").then(result=>(
       SetKonobari({data:result.data})
     ))
   },[]);
+  var Redirect=(id)=>{
+    props.history.push({pathname:props.match.url + '/editkonobar'+'/' + id})
+    
+  }
   return (
+    
     <div>
+                <div className="flexx">
+            <button className="button" onClick={konobari}>Konobari</button>
+            <button className="button" onClick={kuhari}>Kuhari</button>
+            <button className="button" onClick={rezervacije}>Rezervacije</button>
+            </div>
       <br/>
-      <Button variant="outlined">Dodaj novog</Button>
+      <button className="button" onClick={()=>Redirect(0)}>Dodaj novog</button>
       <br/>
       <br/>
 
@@ -77,7 +99,9 @@ function Konobari() {
               </StyledTableCell>
               <StyledTableCell align="right">{row.prezimeKonobara}</StyledTableCell>
               <StyledTableCell align="right">{row.plataKonobara}</StyledTableCell>
-              <StyledTableCell align="right"><Button variant="outlined">Uredi</Button></StyledTableCell>
+              <StyledTableCell align="right"><button className="button" onClick={()=>Redirect(row.konobarID)}>Uredi</button>
+</StyledTableCell>
+
             </StyledTableRow>
           ))}
         </TableBody>

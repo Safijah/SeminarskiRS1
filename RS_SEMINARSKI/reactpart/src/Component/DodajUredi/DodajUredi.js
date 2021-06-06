@@ -49,7 +49,19 @@ class DodajUredi extends Component {
               })
 
       }
-            
+      konobari=()=>{
+        console.log(this.props);
+            this.props.history.replace({pathname: '/konobari'})
+
+      }
+    kuhari=()=>{
+        this.props.history.replace({pathname: '/kuhari'})
+
+  }
+  rezervacije=()=>{
+    this.props.history.replace({pathname: '/rezervacije'})
+
+}
       componentDidMount(){
         
         axios.get("https://localhost:44367/AdminApi/c249e795-9ecd-4fde-a8b9-460043d21a1e").then(result=>(
@@ -65,6 +77,13 @@ class DodajUredi extends Component {
       render() {
 
         return <div>
+                   <div className="flexx">
+            <button className="button" onClick={this.konobari}>Konobari</button>
+            <button className="button" onClick={this.kuhari}>Kuhari</button>
+            <button className="button" onClick={this.rezervacije}>Rezervacije</button>
+            </div>
+       <button onClick={()=>{this.props.history.goBack()}} className="button">Prethodno</button>
+
             <div id="Pocetna">
                 <div id="Slika">
                 </div>
