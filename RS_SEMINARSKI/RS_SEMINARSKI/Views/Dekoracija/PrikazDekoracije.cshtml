@@ -25,7 +25,7 @@
         background-image: url("https://i.pinimg.com/564x/8f/c6/b7/8fc6b7eca6e1d9bba6500efc0cfd8bda.jpg");
         background-position: center;
         background-size: cover;
-        opacity: 1.5;
+        /*opacity: 1.5;*/
     }
 
     #LijeviNavBar {
@@ -183,7 +183,7 @@
     }
 
     .btn2 {
-        position: relative;
+        /* position: relative;
         margin-left: 26px;
         margin-top: 15px;
         background-color: whitesmoke;
@@ -193,7 +193,18 @@
         border-radius: 10px;
         border: none;
         opacity: 0.7;
-        cursor: pointer;
+        cursor: pointer;*/
+        position: relative;
+        margin-left: 20px;
+        margin-top: 15px;
+        background-color: whitesmoke;
+        width: 110px;
+        height: 30px;
+        color: dimgray;
+        border-radius: 10px;
+        border: none;
+        opacity: 0.7;
+        float:left;
     }
 
     #btn3 {
@@ -304,8 +315,17 @@
                 <div id="buttons">
                     @if (Model.RolaID == 1)
                     {
-                        <button class="btn2" style="color:mediumseagreen" onclick="window.location = '/Dekoracija/EvidentirajDekoraciju?KorisnikID=@Model.KorisnikID&DekoracijaID=@x.DekoracijaID'">Uredi dekoraciju</button>
-                        <button class="btn2" style="color: indianred" onclick="window.location = '/Dekoracija/ObrisiDekoraciju?KorisnikID=@Model.KorisnikID&DekoracijaID=@x.DekoracijaID'">Obrisi</button>
+                        <button class="btn2" style="color:mediumseagreen" onclick="window.location = '/Dekoracija/EvidentirajDekoraciju?KorisnikID=@Model.KorisnikID&DekoracijaID=@x.DekoracijaID'">Uredi</button>
+                        @if (x.Rezervisano == 0)
+                        {
+
+                            <button class="btn2" style="color: indianred" onclick="window.location = '/Dekoracija/ObrisiDekoraciju?KorisnikID=@Model.KorisnikID&DekoracijaID=@x.DekoracijaID'">Obrisi</button>
+                        }
+                        else
+                        {
+                            <button class="btn2" style="color: indianred"disabled  >Rezervisano</button>
+
+                        }
 
                     }
                     else

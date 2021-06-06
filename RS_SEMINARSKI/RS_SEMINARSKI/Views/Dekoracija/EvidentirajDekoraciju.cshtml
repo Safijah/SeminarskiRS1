@@ -94,14 +94,21 @@
     .input_polje {
         /*margin-top:px;*/
         /*border-style: dashed;*/
-        border: 1px solid transparent;
+        /* border: 1px solid transparent;
         margin-left: 65px;
         padding-top: 4px;
         width: 600px;
         border: 1px solid transparent;
         border-bottom: 1px solid lightblue;
         color: gray;
-        cursor: pointer;
+        cursor: pointer;*/
+        border: 1px solid transparent;
+        margin-left: 65px;
+        padding-top: 4px;
+        width: 500px;
+        border: 1px solid transparent;
+        border-bottom: 1px solid lightblue;
+        color: gray;
     }
 
     #Slika {
@@ -210,12 +217,12 @@
                 <input class="input_polje" asp-for="CijenaDekoracije" /><br />
 
                 <label id="labela">Naziv Dekoracije</label>
-                <input class="input_polje" asp-for="NazivDekoracije" /><br />
+                <input class="input_polje" asp-for="NazivDekoracije" required/><br />
 
                 <label id="labela">Tip dekoracije</label>
-                <select class="input_polje" asp-for="TipDekoracijeID" asp-items="@Model.TipDekoracije"></select> <br />
+                <select class="input_polje" asp-for="TipDekoracijeID" asp-items="@Model.TipDekoracije" required></select> <br />
 
-                <label id="labela" asp-for="SlikaDekoracije" class="control-label">Odaberite sliku</label>
+                <label id="labela" asp-for="SlikaDekoracije" class="control-label" required>Odaberite sliku</label>
                 <input class="input_polje" asp-for="SlikaDekoracije" class="form-control " />
                 <span asp-validation-for="SlikaDekoracije" class="text-danger"></span>
                 <input id="snimi" class="input_polje" type="submit" value="Snimi" />

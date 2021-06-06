@@ -145,16 +145,16 @@
                 <input asp-for="CvijeceID" value="@Model.CvijeceID" hidden />
                 <input asp-for="KorisnikID" value="@Model.KorisnikID" hidden />
                 <label>Vrsta: </label>
-                <input class="input_polje" asp-for="VrstaCvijeca" />
+                <input class="input_polje" asp-for="VrstaCvijeca"  required/>
                 <br />
                 <label>Tip: </label>
                 @*<input class="input_polje" asp-for="TipCvijeca" />*@
-                <select asp-for="TipCvijecaID" asp-items="Model.TipCvijeca"></select>
+                <select asp-for="TipCvijecaID" asp-items="Model.TipCvijeca" required></select>
                 <br />
                 <label>Cijena: </label>
                 <input class="input_polje" asp-for="CijenaCvijeca" />
                 <br />
-                <label asp-for="SlikaCvijeca" class="control-label">Odaberite fotografiju</label>
+                <label asp-for="SlikaCvijeca" class="control-label" required>Odaberite fotografiju </label>
                 <input class="input_poljee" asp-for="SlikaCvijeca" class="form-control " />
                 <span asp-validation-for="SlikaCvijeca" class="text-danger"></span>
                 <br />

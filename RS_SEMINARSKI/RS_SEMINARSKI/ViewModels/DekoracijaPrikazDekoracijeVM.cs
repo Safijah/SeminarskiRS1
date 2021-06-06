@@ -19,12 +19,13 @@ namespace RS_SEMINARSKI.ViewModels
             public string PutanjaDoSlike { get; set; }
             public string  NazivDekoracije { get; set; }
 
-
+            public int Rezervisano { get; set; }
 
         }
         public string  pretraga { get; set; }
         public List<Rows> Dekoracije { get; set; }
         public string KorisnikID { get; set; }
         public int RolaID { get; set; }
+       
     }
 }

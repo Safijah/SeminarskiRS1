@@ -48,6 +48,16 @@ namespace RS_SEMINARSKI.Controllers
             FotografPrikazVM d = new FotografPrikazVM();
              d.fotografi= fotograf;
             d.KorisnikID = KorisnikID;
+            foreach (var x in fotograf)
+            {
+                var ima = _dbContext.RezervacijaFotografi.FirstOrDefault(a => a.FotografID == x.FotografID);
+                if (ima != null)
+                {
+                    x.Rezervisano = 1;
+                }
+                else
+                    x.Rezervisano = 0;
+            }
             if (temp.RolaID == 1)
             {
                 d.RolaID = 1;

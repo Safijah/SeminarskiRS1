@@ -15,7 +15,8 @@ namespace RS_SEMINARSKI.ViewModels
             public string OpisPozivnice { get; set; }
             public string PutanjaDoSlikePozivnice { get; set; }
             public IFormFile SlikaPozivnice { get; set; }
-          
+            public int Rezervisano { get; set; }
+
 
         }
         public string pretraga { get; set; }

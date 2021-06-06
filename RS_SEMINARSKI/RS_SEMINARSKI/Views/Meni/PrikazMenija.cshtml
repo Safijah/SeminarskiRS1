@@ -248,7 +248,15 @@
                     @if (Model.RolaID == 1)
                     {
                         <button class="btn2" style="color:mediumseagreen" onclick="window.location='/Meni/EvidentirajMeni?KorisnikID=@Model.KorisnikID&MeniID=@x.MeniID'">Uredi meni</button>
-                        <button class="btn2" style="color: indianred" onclick="window.location='/Meni/ObrisiMeni?KorisnikID=@Model.KorisnikID&MeniID=@x.MeniID'">Obrisi meni</button>
+                        @if (x.Rezervisano == 0)
+                        {
+                            <button class="btn2" style="color: indianred" onclick="window.location='/Meni/ObrisiMeni?KorisnikID=@Model.KorisnikID&MeniID=@x.MeniID'">Obrisi meni</button>
+                        }
+                        else
+                        {
+                            <button class="btn2" style="color: indianred" disabled>Rezervisano</button>
+
+                        }
                     }
                     else if (Model.RolaID == 2)
                     {

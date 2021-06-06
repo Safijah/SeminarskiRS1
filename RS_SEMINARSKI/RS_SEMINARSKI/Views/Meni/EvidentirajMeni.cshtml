@@ -146,15 +146,15 @@
                 <input asp-for="MeniID" value="@Model.MeniID" hidden />
                 <input asp-for="KorisnikID" value="@Model.KorisnikID" hidden />
                 <label>Naziv: </label>
-                <input class="input_polje" asp-for="NazivMenija" />
+                <input class="input_polje" asp-for="NazivMenija" required/>
                 <br />
                 <label>Tip: </label>
-                <select asp-for="TipMenijaID" asp-items="Model.TipMenija"></select>
+                <select asp-for="TipMenijaID" asp-items="Model.TipMenija" required></select>
                 <br />
                 <label>Cijena: </label>
                 <input class="input_polje" asp-for="CijenaMenija" />
                 <br />
-                <label asp-for="SlikaMenija" class="control-label">Odaberite fotografiju</label>
+                <label asp-for="SlikaMenija" class="control-label" required>Odaberite fotografiju</label>
                 <input class="input_poljee" asp-for="SlikaMenija" class="form-control " />
                 <span asp-validation-for="SlikaMenija" class="text-danger"></span>
                 <br />

@@ -51,6 +51,16 @@ namespace RS_SEMINARSKI.Controllers
             MuzikaPrikazMuzikeVM d = new MuzikaPrikazMuzikeVM();
             d.Bendovi = MuzikaBendovi;
             d.KorisnikID = KorisnikID;
+            foreach (var c in MuzikaBendovi)
+            {
+                var ima = _dbContext.Rezervacije.FirstOrDefault(a => a.BendID == c.BendID);
+                if (ima != null)
+                {
+                    c.Rezervisano = 1;
+                }
+                else
+                    c.Rezervisano = 0;
+            }
             if (temp.RolaID == 1)
             {
                 d.RolaID = 1;

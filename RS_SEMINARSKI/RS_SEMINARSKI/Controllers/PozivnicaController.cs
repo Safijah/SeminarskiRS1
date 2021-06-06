@@ -3,7 +3,9 @@ using Data.EF;
 using Data.EFModels;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using Microsoft.Extensions.Logging;
+using RS_SEMINARSKI.notHub;
 using RS_SEMINARSKI.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -19,13 +21,15 @@ namespace RS_SEMINARSKI.Controllers
         private readonly ILogger<HomeController> _logger;
         private readonly IWebHostEnvironment WebHostEnvironment;
         private IEmailService _emailService;
+        IHubContext<NotHub> _hubContext;
         public PozivnicaController(ApplicationDbContext dbContext, ILogger<HomeController> logger,
-            IWebHostEnvironment webhostEnvironment,  IEmailService emailService)
+            IWebHostEnvironment webhostEnvironment,  IEmailService emailService, IHubContext<NotHub> hubContext)
         {
             _dbContext = dbContext;
             _logger = logger;
             WebHostEnvironment = webhostEnvironment;
             _emailService = emailService;
+            _hubContext = hubContext;
         }
         public IActionResult PrikazPozivnica(string  KorisnikID)
         {
@@ -40,6 +44,17 @@ namespace RS_SEMINARSKI.Controllers
                 }).ToList();
             Korisnik temp = _dbContext.Korisnici.Find(KorisnikID);
             PozivnicaPrikazVM x = new PozivnicaPrikazVM();
+
+            foreach (var c in pozivnice)
+            {
+                var ima = _dbContext.Rezervacije.FirstOrDefault(a => a.PozivnicaID == c.PozivnicaID);
+                if (ima != null)
+                {
+                    c.Rezervisano = 1;
+                }
+                else
+                    c.Rezervisano = 0;
+            }
             if (temp.RolaID == 1)
                 x.RolaID = 1;
             else
@@ -100,6 +115,8 @@ namespace RS_SEMINARSKI.Controllers
             if (!string.IsNullOrEmpty(x.PutanjaDoSlikePozivnice))
                 pozivnica.PutanjaDoSlikePozivnice = x.PutanjaDoSlikePozivnice;
             _dbContext.SaveChanges();
+           
+                _hubContext.Clients.All.SendAsync("prijemPozivnica",pozivnica.CijenaPozivnice, pozivnica.OpisPozivnice, pozivnica.PutanjaDoSlikePozivnice ,pozivnica.PozivnicaID);
             return Redirect("PrikazPozivnica?KorisnikID=" + x.KorisnikID);
         }
        

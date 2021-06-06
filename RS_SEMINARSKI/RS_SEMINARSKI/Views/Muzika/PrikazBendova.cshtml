@@ -181,7 +181,7 @@
         margin-left: 26px;
         margin-top: 15px;
         background-color: whitesmoke;
-        width: 115px;
+        width: 100px;
         height: 30px;
         color: dimgray;
         border-radius: 10px;
@@ -300,9 +300,16 @@
                 <div id="buttons">
                     @if (Model.RolaID == 1)
                     {
-                        <button class="btn2" style="color:mediumseagreen" onclick="window.location = '/Muzika/EvidentirajBendove?KorisnikID=@Model.KorisnikID&BendID=@x.BendID'">Uredi bend</button>
-                        <button class="btn2" style="color: indianred" onclick="window.location = '/Muzika/ObrisiBend?KorisnikID=@Model.KorisnikID&BendID=@x.BendID'">Obrisi</button>
+                        <button class="btn2" style="color:mediumseagreen" onclick="window.location = '/Muzika/EvidentirajBendove?KorisnikID=@Model.KorisnikID&BendID=@x.BendID'">Uredi</button>
+                        @if (x.Rezervisano == 0)
+                        {
+                            <button class="btn2" style="color: indianred" onclick="window.location = '/Muzika/ObrisiBend?KorisnikID=@Model.KorisnikID&BendID=@x.BendID'">Obrisi</button>
+                        }
+                        else
+                        {
+                            <button class="btn2" style="color: indianred" disabled>Rezervisano</button>
 
+                        }
                     }
                     else
                     {

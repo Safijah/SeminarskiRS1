@@ -142,7 +142,7 @@
         /*background: rgba(76, 175, 80, 0.3);*/ /* Green background with 30% opacity */
         /*background-color: purple;*/
         background-color: transparent;
-        width: 300px;
+        width: 280px;
         height: 335px;
         float: left;
         margin-top: 30px;
@@ -176,7 +176,7 @@
         margin-left: 26px;
         margin-top: 15px;
         background-color: whitesmoke;
-        width: 115px;
+        width: 100px;
         height: 30px;
         color: dimgray;
         border-radius: 10px;
@@ -280,7 +280,16 @@
                 <div id="buttons">
                     @if (Model.RolaID == 1)
                     {<button class="btn2" style="color:mediumseagreen" onclick="window.location = '/Sala/EvidentirajSalu?KorisnikID=@Model.KorisnikID&SalaID=@x.SalaID'">Uredi</button>
-                        <button class="btn2" style="color: indianred" onclick="window.location = '/Sala/ObrisiSalu?KorisnikID=@Model.KorisnikID&SalaID=@x.SalaID'">Obriši</button>
+                        @if (x.Rezervisano == 0)
+                        {
+                            <button class="btn2" style="color: indianred" onclick="window.location = '/Sala/ObrisiSalu?KorisnikID=@Model.KorisnikID&SalaID=@x.SalaID'">Obriši</button>
+
+                        }
+                        else
+                        {
+                            <button class="btn2" >Rezervisano</button>
+
+                        }
                     }
                     else
                     {

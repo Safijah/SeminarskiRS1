@@ -33,7 +33,7 @@
         position: relative;
         background-color: white;
         height: 500px;
-        width: 80%;
+        width: 83%;
         top: 60px;
         left: 130px;
     }
@@ -97,16 +97,31 @@
     .input_polje {
         /*margin-top:px;*/
         /*border-style: dashed;*/
-        border: 1px solid transparent;
+        /*border: 1px solid transparent;
         margin-left: 65px;
         padding-top: 4px;
         width: 600px;
         border: 1px solid transparent;
         border-bottom: 1px solid lightblue;
         color: gray;
-        cursor: pointer;
+        cursor: pointer;*/
+        border: 1px solid transparent;
+        margin-left: 65px;
+        padding-top: 4px;
+        width: 500px;
+        border: 1px solid transparent;
+        border-bottom: 1px solid lightblue;
+        color: gray;
     }
-
+    .input_poljee {
+        border: 1px solid transparent;
+        position:absolute;
+        right:10px;
+        width: 500px;
+        border: 1px solid transparent;
+        border-bottom: 1px solid lightblue;
+        color: gray;
+    }
     #Slika {
         /*background-color:yellow;*/
         height: 100%;
@@ -236,7 +251,7 @@
                 @*<label>KorisnikID</label>*@
                 <input hidden class="input_polje" id="KorisnikID" asp-for="KorisnikID" value="@Model.KorisnikID" readonly /><br />
                 <label id="labela">NazivBenda</label>
-                <input class="input_polje" asp-for="NazivBenda" /><br />
+                <input class="input_polje" asp-for="NazivBenda" required/><br />
 
                 <label id="labela">Satnica sviranja</label>
                 <input class="input_polje" asp-for="SatnicaSviranja" /><br />
@@ -261,7 +276,7 @@
                 <label id="labela" asp-for="SlikaBenda" class="control-label">Odaberite sliku</label>
                 <input class="input_polje" asp-for="SlikaBenda" class="form-control " />
                 <span asp-validation-for="SlikaBenda" class="text-danger"></span>
-                <input id="snimi" class="input_polje" type="submit" value="Snimi" />
+                <input id="snimi" class="input_poljee" type="submit" value="Snimi" />
                 }
 
 

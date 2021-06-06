@@ -17,6 +17,11 @@
         box-sizing: border-box;
     }
 
+    body {
+        background-image: url("https://i.pinimg.com/564x/8f/c6/b7/8fc6b7eca6e1d9bba6500efc0cfd8bda.jpg");
+        background-position: center;
+        background-size: cover;
+    }
     #KONT_STRANICE {
         height: 100%;
         width: 100%;
@@ -30,7 +35,7 @@
         border-radius: 10px;
         position: relative;
         background-color: white;
-        height: 600px;
+        height: 620px;
         width: 80%;
         top: 40px;
         left: 130px;
@@ -95,14 +100,21 @@
     .input_polje {
         /*margin-top:px;*/
         /*border-style: dashed;*/
-        border: 1px solid transparent;
+        /* border: 1px solid transparent;
         margin-left: 65px;
         padding-top: 4px;
         width: 600px;
         border: 1px solid transparent;
         border-bottom: 1px solid lightblue;
         color: gray;
-        cursor: pointer;
+        cursor: pointer;*/
+        border: 1px solid transparent;
+        margin-left: 65px;
+        padding-top: 4px;
+        width: 500px;
+        border: 1px solid transparent;
+        border-bottom: 1px solid lightblue;
+        color: gray;
     }
 
     #Slika {
@@ -169,7 +181,7 @@
         position: relative;
         left: 66px;
     }
-
+  
     #snimi {
         border: 1px solid transparent;
         margin-left: 20px;
@@ -238,7 +250,7 @@
 
                 <div id="blok">
                 <label id="labela">Broj kreditne kartice</label>
-                <input class="input_polje" asp-for="KreditnaKarticaBroj" id="BrojKreditneID" />
+                <input class="input_polje" asp-for="KreditnaKarticaBroj" id="BrojKreditneID" required />
                 <br />
 
 
@@ -253,7 +265,7 @@
                 <br />
 
                 <label id="labela">CVC</label>
-                <input class="input_polje" asp-for="CVC" id="CVCID" />
+                <input class="input_polje" asp-for="CVC" id="CVCID" required/>
                 <br />
 
                 <br />

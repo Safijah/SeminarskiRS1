@@ -154,10 +154,10 @@
                 <input id="KuharId" asp-for="KuharID" value="@Model.KuharID" hidden />
                 <input id="KorisnikId" asp-for="KorisnikID" value="@Model.KorisnikID" hidden />
                 <label>Ime: </label>
-                <input class="input_polje" asp-for="ImeKuhara" />
+                <input class="input_polje" asp-for="ImeKuhara" required/>
                 <br />
                 <label>Prezime: </label>
-                <input class="input_polje" asp-for="PrezimeKuhara" />
+                <input class="input_polje" asp-for="PrezimeKuhara"  required/>
                 <br />
                 <label>Plata: </label>
                 <input class="input_polje" asp-for="PlataKuhara" />

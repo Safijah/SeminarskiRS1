@@ -39,6 +39,16 @@ namespace RS_SEMINARSKI.Controllers
                 }).ToList();
             Korisnik temp = _dbContext.Korisnici.Find(KorisnikID);
             CvijecePrikazVM x = new CvijecePrikazVM();
+            foreach (var c in cvijece)
+            {
+                var ima = _dbContext.RezervacijaCvijece.FirstOrDefault(a => a.CvijeceID == c.CvijeceID);
+                if (ima != null)
+                {
+                    c.Rezervisano = 1;
+                }
+                else
+                    c.Rezervisano = 0;
+            }
             if (temp.RolaID == 1)
                 x.RolaID = 1;
             else

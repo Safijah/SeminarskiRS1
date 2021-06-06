@@ -168,18 +168,18 @@
 
                 <input asp-for="KorisnikID" value="@Model.KorisnikID" hidden />
                 <label>Ime fotografa</label>
-                <input class="input_polje" asp-for="ImeFotografa" />
+                <input class="input_polje" asp-for="ImeFotografa" required/>
                 <br />
                 <label>Prezime fotografa</label>
-                <input class="input_polje" asp-for="PrezimeFotografa" />
+                <input class="input_polje" asp-for="PrezimeFotografa" required />
                 <br />
                 <label>Cijena slikanja</label>
                 <input class="input_polje" asp-for="SatnicaSlikanja" />
                 <br />
                 <label>Naziv stila</label>
-                <select class="input_polje" asp-for="FotografijaID" asp-items="@Model.Fotografija"></select>
+                <select class="input_polje" asp-for="FotografijaID" asp-items="@Model.Fotografija" required></select>
                 <br />
-                <label   asp-for="SlikaFotografa" class="control-label">Odaberite fotografiju</label>
+                <label   asp-for="SlikaFotografa" class="control-label" required>Odaberite fotografiju</label>
                 <input class="input_poljee"  asp-for="SlikaFotografa" class="form-control " />
                 <span  asp-validation-for="SlikaFotografa" class="text-danger"></span>
                 <br />

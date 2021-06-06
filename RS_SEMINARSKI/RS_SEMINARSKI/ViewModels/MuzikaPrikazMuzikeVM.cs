@@ -18,6 +18,7 @@ namespace RS_SEMINARSKI.ViewModels
             public float  Satnica_sviranja { get; set; }
             public IFormFile SlikaBenda { get; set; }
             public string PutanjaDoSlike { get; set; }
+            public int Rezervisano { get; set; }
         }
         public List<Rows> Bendovi { get; set; }
         public string KorisnikID { get; set; }

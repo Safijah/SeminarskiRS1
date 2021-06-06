@@ -35,7 +35,7 @@
         position: relative;
         background-color: white;
         height: 500px;
-        width: 80%;
+        width: 84%;
         top: 60px;
         left: 130px;
     }
@@ -99,15 +99,23 @@
     .input_polje {
         /*margin-top:px;*/
         /*border-style: dashed;*/
-        border: 1px solid transparent;
+        /* border: 1px solid transparent;
         margin-left: 65px;
         padding-top: 4px;
         width: 600px;
         border: 1px solid transparent;
         border-bottom: 1px solid lightblue;
         color: gray;
-        cursor: pointer;
+        cursor: pointer;*/
+        border: 1px solid transparent;
+        margin-left: 65px;
+        padding-top: 4px;
+        width: 500px;
+        border: 1px solid transparent;
+        border-bottom: 1px solid lightblue;
+        color: gray;
     }
+    
     #snimi {
         border: 1px solid transparent;
         margin-left: 65px;
@@ -117,9 +125,8 @@
         border-bottom: 1px solid lightblue;
         color: gray;
         cursor: pointer;
-        position:relative; 
-        left:45px;
-       
+        position: relative;
+        left: 45px;
     }
 
     #Slika {
@@ -255,15 +262,15 @@
             <input class="input_polje" hidden asp-for="KonobarID" id="KonobarID"/> <br />
 
             <label id="labela">Ime konobara</label>
-            <input class="input_polje" asp-for="ImeKonobara" /> <br />
+            <input class="input_polje" asp-for="ImeKonobara" required /> <br />
 
 
             <label id="labela">Prezime konobara</label>
-            <input class="input_polje" asp-for="PrezimeKonobara" /> <br />
+            <input class="input_polje" asp-for="PrezimeKonobara"  required/> <br />
 
 
             <label id="labela">Plata konobara</label>
-            <input class="input_polje" asp-for="PlataKonobara" /> <br />
+            <input class="input_polje" asp-for="PlataKonobara"  /> <br />
 
             <input id="snimi" class="input_polje" type="submit" value="Snimi" /> <br />
         </form>

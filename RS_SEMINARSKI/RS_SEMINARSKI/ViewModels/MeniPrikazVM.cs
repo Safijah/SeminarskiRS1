@@ -16,6 +16,7 @@ namespace RS_SEMINARSKI.ViewModels
             public float CijenaMenija { get; set; }
             public IFormFile SlikaMenija { get; set; }
             public string PutanjaDoSlike { get; set; }
+            public int Rezervisano { get; set; }
         }
         public string pretraga { get; set; }
         public List<Row> meniji { get; set; }

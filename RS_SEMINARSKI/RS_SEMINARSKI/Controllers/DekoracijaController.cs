@@ -42,13 +42,22 @@ namespace RS_SEMINARSKI.Controllers
                 PutanjaDoSlike=d.PutanjaDoSlikeDekoracije,
                 NazivDekoracije = d.VrstaDekoracije
 
-
             }).ToList();
 
             Korisnik temp = _dbContext.Korisnici.Find(KorisnikID);
             DekoracijaPrikazDekoracijeVM d = new DekoracijaPrikazDekoracijeVM();
             d.Dekoracije = dekoracija;
             d.KorisnikID = KorisnikID;
+            foreach(var x in dekoracija)
+            {
+                var ima = _dbContext.RezervacijaDekoracije.FirstOrDefault(a=>a.DekoracijaID==x.DekoracijaID);
+                if (ima!=null)
+                {
+                    x.Rezervisano = 1;
+                }
+                else
+                    x.Rezervisano = 0;
+            }
             if (temp.RolaID == 1)
             {
                 d.RolaID = 1;

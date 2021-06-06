@@ -42,7 +42,7 @@
             /*border-style: dashed;*/
             border: 1px solid transparent;
             margin-left: 65px;
-            padding-top: 4px;
+            padding-top: -2px;
             width: 500px;
             border: 1px solid transparent;
             border-bottom: 1px solid lightblue;
@@ -61,6 +61,7 @@
             border-bottom: 1px solid lightblue;
             color: gray;
         }
+        
 
         .btn {
             color: dimgrey;
@@ -116,8 +117,8 @@
             background-color: yellow;
         }*/
         label {
-            padding-top: 35px;
-            padding-left: 48px;
+            padding-top: 20px;
+            padding-left: 60px;
             /*margin-left: 40px;*/
             font-weight: normal;
             color: dimgrey;
@@ -166,21 +167,21 @@
                     <input asp-for="SalaID" value="@Model.SalaID" hidden />
                     <input asp-for="KorisnikID" value="@Model.KorisnikID" hidden />
                     <label>Naziv sale</label>
-                    <input class="input_polje" asp-for="NazivSale" />
+                    <input class="input_polje" asp-for="NazivSale" required />
                     <br />
                     <label>Kapacitet sale</label>
-                    <input class="input_polje" asp-for="KapacitetSale" />
+                    <input class="input_polje" asp-for="KapacitetSale" required />
                     <br />
                     <label>Cijena</label>
                     <input class="input_polje" asp-for="CijenaIznajmljivanjaSale" />
                     <br />
                     <label>Opis sale</label>
-                    <input class="input_polje" asp-for="OpisSale" />
+                    <input class="input_polje" asp-for="OpisSale" required/>
                     <br />
-                    <label asp-for="SlikaSale" class="control-label">Odaberite</label>
+                    <label asp-for="SlikaSale" class="control-label" required>Odaberite</label>
                     <input class="input_poljee" asp-for="SlikaSale" class="form-control " />
                     <span asp-validation-for="SlikaSale" class="text-danger"></span>
-                    <input id="neko" type="submit" value="Snimi" />
+                    <input id="neko" type="submit" value="Snimi"  class="input_poljeee"/>
 
                 </form>
             </div>
