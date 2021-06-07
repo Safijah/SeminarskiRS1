@@ -353,7 +353,7 @@
         <input readonly id="UkupnaCijena" asp-for="CijenaNarudzbe" style="background-color:none; border:none" />
         <span id="Km">KM</span>
         <input asp-for="KorisnikID" hidden />
-        @if (Model.StatusRezervacijeID != 2)
+        @if (Model.StatusRezervacijeID <1)
         {
 
             <button id="DodajRacun"> Dodaj racun</button>
@@ -377,7 +377,7 @@
 
 
                 </div>
-                @if (Model.StatusRezervacijeID != 2)
+                @if (Model.StatusRezervacijeID <1)
                 {
 
                     <div id="buttons">
