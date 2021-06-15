@@ -46,17 +46,21 @@ const useStyles = makeStyles({
 
 function Tabela(props) {
   const classes = useStyles();
-  const [Admini, SetAdmini] = useState({ data: [] });
+  const [Admini, SetAdmini] = useState([]);
   useEffect(() => {
     axios.get("https://localhost:44367/AdminApi").then(result => (
-      SetAdmini({ data: result.data })
+      SetAdmini(result.data)
     ))
-  }, []);
+  },[]);
 
 
   var Redirect=(id)=>{
     props.history.push({pathname:props.match.url + '/editrezervacije'+'/' + id})
     
+  }
+  var DodajNovog=()=>{
+    props.history.push({pathname:props.match.url + '/dodajrezervaciju'})
+
   }
   var konobari=()=>{
         props.history.replace({pathname: '/konobari'})}
@@ -77,7 +81,7 @@ function Tabela(props) {
 
       </div>
       <br />
-      <button className="button" onClick={() => Redirect(0)}>Dodaj novog</button>
+      <button className="button" onClick={DodajNovog}>Dodaj novog</button>
       <br />
       <br />
 
@@ -93,7 +97,7 @@ function Tabela(props) {
             </TableRow>
           </TableHead>
           <TableBody>
-            {Admini.data.map((row) => (
+            {Admini.map((row) => (
               <StyledTableRow key={row.id}>
                 <StyledTableCell component="th" scope="row">
                   {row.imeKorisnika}

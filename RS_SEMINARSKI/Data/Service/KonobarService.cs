@@ -49,7 +49,12 @@ namespace Data.Service
         }
         public void EditKonobara(KonobariEvidentirajVM vm)
         {
-            var kuhar = _context.Konobari.Find(vm.KonobarID);
+            var kuhar = new Konobar();
+            if (vm.KonobarID != 0)
+            {
+            kuhar = _context.Konobari.Find(vm.KonobarID);
+               
+            }
             kuhar.ImeKonobara = vm.ImeKonobara;
             kuhar.PrezimeKonobara = vm.PrezimeKonobara;
             kuhar.PlataKonobara = vm.PlataKonobara;
