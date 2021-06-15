@@ -64,7 +64,7 @@ class DodajUredi extends Component {
 }
       componentDidMount(){
         
-        axios.get("https://localhost:44367/AdminApi/c249e795-9ecd-4fde-a8b9-460043d21a1e").then(result=>(
+        axios.get("https://localhost:44367/AdminApi/"+this.props.match.params.id).then(result=>(
             this.setState({
                 KorisnikID:result.data.korisnikID,
                 ImeKorisnika:result.data.imeKorisnika,
@@ -98,12 +98,12 @@ class DodajUredi extends Component {
                     </div>
                     <div>
                         <label>Email</label>
-                        <input type="text" className="input_polje" value={this.state.Email} onChange={this.handleEmail}/>
+                        <input type="text" className="input_polje" value={this.state.Email} onChange={this.handleEmail} disabled/>
                     </div>
-                    <div>
+                    {/* <div>
                         <label>KorisnicnoIme</label>
-                        <input type="text" className="input_polje" value={this.state.KorisnicnoIme} onChange={this.handleKorisnicno}/>
-                    </div>
+                        <input type="text" className="input_polje" value={this.state.KorisnicnoIme} onChange={this.handleKorisnicno} disabled/>
+                    </div> */}
                     <input type="submit" value="Submit" id="Submit"/>
                 </form >
             </div >

@@ -30,7 +30,7 @@ class DodajUrediKonobara extends Component {
         this.setState({PrezimeKonobara:event.target.value});
       } 
       handlePlataKonobara(event) {
-        this.setState({EPlataKonobara:event.target.value});
+        this.setState({PlataKonobara:event.target.value});
       }  
       
       handleSubmit(event){
@@ -98,7 +98,11 @@ class DodajUrediKonobara extends Component {
                         <label>Plata</label>
                         <input type="text" className="input_polje" value={this.state.PlataKonobara} onChange={this.handlePlataKonobara}/>
                     </div>
-                    
+                    {/* <div>
+                        <label>Plata</label>
+                        <input type="text" className="input_polje" value={this.state.PlataKonobara} onChange={this.handlePlataKonobara}/>
+                    </div>
+                     */}
                     <input type="submit" value="Submit" id="Submit"/>
                 </form >
             </div >

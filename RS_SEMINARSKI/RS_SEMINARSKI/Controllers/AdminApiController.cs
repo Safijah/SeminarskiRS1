@@ -44,5 +44,11 @@ namespace RS_SEMINARSKI.Controllers
             _adminInterface.EditAdmina( vm);
             return Ok();
         }
+        [HttpDelete]
+        public IActionResult DeleteAdmin(string id)
+        {
+            _adminInterface.DeleteAdmin(id);
+            return Ok();
+        }
     }
 }

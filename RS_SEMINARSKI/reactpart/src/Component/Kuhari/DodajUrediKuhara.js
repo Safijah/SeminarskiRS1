@@ -28,24 +28,24 @@ class DodajUrediKuhara extends Component {
         this.setState({PrezimeKuhara:event.target.value});
       } 
       handlePlataKuhara(event) {
-        this.setState({EPlataKuhara:event.target.value});
+        this.setState({PlataKuhara:event.target.value});
       }  
       
       handleSubmit(event){
-        event.preventDefault();
-        console.log(this.state);
-       
+       event.preventDefault();
         // axios.post("https://localhost:44367/AdminApi", this.state)
         //   .then(function (response) {
         //     console.log(response);
         //   })
 
-          axios.put("https://localhost:44367/KuharApi",this.state)
-              .then(function (response) {
-                  console.log(response);
-              })
+        //   axios.put("https://localhost:44367/KuharApi",this.state)
+        //       .then(function (response) {
+        //           console.log(response);
 
-      }
+        axios.post("https://localhost:44367/KuharApi",this.state)
+        .then(function (response) {
+            console.log(response);
+        })    }
             
       konobari=()=>{
         console.log(this.props);
@@ -63,14 +63,14 @@ class DodajUrediKuhara extends Component {
         
         }
       componentDidMount(){
-        axios.get("https://localhost:44367/KuharApi/"+this.props.match.params.id).then(result=>(
-            this.setState({
-                KuharID:result.data.kuharID,
-                ImeKuhara:result.data.imeKuhara,
-                PrezimeKuhara:result.data.prezimeKuhara,
-                PlataKuhara:result.data.plataKuhara
-            })
-        ));
+        // axios.get("https://localhost:44367/KuharApi/"+this.props.match.params.id).then(result=>(
+        //     this.setState({
+        //         KuharID:result.data.kuharID,
+        //         ImeKuhara:result.data.imeKuhara,
+        //         PrezimeKuhara:result.data.prezimeKuhara,
+        //         PlataKuhara:result.data.plataKuhara
+        //     })
+        // ));
       }
       
       render() {

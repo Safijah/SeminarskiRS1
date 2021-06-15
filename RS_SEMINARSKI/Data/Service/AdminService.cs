@@ -53,8 +53,16 @@ namespace Data.Service
             var korisnik = _context.Korisnici.Find(vm.KorisnikID);
             korisnik.ImeKorisnika = vm.ImeKorisnika;
             korisnik.PrezimeKorisnika = vm.PrezimeKorisnika;
+            //korisnik.Email = vm.Email;
+            //korisnik.UserName = vm.KorisnickoIme;
             _context.SaveChanges();
             
+        }
+       public void DeleteAdmin(string id)
+        {
+            var korisnik = _context.Korisnici.Find(id);
+            _context.Remove(korisnik);
+            _context.SaveChanges();
         }
     }
 }

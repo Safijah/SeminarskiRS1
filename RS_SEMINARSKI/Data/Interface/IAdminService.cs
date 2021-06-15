@@ -12,5 +12,6 @@ namespace Data.Interface
         void DodajAdministratora(KorisnikEvidentirajVM vm);
         public KorisnikEvidentirajVM GetAdmin(string id);
         void EditAdmina(KorisnikEvidentirajVM vm);
+        void DeleteAdmin(string id);
     }
 }
