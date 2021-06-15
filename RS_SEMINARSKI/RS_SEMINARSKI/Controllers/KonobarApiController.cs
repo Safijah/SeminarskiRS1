@@ -42,5 +42,11 @@ namespace RS_SEMINARSKI.Controllers
             _konobarInterface.EditKonobara(vm);
             return Ok();
         }
+        [HttpDelete]
+        public IActionResult DeleteKonobar(int id)
+        {
+            _konobarInterface.DeleteKonobar(id);
+            return Ok();
+        }
     }
 }

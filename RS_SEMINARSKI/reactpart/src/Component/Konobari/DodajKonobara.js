@@ -7,7 +7,7 @@ class DodajKonobara extends Component {
         this.state = {
             ImeKonobara: "",
             PrezimeKonobara: "",
-            PlataKonobara: "",
+            PlataKonobara: 0,
         }
         this.handleImeKonobara = this.handleImeKonobara.bind(this);
         this.handlePrezimeKonobara = this.handlePrezimeKonobara.bind(this);
@@ -21,7 +21,7 @@ class DodajKonobara extends Component {
         this.setState({ PrezimeKonobara: event.target.value });
     }
     handlePlataKonobara(event) {
-        this.setState({ PlataKonobara: event.target.value });
+        this.setState({ PlataKonobara: parseInt(event.target.value) });
     }
 
     handleSubmit(event) {
@@ -74,7 +74,7 @@ class DodajKonobara extends Component {
                     </div>
                     <div>
                         <label>Plata</label>
-                        <input type="text" className="input_polje" value={this.state.PlataKonobara} onChange={this.handlePlataKonobara} />
+                        <input type="number" className="input_polje" value={this.state.PlataKonobara} onChange={this.handlePlataKonobara} />
                     </div>
                     <input type="submit" value="Submit" id="Submit" />
                 </form >

@@ -7,7 +7,6 @@ import { Route } from 'react-router';
 import DodajUrediKonobara from '../../Konobari/DodajUrediKonobara';
 import DodajUredi from '../DodajUredi';
 import DodajRezervaciju from '../DodajRezervaciju';
-
 import DodajKonobara from '../../Konobari/DodajKonobara'
 const Main=()=>{
     return(

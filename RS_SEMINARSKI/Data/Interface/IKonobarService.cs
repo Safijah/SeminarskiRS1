@@ -12,5 +12,6 @@ namespace Data.Interface
         void DodajKonobara(KonobariEvidentirajVM vm);
         KonobariEvidentirajVM GetKonobara(int id);
         void EditKonobara(KonobariEvidentirajVM vm);
+        void DeleteKonobar(int id);
     }
 }

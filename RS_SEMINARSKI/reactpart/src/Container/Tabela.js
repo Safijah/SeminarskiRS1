@@ -1,4 +1,3 @@
-
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import Button from '@material-ui/core/Button';
@@ -58,6 +57,14 @@ function Tabela(props) {
     props.history.push({pathname:props.match.url + '/editrezervacije'+'/' + id})
     
   }
+  var Obrisi=(id)=>{
+    axios.delete("https://localhost:44367/AdminApi?id="+id);
+    axios.get("https://localhost:44367/AdminApi").then(result => (
+      SetAdmini(result.data)
+    ));
+
+    
+  }
   var DodajNovog=()=>{
     props.history.push({pathname:props.match.url + '/dodajrezervaciju'})
 
@@ -106,6 +113,7 @@ function Tabela(props) {
                 <StyledTableCell align="right">{row.email}</StyledTableCell>
                 <StyledTableCell align="right">Administrator</StyledTableCell>
                 <StyledTableCell align="right" ><button className="button" onClick={() => Redirect(row.id)} >Uredi</button>
+                <button className="button" onClick={() => Obrisi(row.id)} >Obrisi</button>
                 </StyledTableCell>
               </StyledTableRow>
             ))}

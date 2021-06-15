@@ -30,7 +30,7 @@ class DodajUrediKonobara extends Component {
         this.setState({PrezimeKonobara:event.target.value});
       } 
       handlePlataKonobara(event) {
-        this.setState({PlataKonobara:event.target.value});
+        this.setState({ PlataKonobara: parseInt(event.target.value) });
       }  
       
       handleSubmit(event){

@@ -61,5 +61,11 @@ namespace Data.Service
             _context.SaveChanges();
 
         }
+        public void DeleteKonobar(int id)
+        {
+            var konobar = _context.Konobari.Find(id);
+            _context.Remove(konobar);
+            _context.SaveChanges();
+        }
     }
 }

@@ -1,4 +1,3 @@
-
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import Button from '@material-ui/core/Button';
@@ -68,6 +67,10 @@ function Konobari(props) {
     props.history.push({ pathname: props.match.url + '/editkonobar' + '/' + id })
 
   }
+  var Obrisi = (id) => {
+    console.log(id);;
+    axios.delete("https://localhost:44367/KonobarApi?id="+id); //ovde se pise api
+  }
   var DodajNovog=()=>{
     props.history.push({ pathname: props.match.url + '/dodajnovogkonobara'})
 
@@ -104,6 +107,7 @@ function Konobari(props) {
                 <StyledTableCell align="right">{row.prezimeKonobara}</StyledTableCell>
                 <StyledTableCell align="right">{row.plataKonobara}</StyledTableCell>
                 <StyledTableCell align="right"><button className="button" onClick={() => Redirect(row.konobarID)}>Uredi</button>
+                <button className="button" onClick={() => Obrisi(row.konobarID)}>Obrisi</button>
                 </StyledTableCell>
 
               </StyledTableRow>
