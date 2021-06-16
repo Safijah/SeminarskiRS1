@@ -156,6 +156,18 @@
         font-size: 17px;
     }
 
+    #btn3 {
+        position: relative;
+        margin-left: 26px;
+        margin-top: 15px;
+        background-color: whitesmoke;
+        width: 260px;
+        height: 30px;
+        border-radius: 10px;
+        border: none;
+        opacity: 0.7;
+    }
+
     .btn2 {
         position: relative;
         margin-left: 26px;
@@ -260,7 +272,7 @@
                     }
                     else if (Model.RolaID == 2)
                     {
-                        <button class="btn2" style="color: indianred" onclick="window.location='/Meni/DodajURezervaciju?KorisnikID=@Model.KorisnikID&MeniId=@x.MeniID'">Rezerviši</button>
+                        <button class="btn3" style="color: indianred" onclick="window.location='/Meni/DodajURezervaciju?KorisnikID=@Model.KorisnikID&MeniId=@x.MeniID'">Rezerviši</button>
                     }
                 </div>
 

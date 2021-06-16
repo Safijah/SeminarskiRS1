@@ -3,7 +3,9 @@ using Data.EFModels;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.SignalR;
 using Microsoft.Extensions.Logging;
+using RS_SEMINARSKI.notHub;
 using RS_SEMINARSKI.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -18,13 +20,15 @@ namespace RS_SEMINARSKI.Controllers
         private readonly ApplicationDbContext _dbContext;
         private readonly ILogger<HomeController> _logger;
         private readonly IWebHostEnvironment WebHostEnvironment;
+        IHubContext<NotHub> _hubContext;
 
         public CvijeceController(ApplicationDbContext dbContext, ILogger<HomeController> logger,
-            IWebHostEnvironment webhostEnvironment)
+            IWebHostEnvironment webhostEnvironment, IHubContext<NotHub> hubContext)
         {
             _dbContext = dbContext;
             _logger = logger;
             WebHostEnvironment = webhostEnvironment;
+            _hubContext = hubContext;
         }
         public IActionResult PrikazCvijeca(string KorisnikID)
         {
@@ -110,6 +114,8 @@ namespace RS_SEMINARSKI.Controllers
             if(!string.IsNullOrEmpty(x.PutanjaDoSlike))
                 cvijece.PutanjaDoSlikeCvijeca = x.PutanjaDoSlike;
             _dbContext.SaveChanges();
+            var nazivv = _dbContext.TipCvijeca.Where(a => a.TipCvijecaID == cvijece.TipCvijecaID).FirstOrDefault().NazivTipaCvijeca;
+            _hubContext.Clients.All.SendAsync("prijemCvijeca", cvijece.CijenaCvijeca, nazivv, cvijece.PutanjaDoSlikeCvijeca, x.VrstaCvijeca, cvijece.CvijeceID);
             return Redirect("PrikazCvijeca?KorisnikID="+x.KorisnikID);
         }
 
