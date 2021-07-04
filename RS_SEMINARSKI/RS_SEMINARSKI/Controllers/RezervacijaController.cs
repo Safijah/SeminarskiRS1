@@ -39,7 +39,15 @@ namespace RS_SEMINARSKI.Controllers
             {
                 vm.RezervacijaID = rez.RezervacijaID;
                 var rezervacija = _dbContext.Rezervacije.Find(vm.RezervacijaID);
+                if(rezervacija.StatusRezervacijeID>0)
+                {
+
                 vm.StatusRezervacijeID = rezervacija.StatusRezervacijeID;
+                }
+                else
+                {
+                    vm.StatusRezervacijeID = 0;
+                }
                 var pozivnica = _dbContext.Pozivnice.FirstOrDefault(a=>a.PozivnicaID==rezervacija.PozivnicaID);
                 if(pozivnica!=null)
                 {
