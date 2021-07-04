@@ -17,12 +17,14 @@
         margin: 0;
         padding: 0;
     }
+
     body {
         background-image: url("https://i.pinimg.com/564x/8f/c6/b7/8fc6b7eca6e1d9bba6500efc0cfd8bda.jpg");
         background-position: center;
         background-size: cover;
         opacity: 1.5;
     }
+
     #LijeviNavBar {
         height: 600px;
         width: 21%;
@@ -102,6 +104,18 @@
         margin-left: 25px;
     }
 
+    #btn3 {
+        position: relative;
+        margin-left: 26px;
+        margin-top: 15px;
+        background-color: whitesmoke;
+        width: 260px;
+        height: 30px;
+        border-radius: 10px;
+        border: none;
+        opacity: 0.7;
+    }
+
     .IzbornikStavka {
         width: 96%;
         padding-top: 15px;
@@ -114,17 +128,16 @@
         margin: 5px;
         border-radius: 10px;
         background-color: transparent;
-        cursor:pointer;
-        text-align:center;
+        cursor: pointer;
+        text-align: center;
     }
 
-    .IzbornikStavka:hover {
-        background-color: #efeff5;
-        color: darkgray;
-    }
+        .IzbornikStavka:hover {
+            background-color: #efeff5;
+            color: darkgray;
+        }
 
-    .zaFont
-    {
+    .zaFont {
         font-size: 13px;
         opacity: 1;
     }
@@ -153,7 +166,7 @@
         background-color: whitesmoke;
         width: 18%;
         color: dimgray;
-        font-size: 17px; 
+        font-size: 17px;
     }
 
     .btn2 {
@@ -168,7 +181,6 @@
         border: none;
         opacity: 0.7;
     }
-
 </style>
 
 <div id="wrapper">
@@ -182,7 +194,8 @@
 
     <div id="LijeviNavBar">
         <ul id="lijeviNav" class="nav nav-pills nav-stacked" role="tablist">
-            <li class="IzbornikStavka" onclick="window.location = '/Muzika/PrikazBendova?KorisnikID=@Model.KorisnikID'">Bendovi <br />
+            <li class="IzbornikStavka" onclick="window.location = '/Muzika/PrikazBendova?KorisnikID=@Model.KorisnikID'">
+                Bendovi <br />
             </li>
             <li class="IzbornikStavka" onclick="window.location = '/Cvijece/PrikazCvijeca?KorisnikID=@Model.KorisnikID'">
                 Cvijece <br />
@@ -230,12 +243,12 @@
     </div>
 
     <div id="glavni">
-    @if (Model.RolaID == 1)
-    {
-        <div>
-            <button id="buttonDodaj" onclick="window.location='/Cvijece/EvidentirajCvijece?KorisnikID=@Model.KorisnikID&CvijeceID=0'">Dodaj novi cvijet</button>
-        </div>
-    }
+        @if (Model.RolaID == 1)
+        {
+            <div>
+                <button id="buttonDodaj" onclick="window.location='/Cvijece/EvidentirajCvijece?KorisnikID=@Model.KorisnikID&CvijeceID=0'">Dodaj novi cvijet</button>
+            </div>
+        }
         @foreach (var x in Model.cvijece)
         {
             <div class="okvir">
@@ -256,18 +269,25 @@
                         }
                         else
                         {
-                            <button class="btn2" style="color: indianred" >Rezervisano</button>
+                            <button class="btn2" style="color: indianred">Rezervisano</button>
 
                         }
                     }
                     else if (Model.RolaID == 2)
                     {
-                        <button class="btn2" style="color: indianred" onclick="window.location='/Cvijece/DodajURezervaciju?KorisnikID=@Model.KorisnikID&CvijeceId=@x.CvijeceID'">Rezerviši</button>
+                        <button class="btn3" style="color: indianred" onclick="window.location='/Cvijece/DodajURezervaciju?KorisnikID=@Model.KorisnikID&CvijeceId=@x.CvijeceID'">Dodaj u rezervaciju</button>
                     }
                 </div>
 
             </div>
         }
+        <input id="korisnik" asp-for="KorisnikID" hidden />
     </div>
 
 </div>
+
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/lib/signalr/dist/browser/signalr.js"></script>
+<script src="~/js/site.js" asp-append-version="true"></script>
