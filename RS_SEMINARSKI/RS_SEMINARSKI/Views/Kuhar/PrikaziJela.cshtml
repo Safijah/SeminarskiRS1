@@ -1,16 +1,28 @@
 ﻿@using RS_SEMINARSKI.ViewModels
 @model KuharPrikaziJelaVM
+@{
+    Layout = null;
+}
+
+<style>
+
+    thead td {
+        background-color: #d9f2d9;
+        text-align: center;
+        font-weight: bold;
+    }
+</style>
+
 
 <table class="table">
-    <tr>
-        <td>Jelo ID</td>
-        <td>Naziv jela</td>
-    </tr>
+    <thead>
+    <td>Naziv jela</td>
+    </thead>
     @foreach (var x in Model.jela)
     {
         <tr>
             <td>@x.NazivJela</td>
-            <td>@x.JeloID</td>
         </tr>
     }
+
 </table>

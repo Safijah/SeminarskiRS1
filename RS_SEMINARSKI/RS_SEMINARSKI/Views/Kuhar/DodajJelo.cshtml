@@ -1,17 +1,69 @@
-﻿@using RS_SEMINARSKI.ViewModels 
-@model KuharDodajJeloVM 
+﻿@using RS_SEMINARSKI.ViewModels
+@model KuharDodajJeloVM
+@{
+    Layout = null;
+}
+
+<style>
+
+    #FORMA_ZA_SNIMANJE {
+        width: 600px;
+        border-radius: 25px;
+        margin-left: 100px;
+        /*background-image: url("https://i.pinimg.com/564x/8f/c6/b7/8fc6b7eca6e1d9bba6500efc0cfd8bda.jpg");
+        background-position: center;
+        background-size: cover; */
+        background-color: #9fdf9f;
+        opacity: 0.9;
+        position: relative;
+        bottom: 70px;
+        right: 20px;
+        border: 1px solid dotted;
+        height: 170px;
+    }
+
+    #labela2 {
+        top: 20px;
+        padding-top: 5px;
+        padding-left: 20px;
+        /*margin-left: 40px;*/
+        font-weight: bold;
+        font-size: 15px;
+        color: dimgrey;
+        display: block;
+        margin-left: 30px;
+        position: relative;
+        left: 0.1px;
+        right: 50px;
+        bottom: 20px;
+    }
+
+    #ajax3 {
+        position: relative;
+        top: 20px;
+        left: 20px;
+        /*width:250px;*/
+        padding-left: 40px;
+        border: 1px solid transparent;
+        border-bottom: 1px solid lightblue;
+        padding-left: 30px;
+        padding-right: 20px;
+        width: 300px;
+        height: 25px;
+    }
+</style>
 
 <form id="FORMA_ZA_SNIMANJE">
 
-    <label>KorisnikID</label>
-    <input asp-for="KorisnikID" />
+    <input hidden asp-for="KorisnikID" value="@Model.KorisnikID" />
+    <input hidden asp-for="KuharID" value="@Model.KuharID" />
 
-    <label>KuharID</label>
-    <input asp-for="KuharID" />
 
-    <label>Jela</label>
-    <select asp-for="JeloID" asp-items="Model.Jela"></select>
+    <label id="labela2">Naziv jela</label>
+    <select id="ajax3" asp-for="JeloID" asp-items="Model.Jela"></select><br />
 
-    <input type="button" class="btn btn-group-vertical" onclick="SnimiPromjene()" value="Snimi" />
-    @*<input type="submit" value="SNimi" />*@
+    <input type="button" class="btn btn-group-toggle" value="Snimi" onclick="SnimiPromjene()" />
+
+    @*<input type="button" class="btn btn-group-vertical" onclick="SnimiPromjene()" value="Snimi" />
+    <input type="submit" value="SNimi" />*@
 </form>
