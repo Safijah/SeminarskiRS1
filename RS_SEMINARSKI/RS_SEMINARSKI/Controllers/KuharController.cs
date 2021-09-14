@@ -163,7 +163,7 @@ namespace RS_SEMINARSKI.Controllers
 
         }
 
-        public IActionResult ObrisiKuhara(string KorisnikID, int KuharID)
+        public IActionResult ObrisiBend(string KorisnikID, int KuharID)
         {
             Kuhar kuhar = _dbContext.Kuhari.Find(KuharID);
             _dbContext.Remove(kuhar);

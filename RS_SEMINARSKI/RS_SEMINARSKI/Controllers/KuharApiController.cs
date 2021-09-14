@@ -42,10 +42,5 @@ namespace RS_SEMINARSKI.Controllers
             _kuharInterface.EditKuhara(vm);
             return Ok();
         }
-        public IActionResult DeleteKuhar(int id)
-        {
-            _kuharInterface.DeleteKuhar(id);
-            return Ok();
-        }
     }
 }

@@ -12,7 +12,5 @@ namespace Data.Interface
         void DodajKuhara(KuharEvidentirajVM vm);
          KuharEvidentirajVM GetKuhara(int id);
         void EditKuhara(KuharEvidentirajVM vm);
-        void DeleteKuhar(int id);
-
     }
 }
