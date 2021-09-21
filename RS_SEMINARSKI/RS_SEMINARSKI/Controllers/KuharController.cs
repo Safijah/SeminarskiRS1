@@ -53,6 +53,8 @@ namespace RS_SEMINARSKI.Controllers
         {
             KuharEvidentirajVM kuhar = new KuharEvidentirajVM();
             kuhar.KorisnikID = KorisnikID;
+            var RolaId = _dbContext.Korisnici.Find(KorisnikID).RolaID;
+
             if (KuharID == 0)
             {
                 kuhar = new KuharEvidentirajVM();
@@ -71,6 +73,7 @@ namespace RS_SEMINARSKI.Controllers
             }
             kuhar.KorisnikID = KorisnikID;
             kuhar.KuharID = KuharID;
+            kuhar.RolaId = RolaId;
             return View(kuhar);
         }
 

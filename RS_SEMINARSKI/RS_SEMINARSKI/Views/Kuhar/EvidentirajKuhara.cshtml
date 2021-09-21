@@ -255,7 +255,10 @@
                 <label id="labela">Plata: </label>
                 <input class="input_polje" asp-for="PlataKuhara" />
                 <br />
-                <input id="snimi" class="input_poljee" type="submit" value="Snimi" />
+                @if (Model.RolaId == 1) 
+                {
+                    <input id="snimi" class="input_poljee" type="submit" value="Snimi" />
+                }
 
             </form>
         </div>
@@ -263,7 +266,10 @@
     {
         <br />
         <br />
-        <button id="ajax1" onclick="DodajJelo()">Dodaj jelo</button>
+        @if(Model.RolaId == 1)
+        {
+            <button id="ajax1" onclick="DodajJelo()">Dodaj jelo</button>
+        }
         <br />
         <button id="ajax2" onclick="PrikaziJela(@Model.KuharID)">Pregledaj jela</button>
 

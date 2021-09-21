@@ -89,7 +89,7 @@ namespace RS_SEMINARSKI.Controllers
                     {
                         StavkaID = a.CvijeceID,
                         Cijena = a.Cvijece.CijenaCvijeca,
-                        Kolicina = 10,
+                        Kolicina = a.KolicinaNarucenogCvijeca,
                         UkupnaCijena = a.Cvijece.CijenaCvijeca,
                         Naziv = a.Cvijece.VrstaCvijeca + " " + a.Cvijece.TipCvijeca.NazivTipaCvijeca,
                         PutanjaDoSlike = a.Cvijece.PutanjaDoSlikeCvijeca,
@@ -174,7 +174,7 @@ namespace RS_SEMINARSKI.Controllers
                   {
                       StavkaID = a.MeniID,
                       Cijena = a.Meni.CijenaMenija,
-                      Kolicina = 10,
+                      Kolicina = a.Kolicina,
                       Naziv = a.Meni.NazivMenija,
                       PutanjaDoSlike = a.Meni.PutanjaDoSlikeMenija,
                       Tip = "meni"
@@ -242,7 +242,9 @@ namespace RS_SEMINARSKI.Controllers
             {
                 case "cvijece":
                     var Cvijece = _dbContext.RezervacijaCvijece.Where(a => a.RezervacijaID == RezervacijaID && a.CvijeceID == vm.StavkaID).FirstOrDefault();
-                    _dbContext.RezervacijaCvijece.Remove(Cvijece);
+                    //_dbContext.RezervacijaCvijece.Remove(Cvijece);
+                    Cvijece.KolicinaNarucenogCvijeca = vm.Kolicina;
+                    _dbContext.SaveChanges();
                     return Redirect("/Cvijece/PrikazCvijeca?KorisnikID=" + vm.KorisnikID);
 
                 case "dekoracije":
@@ -274,7 +276,9 @@ namespace RS_SEMINARSKI.Controllers
 
                 case "meni":
                     var meni = _dbContext.Evidencije.Where(a => a.RezervacijaID == RezervacijaID && a.MeniID == vm.StavkaID).FirstOrDefault();
-                    _dbContext.Evidencije.Remove(meni);
+                    //_dbContext.Evidencije.Remove(meni);
+                    meni.Kolicina = vm.Kolicina;
+                    _dbContext.SaveChanges();
                     return Redirect("/Meni/PrikazMenija?KorisnikID=" + vm.KorisnikID);
             }
             return NoContent();

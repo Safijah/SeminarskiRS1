@@ -165,6 +165,18 @@
         border: none;
         opacity: 0.7;
     }
+    #btn3 {
+        position: relative;
+        margin-left: 26px;
+        margin-top: 15px;
+        background-color: whitesmoke;
+        width: 250px;
+        height: 30px;
+        color: dimgray;
+        border-radius: 10px;
+        border: none;
+        opacity: 0.7;
+    }
 </style>
 
 <div id="wrapper">
@@ -245,6 +257,10 @@
                 {
                     <button class="btn2" style="color:mediumseagreen" onclick="window.location='/Kuhar/EvidentirajKuhara?KorisnikID=@Model.KorisnikID&KuharID=@x.KuharID'">Uredi</button>
                     <button class="btn2" style="color: indianred" onclick="window.location='/Kuhar/ObrisiKuhara?KorisnikID=@Model.KorisnikID&KuharID=@x.KuharID'">Obrisi</button>
+                }
+                else
+                {
+                    <button id="btn3" style="color:  #009900" onclick="window.location = '/Kuhar/EvidentirajKuhara?KorisnikID=@Model.KorisnikID&KuharID=@x.KuharID'">Pregledaj detalje</button>
                 }
             </div>
         </div>
