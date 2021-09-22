@@ -10,7 +10,8 @@ namespace Data.Interface
     {
         List<Kuhar> GetKuhara();
         void DodajKuhara(KuharEvidentirajVM vm);
-         KuharEvidentirajVM GetKuhara(int id);
+        KuharEvidentirajVM GetKuhara(int id);
         void EditKuhara(KuharEvidentirajVM vm);
+        void DeleteKuhar(int id);
     }
 }

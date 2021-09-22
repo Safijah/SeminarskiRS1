@@ -57,5 +57,11 @@ namespace Data.Service
             _context.SaveChanges();
 
         }
+        public void DeleteKuhar(int id)
+        {
+            var kuhar = _context.Kuhari.Find(id);
+            _context.Remove(kuhar);
+            _context.SaveChanges();
+        }
     }
 }

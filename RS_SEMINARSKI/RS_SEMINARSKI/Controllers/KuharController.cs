@@ -166,9 +166,13 @@ namespace RS_SEMINARSKI.Controllers
 
         }
 
-        public IActionResult ObrisiBend(string KorisnikID, int KuharID)
+        public IActionResult ObrisiKuhara(string KorisnikID, int KuharID)
         {
             Kuhar kuhar = _dbContext.Kuhari.Find(KuharID);
+            foreach (var x in _dbContext.KuharMeni.Where(y => y.KuharID == KuharID))
+            {
+                _dbContext.KuharMeni.Remove(x);
+            }
             _dbContext.Remove(kuhar);
             _dbContext.SaveChanges();
             return Redirect("PrikazKuhara?KorisnikID=" + KorisnikID);
