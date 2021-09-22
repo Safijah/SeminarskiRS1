@@ -135,6 +135,10 @@ namespace RS_SEMINARSKI.Controllers
         public IActionResult ObrisiMeni(string KorisnikID, int MeniID)
         {
             Meni pronadjen = _dbContext.Meniji.Find(MeniID);
+            foreach (var x in _dbContext.KuharMeni.Where(y => y.MeniID == MeniID))
+            {
+                _dbContext.KuharMeni.Remove(x);
+            }
             _dbContext.Remove(pronadjen);
             _dbContext.SaveChanges();
             return Redirect("PrikazMenija?KorisnikID=" + KorisnikID);
